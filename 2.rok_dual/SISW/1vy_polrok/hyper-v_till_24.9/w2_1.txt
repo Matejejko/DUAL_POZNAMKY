@@ -1,0 +1,439 @@
+exch na mailovu komunikaciu
+komunikacia rastie
+ceny diskov rastu
+
+addds, web, exch, fc
+
+niekedy sme nmohli robit zaberov 10
+fotiek takych istych - nemohli sme si to dovolit.
+ale teraz si to vieme dovolit
+tie fyzicke systemy pretransformujeme
+
+vtedy ukazal
+2nodove riesenie - kde su 2 servre kvoli redundsacii
+
+jeho tam potrebujeme mat lebo on vsetko riesenie
+
+
+procesor pamat disk a siet ig
+zdroje to boli
+
+aj trafic ide cez hypervisor
+je nieco ako srdce/mozog celeho riesenia
+ma mali footprint - iba par megabitov je to skoro nieco
+moze byt aj v ssd karte
+
+je aj moznost spustat hypervisor cez siet - taze 
+hypervisor nie je nainstalovany na nasom disku
+
+ale treba aj maintanence
+napr. u nich je purple screen of death
+- to je vacsinou asi hardware failure
+
+ma tiez vCPU vRAM
+a na nom je nainstalovany guest osten guest os vobec
+netusi ze mezi nim a HL nieco je
+HL = hardware layer
+
+Hypervisor managuje zdroje vikony
+
+middleware
+-je to software 
+-napr. .NET, java
+
+je to aplikacia kt. potrebuje aby realna aplikacia
+vedela bezat- mohla fungovat
+bez .NET library by nam vela nefungovalo
+mnoho apps su vyrobeny v jave
+je to software kt. nieje koncova aplikacie
+ale pomaha niejakej koncovej aplikacie
+
+nevyhoda virtualizacie
+to je ako by sme to prirovnali k
+inventing of a wheel
+aku nevyhodu ma koleso??
+
+virt. je naozaj nase velke boom
+
+wind8 - je mozno nainstalovat klientsku verziu zdrama
+-ci uz pre skolaka alebo iba takychto poskusat
+zadarma, bez licenie
+
+ale neviem robit cluster riesenie na nom
+toto asi patri hore
+
+wmvare
+trvalo microsoftu kym zistili
+ze ake dobre je mat hypervisor
+
+hyperv je teraz sakra vyuzite
+
+ako sa microsoft prebyl aby bol top 1
+na trhu?
+-bol lacnejsi
+
+okolo 2008 bol hyperV zaujimava
+bol 7x ;acnejsie
+nemalo to nic navyse ale bolo to ovela
+lacnejsie
+
+co ma bude stat ten prechod?
+nove preskolenie zamestnancov
+zmigrovat system - napr. kupit novy hw
+kt. by bol kompatibilny s hyperV
+3. na isty cas by platit dvojmo za tu licenciu
+
+keby prechadzal vtedy ak ma licenciu platnu
+teda musi prechadzat pocas toho ako je licencia platna
+keby to robili neskorisie - takychby to nestihli
+azure hlavne bezi na hyperV
+aws bezi aj aj 
+a azure mu dycha na krk lol
+aws ma tendenciu bezat monopolne
+
+
+my sa hlavne budeme bavit o server virtualizacii
+samotona virt. nemoz ebezat bez storage a network
+a ostantych dolaezitych ale hlavne tie dva
+
+dnes posle prezentacie yupeee
+
+virt. delime na typ1 a typ2
+typ1 sa vola aj bare metal
+typ2 je guest os based
+
+typ1 je vacsinou vo velkych a strednych podnikov
+
+v typ2 nieje hypervisorale je tam wmware workstation alebo virtualbox
+oni tiez umoznuju nam vytvarat VM bez toho hyoervisora
+
+nema vsetky vyhody ako typ1
+
+na typ2 uz nehovorime o efektivnom vyuzivani hw
+lebo zabera nie mega ale uz niekolko giga
+treba aspon tretina abo stvrtina vykonu aby bezal
+os
+na typ1 to tak nieje - tam netreba tolko vela
+
+vacsinou linuxaci to pouzivaju na niejaku specificku cinnost
+
+ale tu typ2 uz apka aj vie ze nieco medzi nim jemozno 1-2 vrstvy
+da mu aj request aby sa spravila poziadavka
+a ked je zaneprazdneny tak to stoji
+je to ako mali brat
+
+preco ludia chcu vyvojata typ2 ?
+ako mozeme toto vyuyzit v praxi tak aby bol viac vyhodnejsi ako
+typ1 ?
+microsoft nato kasle
+-na osobne pouzite, a hlavne developeri
+typ1 sa pouziva vo velkych datacentrach
+
+1.typ2 niejaky devop si postahuje veci, poskusa
+taze ak potrebuje nieco vyskusat, experimentovat
+tak aby nemusel so sebou tahat 3pc
+tak si vytvori 3 VMky
+1. development - ten koduje
+
+2. na studium
+na ucenie, testovanie, odskusanie
+
+3. testovanie kodu/apku
+-suvisi to velmi s developmentu ale robi
+sa to nakonci
+pred nasadenim do produkcie chceme to otestovat
+odizolujeme kod napr. - aby sme vedeli ci to funguje
+ci system neklakne
+
+VM components
+-pre zaujimavost
+nemusime vediet
+
+bude chciet od nas len toto:
+vNIc, vDisk, vCPU, VrAm
+
+vPrinter - to je iba Print poort
+
+vsetko je tu OKREM maticnej dosky
+ona tu nieje
+
+integrated tools/vmware tools
+-sluzi nato aby sme stiahli ovladace
+je to velmi ziadane aby po nainstalovani VM
+doinstalujeme integrate tools
+napr. imporvement myski a grafiky aby to slo
+
+uvidime ako to bude yzerat bez integrated toolov
+uvidime ze ich budeme chciet
+
+napr. napr. niejake features
+ako graficka karta??? - alebo
+ak chceme vypnut tu masinu - nato tiez trba
+tie tooly stiahnut
+
+tie tooly vedie ist dovnutra tej masiny a robit
+tie funkcie
+
+tabulku tiez netreba vediet
+ani jedno z tych rieseni nieje lepsie alebo horsie
+pre toho zakaznika
+
+vMotion - vmware
+vMigraion - micorosft
+checkpoint - vmware
+snapshot -micorosoft
+
+oni dvaja maju to iste, len sa to vsetko inak vola
+a vendori sa dotahuju
+napr. 1 ma 1tb pamate a druhy vendor to
+dotiahne na 2tb pamate
+
+
+co to znamena pre nas zakaznikov?
+nic - je to len marketing
+
+640cpu vieme vyuzit
+ale my realne mame len 1cpu
+-vieme vyuzit tolko 640 cpu?
+naco je nam to je ak to neviem obsadit?
+tieto config maxima su len matematicky vypocitane
+nieje to take ze to fakt vyskusali
+
+taze tyto dvaja vmware a hyperv su uplne identicke
+
+co sa tyka v sprave managovanie
+tak ano vmware je jednoduchsi
+
+cluster na microsft sa budeme ucit
+je trochu komplikiovany - ma wizard
+
+
+ludia nechcu len lacne a vyhodne
+ale chcu aj simplicity
+-lebo nechcu zaucat tych ludi
+
+musi to but aj jednoduche na maintenacne,
+troubleshooting
+
+simplicity - je ta nova poziadavka od zakaznikov
+
+
+ESXi - nic z toho nemusime vediet
+cou ma 2jadrove - na mobile mam viac jadier
+4gb pamate - to uz ani na mobile nestaci
+
+datastore je virtualizacna technologia
+nezaujima ho co je pod nim
+FCOE je to macko pes
+chcem mat fibrechannel
+ale iba s kablami ethernet
+
+bandwidth - sirka pasma - nebude taka velka
+
+iscsi - protokol scsi komandov
+presne tie iste komandy sa pouziva aj na DAS
+namiesto toho aby to do zbernici 
+kedze na iscsi je tam 'i'
+on to posiela cez internet
+
+config files .vmx
+tam pisse ze kolko ramky tam je
+
+diskove file
+sak mame 
+tieto dva subory tak viem zapnut
+nasu vmware
+snapshot - je iba na dobu kratku - potom sa maze
+
+
+v hyperV je toho menej na guestos support
+vmware podporuje viac guestos
+
+v linuxe je to hlavne suse a redhat v produkcii 
+clientskej edicii je to ubuntu
+
+migraciu - to chceme vsetci
+najlepsie bez vypadku
+
+high storage -H
+low storage - L
+
+zakaznikovy sa ulozili data na H
+
+ale jemu to netreba, on to chce mat na L
+tak to vieme zmigrovat, najlepsie tak ze
+to klient ani nepociti
+
+najlepsie robit tak aby nebol nijaky downtime
+kazdy downtime je strata
+aj reboot je downtime
+
+
+
+hyperV
+req su velmi podobne ako hore
+je tam aj free - bez licenciych costov
+a mozme toto free dat aj do produkcii
+
+na licenciu sa dalo vysplhat na 10-ky tisic
+ale davaj pozor kedze je to zdarma  
+lebo je to core edicia - bez gui 
+taze to je akoby sme mali linux 
+
+na windowse je krasne ak ma gui 
+90% updatov na windowse
+bolo kvoli gui - na jeho upravu
+
+core - vysoky uptime, malo uloziska
+-nie vsetky aplikacie vie tam bezat 
+lebo ta grafika pre tie aplikacie hlavne s 
+graficky m rozhranim je velmi dolezite
+
+ak chcem hrat hry tak v zivote si nenainstalujem
+linux
+
+verzia standard verzia - verzia v datacentrach
+ma to hrozne vela ediciu na windows servera
+a kazda verzia mala obmezdenia npar. iba tolko ram
+a ak zle tak sme museli vssetko preinstalovat
+
+tak to zmenili na microsoft a uz tak nemusime robit
+standart vs. datacenter
+-rozdiel je ze v datacentri nemame limit kolko
+os windowsi si nainstalujem 
+
+taze na 150 servrov mam len 1 licenciu
+sakra usetrime
+
+toto unlimited je fakt unlimited?
+nie - lebo limit je vykon toho hosta - jeho cpu
+
+1 licencia stoji 500k eur
+datacenter 4k eur
+nie su to male ceny
+
+-toto vydrzalo microsoftu len 6 rokov
+
+OSE = to su virtualne machiny
+
+zacinaju sa aj rozlisovat ake feature chceme mat
+taze ak chceme mat niejaku protekciu tak uz treba 
+kupit datacenter..
+FEATURES - tak sa dnes aj rozlisuju
+
+je dolezite ze ked pojdeme virtualizovat
+aby sme vedeli na co mame siahat a haldat
+ak chceme aplikacie tak siahnem na standart verziu
+
+dalsi slide o hw min  
+nie nieje rozdiel, prekticky to iste
+20-25 gui
+ak core tak je to len zlomok
+
+co ma bude tlazit aby sme kupovali hyperv namiesto esxi?
+ta hyperv je od microsoftu
+a je najlepsie je ked vsetko - siete etc. mame od 1 vendora
+tak hyperv asi zvolime
+- to chceme aj kvoli kompatibilite ale hlavne
+kvoli supportov
+
+microsoft ma dobry support
+veritas ma hrozny support
+
+od hw az po os chceme vsetko mat od 1 vendora
+zial aj ked chceme neda sa ale znasime sa
+-chceme homogenne prostredie
+
+pre hyperV si pozri aj tie hw min 
+mozno aj na teste bude
+
+redhat chyba v slide lol
+slide: guest os support 
+redhat derivat debianu
+
+dalsie slide sa uc  - bude na teste
+
+kt. komponenty viem vybrat hotpluckovo 
+-bude na teste
+
+ak vymazeme virtualku tak snapshot nas nezachrani
+snapshot je ako obraz
+snapshot je na povodnom disku 
+preto snapshot nepouzivame dlhsie na validaciu
+vacsinou to mame iba na par hodin
+malokrat aj na ppar dni  
+
+co ak chceme to mat dlhsie?
+
+mame aj backupy
+ak mame snapshot
+pri restore nebude stacit len bacjup 
+ale aj snapshot ak ho mame
+a to moze rychlo zkomplikovat
+
+aj pri restore
+je disk rozdielovy a disk ...
+musi ist prv na disk povodny a potom backup disk??
+taze na istu dobu musi citat z 2 diskov
+
+snapshoty by sme mali zmazat
+
+ak mam dlshie tak uz nevieme kt. snapshoty
+chceme vymazat a ktore nie
+pc je potom pomaly, lebo cely disk je trackovany
+
+installation vhost 
+my budeme stahovat cez image
+
+taze za 20 min cca si spravime img a potom vieme
+ich clonovat bez prbelmov
+
+velmi dobre je - lebo velmi sakra usetris casom
+
+'cim menej veduci vie, tym lepsie pre mna'
+sef moze mysliet ze robime overtime cely vikend
+a pri tom to spravime len za 30min v piatok
+
+
+
+NTFS, ReFS
+FAT - uz zabudni fat32 - aky bol problem s nim?
+mal len 4gb - velmi malo 
+80-100gb maju os
+
+shared storage - ss 
+ss je pristupny v jednom case iba pre jednu vm 
+
+hyperv
+vm / hyperv1       vm2/hyperv2
+
+ss
+
+sb - nas, san
+sb je asi storage box
+ 
+ak jeden host vypadne 
+obidve hosti musia mat read write permission na tom storage
+
+to mi umoznuje cluster shared volume
+naraz mozu citat a zapisat na ten volume viacero vm 
+
+vswitch external private interna;l 
+
+generacie vyberme iba tie najnovie
+najlepsie je asi gen 2 - odporuca
+
+
+tu su subori hyperv
+VHDX - je datovy file
+vmcx - tam su config faly
+-kolko diskov, cesta k doskov,...
+
+vmcx a vhdx tie treba zarucene backupovat
+cela masina je len hluk tych 2 suborov
+
+avhdx - je rozdielovy file pri tych snapshotov/checkpointov
+
+z prezentacie sa uc len to co bolo o hyperv 
+
+

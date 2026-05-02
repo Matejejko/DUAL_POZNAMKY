@@ -1,0 +1,61 @@
+vypis shellu kt pouzivame
+
+	echo $SHELL
+	
+	env
+
+'' ->> ak chceme aby hodnota sa 100% interpretovala ako hodnota
+"" ->> ak tam je command kt chceme vykonat
+
+	[mpapaj@pas-machine ~]$ a='$(echo a)'
+	[mpapaj@pas-machine ~]$ echo $a
+	$(echo a)
+
+	[mpapaj@pas-machine ~]$ a="$(echo a)"
+	[mpapaj@pas-machine ~]$ echo $a
+	a
+
+while read i ->> citaj kim mas co ked nemas vtedy to je false
+
+
+  1 #!/usr/bin/env bash
+  2
+  3 # rozdelim slovo na polovicu, druhu otocim, a porovnam
+  4
+  5 #input 2 sposoby
+  6 #1. sposob (pochopitelnejsi):
+  7 read -p "zadaj slovo: " slovo
+  8
+  9 ##2. sposob (menej CPU):
+ 10 ##slovo="$1"
+ 11
+ 12 #pocet pismen v slove 2.sposoby
+ 13
+ 14 #pocet_pismen="$(echo -n "$slovo" | wc --chars)"
+ 15
+ 16 pocet_pismen="${#slovo}"
+ 17
+ 18 #parny pocet ? 2 moznosti
+ 19
+ 20 obratene_slovo=""
+ 21
+ 22 while read i; do
+ 23     obratene_slovo="$obratene_slovo${slovo:$i:1}"
+ 24 done < <(seq $((pocet_pismen-1)) -1 0)
+ 25
+ 26 # seq $((pocet_pismen-1)) -1 0 | while read i; do
+ 27 #    obratene_slovo="$obratene_slovo${slovo:$1:1}"
+ 28 # done
+ 29     ## na toto pozor lebo tou "|" vykonana hodnota sa zahadzuje ked skoncime danu cast kodu
+ 30     ## lebo tou | sa otvory novy bash a ked skonci ten bash sa zahodi ale nezdedi to originalny bash codu
+ 31
+ 32
+ 33
+ 34
+ 35 echo -n "slovo ${slovo} "
+ 36 if [ "$slovo" == "$obratene_slovo" ]; then
+ 37     echo "je palindrom"
+ 38 else
+ 39     echo "nie je palindrom"
+ 40 fi
+

@@ -1,0 +1,95 @@
+virtualizacia
+	technológia ktorá umožňuje bežanie viacerých logických inštancii s vlastným OS 
+	a nainštalovanými aplikáciami (VMs) na jednom alebo clustrovaných fyzických systémoch
+	typy:
+		server virtualization
+		desktop virtualization
+		network virtualization
+		storage virtualization
+		application virtualization
+
+preco virtualizacia
+	Cloud nemôže existovať bez virtualizácie (ale virtualizácia bez cloudu áno)
+	Enterprise spoločnosti maju jeden z veľkých rozpočtov v serveroch, storagoch (fyzicke zariadenia)
+
+hypervisor
+	software kt vytvara a bezi virtualizaciu
+	prideluje a kontroluje zdielanie serverovych zdrojov RAM,CPU,HDD/SSD
+	je:
+		type 1
+			je nainstalovany na prazdno, bare metal hardware
+			eSXi, Hyper-V
+				VM, VM, VM,
+				HYPERVIZOR
+		type 2
+			je instalovany na existujucom OS
+						VM, VM, VM
+				APPLICATION, HYPERVIZOR
+				GUEST OS
+			Tu vm=ky vedia ze nieco medzi nim a hardware-om je
+			Vyuzivaju ju najme individualny napr. 
+ 				developery, 
+ 					(je to portable,  bez neakych nakladov a casu setup-ovania)
+				Studenty,
+					(ucit sa, testovať, ziskavať skily bez velkych zaciatočných nákladov)
+				Testovanie,
+					(testovanie aplikácií na danom OS, test v ramci aplikácií kt som vytvoril, alebo skúšanie kódu)
+vHost
+	je to zariadenie na kt je nainstalovany hypervisor
+
+VM/container
+	virtualny host, OS running on vHOst
+	Tiez ma cpu, ram, disk, ale virtual takze vCPU, vRAM, vDISK a na nom je guest OS.
+	on vôbec netuší že medzi nim a hardwarom je HV
+
+Middlewear
+	Je to apka, umožnuje že aplikacie fungujú ako majú napr. java
+	je to softwear kt neni koncova aplikacia ale pomaha hlavnej aplikacii
+
+uplink
+	sietova karta fyzickeho hosta, v praxi kazdy fyz host ma 6-8 sietovych kariet
+
+datastore
+	akekolvek ulozisko na ulozenie VMs
+	je:
+		DAS	-	direct attach storage, limit = velkost
+		NAS	-	network attach storage
+		SAN	-	komunikacia ide cez opticke vlakna
+
+vCPU, vRAM, vDISK, vNIC
+	vsetko su virtualne zariadenia, vsetko okrem maticnej dosky moze byt virtualne, funguju vlastne ako driver pomocou kt dokazu komunikovat s normalnym HW
+
+vSwitch
+	L3 switch (vie robit rooting), na 1 strane ma inbound a na druhej ma outbound
+
+appliance 
+	VMs, ale rozidel je ze appliance sa dodava ako celok, nevieme ho upravovat, je to vlastne zatvoreny image
+
+Výhody virtualizácie:
+	-Konsolidácia serverov (100 serverov môže bežať iba na napr. 10 fyzických)
+	-VMkam je jedno na akých hostoch bežia, čiže ich môžeme prenášať
+	-Sú veľmi dobre škálovateľné
+	-Lepšia utilizácia HW, keďže vieme rôzne pohybovať s napr. RAMkami tak si vieme dobre navrhnúť aby sme využívali všetko čo sme si kúpili, alebo napr. ked zakaznik 	nevie že ako veľa RAM treba na jeho aplikaciu tak to kľudne môžeme prepáliť a potom znižovať
+	-Nižšie náklady na napájanie, chladenie, atď.
+	-Softvérovo založené datacentrá
+	-Snapshoty (nie sú backup)
+Nevýhody virtualizácie:
+	-Väčšie investície (drahšie)
+	-Nie všetký fyzické komponenty môžu byť pripojené na VMky
+	-Nie všetky aplikácie môžu byť pripojené na virtuálne
+
+VM komponents
+	vCPU, vDISK.....
+	quest OS
+	INTEGRATED TOOLS = toto umoznuje nainstalovať ovládače, basically necessity
+ 				  enhace tools
+				  alebo umoznuje aj posielanie prikazov na shutdown a tak
+
+VM files
+	.vmx – config file (kolko ramky a tak)	to a to pod staci na zapnutie masiny
+	.vmdk/-flat.vmdk – disk files
+
+Hyper-V
+	Standard 			1 licencia
+	database unlimited		nekonecno licencii
+	Od 2022 je ich viac a deli sa zu aj podla jeho features danej licencie

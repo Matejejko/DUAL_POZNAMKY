@@ -1,0 +1,12 @@
+do úvodu – čo to je, prečo to je
+ 
+rozpísať problém, ktorý ideme riešiť
+ 
+keď rozpíšeme problém, ktorý sa ide riešiť, bolo by fajn opísať, ako prebiehali tie rozhovory empatické (keď nevieš odpovede, tak si môžeš vymyslieť svoje, ale musíš sa vcítiť do tých ľudí – proste opísať ich problémy a kde by mohli byť ich riešenia)
+ 
+následne by sme mali opísať brainstorming, nápady [kľudne napísať aj tie bizarné/nereálne], aké nám vyšli, a k tomu brainstormingu dať záver v štýle: z týchto všetkých nápadov nám najviac vhodný nápad prišiel tento a tento, a na týchto budeme pracovať
+
+brainstorming
+development
+aplikacia
+upkeep

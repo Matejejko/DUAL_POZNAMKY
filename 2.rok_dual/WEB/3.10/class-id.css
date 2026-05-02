@@ -1,0 +1,32 @@
+#header-app {
+    background: green;
+    color: whitee;
+    box-shadow: 0 2px 10px;
+}
+.article-container {
+    border: 5px dotted red;
+    margin: 10px 20px 30px 40px;    /*z vonku,  */
+    padding: 50px;                  /*z vnutra, */
+}
+
+.article-title {
+    color: white;
+    background: orange;
+}
+
+.author {
+    font-style: italic;
+    font-weight: 900;
+}
+
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+/*trieda vs id, do triedy vieme davat iba jeden element, do id viac
+
+    1trieda moze byt priraena k viacerim elementom
+
+
+ */

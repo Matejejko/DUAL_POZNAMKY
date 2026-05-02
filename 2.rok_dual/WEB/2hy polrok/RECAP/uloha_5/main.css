@@ -1,0 +1,96 @@
+html,
+body {
+    height: 100%;
+    margin: 0;
+    grid-template-columns: 1fr 2fr;
+    grid-template-rows: 2.3fr 0.7fr;
+}
+
+body {
+    background-color: black;
+    display: grid;
+    min-height: 100vh;
+}
+
+.div1 {
+    background-color: blue;
+    grid-template-rows: 2fr 1fr;
+    display: grid;
+    place-items: center;
+    grid-column: 1;
+    grid-row: 1;
+}
+
+.img_main_div {
+    margin-top: -10vh;
+}
+
+.img_main {
+    margin-top: 1vh;
+    border-radius: 50%;
+    width: 20vh;
+    height: 20vh;
+}
+
+.link {
+    margin-top: -30vh;
+    grid-template-rows: 1fr 1fr 1fr;
+    display: grid;
+    width: 100%;
+    gap: 10px;
+}
+
+.link a,
+.link button {
+    width: 100%;
+}
+.img_secondary_div {
+    display: flex;
+}
+.img_secondary {
+    border-radius: 50%;
+    width: 10vh;
+    height: 10vh;
+    margin: 30px;
+    margin-bottom: 10px;
+}
+
+.div2 {
+    background-color: orange;
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.div3 {
+    background-color: green;
+    grid-column: 1 / span 2;
+    grid-row: 2;
+    grid-template-columns: 1fr 1fr;
+    display: grid;
+    align-items: center;
+    width: 100%;
+}
+.img_secondary_2_div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+.img_secondary_2 {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+}
+
+.link_2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.link_2 a,
+.link_2 button {
+    width: 30vh;
+}

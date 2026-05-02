@@ -1,0 +1,4 @@
+      Linux 8.10      	
+<<===================>>
+
+vytvor 2x nove swap velkost 2gb jedno z noveho lv-cka a 2 z file-u

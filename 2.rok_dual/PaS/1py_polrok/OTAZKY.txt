@@ -1,0 +1,75 @@
+Aké linuxové shelly existujú?
+	Medzi najčastejšie patria Bash, Zsh, Fish, Ksh, Tcsh, Dash.
+Čo je to objekt (v OOP)?
+	konkrétna inštancia triedy s atribútmi a metódami; napr. objekt auto má farba="červená" a metódu jazdi().
+	tato trieda moze dedit 
+Akými spôsobmi vieme spustiť skript v Linuxe?
+	priamo: ./skript.sh (ak je spustiteľný),
+	cez interpreter: bash skript.sh alebo sh skript.sh.
+Čo je to vývojový diagram?
+	Grafické znázornenie algoritmu pomocou blokov a šípok, ktoré ukazujú postupnosť krokov.
+Konkrétny linuxový príkaz – which
+	Ukáže cestu k spustiteľnému súboru; napr. which python3 → /usr/bin/python3.
+Aký je rozdiel medzi programom a skriptom?
+	Program je komplexná aplikácia (napr. Firefox), zatiaľ čo skript je jednoduchý súbor príkazov na automatizáciu (napr. backup.sh).
+Na čo slúži CLI (príkazový riadok)?
+	CLI umožňuje ovládať systém pomocou príkazov; napr. ls -l zobrazí súbory s detailmi.
+Aké linuxové shelly existujú?
+	Bash, Zsh, Fish, Ksh, Tcsh, Dash. (opakovanie odpovede z bodu 1)
+Čo znamená shebang?
+	Shebang #! určuje, akým interpreterom sa má skript spustiť; napr. #!/bin/bash.
+Čo je to algoritmus?
+	Presná postupnosť krokov vedúcich k riešeniu problému; napr. bubble sort na zoradenie čísel.
+Čo je to objekt (v OOP)?
+	(opakovanie bodu 2) Objekt je inštancia triedy so stavom a správaním.
+Konkrétny linuxový príkaz – sed
+	Slúži na úpravu textu priamo v termináli; napr. echo "Ahoj Svet" | sed 's/Svet/Linux/' → Ahoj Linux.
+Čo je to abstrakcia v OOP?
+	Skrytie vnútorných detailov a zobrazenie len podstatných vlastností; napr. auto má metódu jazdi(), nezaujíma nás detail motora.
+	vsetko je zadefinovane v objekte a nemusi tieto veci davat dalej, iba pri dedení
+Čo je dedičnosť v OOP?
+	Umožňuje, aby trieda prebrala vlastnosti a metódy inej triedy; napr. Pes dedí od Zviera.
+Čo je polymorfizmus v OOP?
+	Umožňuje, aby rovnaká metóda mala rôzne správanie podľa triedy; napr. zvuk() u Pes → „haf“, u Mačka → „mňau“.
+Čo je $@ $* a aky je medzi nimi rozdiel?
+	$* je všetko ako jeden reťazec, $@ ako samostatné argumenty: echo "$*"; echo "$@"
+Ako vieme escapovat v bashi ?
+	používa \ na špeciálne znaky: echo "Toto je \"citát\""
+Ako spočítame dve celé čísla v bashi ?
+	echo $((5 + 7))
+Ako spočítame desatiné čísla v bashi ?
+ 	echo $(echo "5.5 + 2.3" | bc) ->> echo "5.5 + 2.3" | bc
+Ako vypíšem náhodné čislo v bashi ?
+ 	echo $RANDOM alebo hranicove random echo $((RANDOM %10)) do 10
+Ako vypíšem určitý riadok zo súboru v bashi ?
+ 	sed -n '3p' subor.txt alebo awk 'NR==3' subor.txt
+čo je cyklus, aké cykly poznáme ? čo je iterácia ? 
+	opakuje kód (for i in 1 2 3; do echo $i; done, while [ $x -le 3 ]; do ...; done)
+	Iterácia = jedno opakovanie cyklu
+na čo slúži príkaz test ?
+	porovnava hodnoty premmených a zistuje ci existuje subory a priecinky
+čo urobí príkaz shift?
+	posunie všetky argumenty skriptu o jedno doľava, takže $2 sa stane $1
+	napr. chceme postupne spracovat argumenty
+načo sú príkazy diff paste file?
+	diff: porovná dva súbory a zobrazí rozdiely.
+	paste: spája riadky z viacerých súborov vedľa seba.
+	file: zistí typ súboru.
+čo je IFS?
+	určuje, podľa čoho sa rozdeľuje text na slová (napr. medzera, čiarka).
+na čo slúži case
+	používa sa na porovnávanie jednej hodnoty s viacerými možnosťami.
+	niečo ako “if...elif...else”, ale pre viac možností, podľa vzoru.
+ako presmeruvavame output commandu? (> 2> |)
+	> uloží výstup do súboru, 
+	2> uloží chyby, 
+	| pošle výstup ďalšiemu príkazu.
+načo slúži funkcia
+	je blok kódu, ktorý má názov a dá sa opakovane používať.
+	Umožňuje rozdeliť skript na menšie časti a vyhnúť sa opakovaniu rovnakého kódu.
+cut
+	vystrihne urceny text z specifickej pozicie. odstrani ich z povodneho miesta a 	ulozi do clipboardu.
+read 
+	cita text z neakeho standardneho inputu. pomaha s user inputom
+
+

@@ -1,0 +1,31 @@
+otocena_druha=""
+ 
+for (( i=${#druha_polovica}-1; i>=0; i-- )); do
+
+    otocena_druha="$otocena_druha${druha_polovica:$i:1}"
+
+done
+ 
+echo $otocena_druha
+
+ 
+
+
+
+
+aritmeticke nasobenie v premennach scitanie odcitavanie samejseba +,-,:,x,
+while, test
+
+ako ma byt zapisani while
+
+cesta je na nas
+
+
+
+
+denis
+
+Zopakovať aritmetické operácie (+,-,*,:)
+Musíme ukázať tieto 4 operácie, + zopakovať While a Testové podmienky
+
+dopisat aspon 2 temi v kt sa necitime doma aka chceme vysvetlit

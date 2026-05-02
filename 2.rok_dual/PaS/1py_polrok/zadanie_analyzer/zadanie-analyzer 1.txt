@@ -1,0 +1,148 @@
+Zadanie – analyzer.sh
+
+Úlohou je vytvoriť bash skript s názvom analyzer.sh, ktorý spracuje textový súbor podľa jeho typu.
+Skript bude prijímať dva povinné argumenty a tretí voliteľný:
+prvým bude cesta k súboru,
+druhým parameter --type=log alebo --type=csv.
+tretím volitelny parameter bude --debug
+
+
+Požiadavky:
+
+Skript musí začínať shebangom #!/bin/bash a na začiatku musí byť set -eu.
+
+Skript sa spúšťa v tvare:
+
+./analyzer.sh /cesta/k/suboru --type=log
+
+
+alebo
+
+./analyzer.sh /cesta/k/suboru --type=csv
+
+ak zahrnieme parameter --debug, skript musí použiť set -x
+
+
+Over, či bol zadaný argument a či súbor existuje. Ak nie, vypíš chybu a ukonči sa s exit 2.
+
+Premenná $1 bude obsahovať cestu k súboru, $2 parameter typu.
+
+Pomocou case spracuj parameter:
+
+--type=log – analyzuje log súbor
+
+--type=csv – analyzuje CSV súbor
+
+v ostatných prípadoch vypíš chybu a ukonči skript s exit 1.
+
+Spracovanie log súboru (--type=log):
+
+Zisti počet riadkov v súbore (wc -l).
+
+Zisti počet výskytov reťazcov ERROR, WARNING, INFO (grep -c).
+
+Vypíš výsledky do terminálu aj do súboru log_report.txt.
+
+Zobraz prvých 5 a posledných 5 riadkov pomocou head a tail.
+
+Ak sa v súbore nachádza aspoň jeden ERROR, vypíš „Chyby nájdené“, inak „Bez chýb“.
+
+Použi aspoň raz logický operátor && alebo ||.
+
+Spracovanie CSV súboru (--type=csv):
+
+Odstráň prázdne riadky pomocou sed alebo awk a výsledok ulož do csv_clean.txt.
+
+Spočítaj počet riadkov v súbore (wc -l).
+
+Použi awk na výpis konkrétneho stĺpca (napr. tretieho).
+
+Pomocou awk alebo bc vypočítaj priemer číselných hodnôt v zvolenom stĺpci.
+
+Ulož výsledok do csv_report.txt.
+
+Spoločné požiadavky:
+
+Vypíš názov skriptu ($0) a cestu k spracovávanému súboru ($1).
+
+Použi aspoň jeden cyklus (for alebo while) na spracovanie riadkov alebo súborov.
+
+Použi jednoduchý aritmetický výpočet $(( )).
+
+Na spracovanie CSV môžeš zmeniť IFS (napr. na ,).
+
+Výstup presmeruj do súboru pomocou > a >>.
+
+Použi exit 0 pri úspešnom dokončení, exit 1 pri chybe typu, exit 2 ak súbor neexistuje.
+
+- Na Záver, vytvor vývojový diagram popisujúci tento skript
+
+
+---------------------
+
+
+Výstup (ukážky):
+
+Pre log súbor:
+
+Skript: ./analyzer.sh
+Súbor: /home/user/syslog.log
+
+Počet riadkov: 10
+ERROR: 3
+WARNING: 5
+INFO: 2
+Chyby nájdené
+Výsledok uložený do log_report.txt
+
+
+Pre CSV súbor:
+
+Skript: ./analyzer.sh
+Súbor: /home/user/data.csv
+
+Počet záznamov: 10
+Priemerná hodnota v treťom stĺpci: 44.75
+Spracovaný a uložený do csv_report.txt
+
+Podmienky hodnotenia:
+Skript musí byť funkčný, čitateľný a komentovaný.
+Musí korektne spracovať oba typy vstupu, používať príkazy grep, awk, sed, wc, head, tail, if, case, for alebo while, presmerovanie >, premenné a aritmetiku.
+
+
+
+
+Príklady vstupných súborov
+
+súbor system.log
+[2025-10-09 08:23:15] INFO  - Starting system check
+[2025-10-09 08:23:16] INFO  - Loading configuration
+[2025-10-09 08:23:16] WARNING - Missing optional module: bluetooth
+[2025-10-09 08:23:17] INFO  - Network connection established
+[2025-10-09 08:23:18] ERROR - Disk space critically low
+[2025-10-09 08:23:20] INFO  - Attempting cleanup
+[2025-10-09 08:23:21] ERROR - Cleanup failed
+[2025-10-09 08:23:22] WARNING - Memory usage high
+[2025-10-09 08:23:25] INFO  - Restarting background service
+[2025-10-09 08:23:27] INFO  - System check finished successfully
+
+
+
+súbor data.csv
+id,name,value
+1,alpha,42
+2,beta,37
+3,gamma,,
+4,delta,51
+5,epsilon,48
+6,zeta,N/A
+7,eta,39
+8,theta,44
+9,iota,47
+10,kappa,50
+
+
+Zadanie uploadnite na edupage. ak by s tym bol problem tak mi ho poslite mailom na patrik.sakali@t-systems.com najneskor do 21.10. 2025
+poslite 2 subori, analyzer.sh a analyzer_flowchart.drawio (ak chcete archivovat poprosim .zip  nie .rar .7z a podobne...)
+
+

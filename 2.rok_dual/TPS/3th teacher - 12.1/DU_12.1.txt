@@ -1,0 +1,7 @@
+•Aký WiFirouter mátedoma?
+•Aký WiFi štandard podporuje Váš wifi router?
+•Aké má hodnoty max. vysielacieho výkonu a aké má hodnoty citlivosti (max power level, receiving sensitivity)
+•Aký kanál používate na svojej WiFi (2,4G; 5G)?
+•Akú šírku kanála používate na svojich routroch?
+•Aká je vaša BSSID, SSID?
+•Ak máte externé antény, aký majú zisk a akú charakteristiku?

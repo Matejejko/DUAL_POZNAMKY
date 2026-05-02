@@ -1,0 +1,37 @@
+#header-app {
+    position: sticky;
+	z-index: 20;
+    top: 0;
+    background: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,.5);
+    padding: 10px;
+    text-align: right; /* center, left, right */
+
+    nav {
+        a {
+            padding: 5px 15px;
+            margin: 2px;
+            font-size: 10px;
+            font-weight: 200;
+            border-radius: 50px;
+            text-decoration: none;
+            color: white;
+            background: dodgerblue;
+            transition: 250ms;
+
+            &:hover {
+                background: #000;
+            }
+        }
+    }
+}
+main {
+    padding: 10px;
+}
+#footer-app {
+    background: #444;
+    color: white;
+    padding: 10px;
+    text-align: center;
+    font-size: 12px;
+}

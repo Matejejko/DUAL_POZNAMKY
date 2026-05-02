@@ -1,0 +1,15 @@
+kapitoly na dokumnetacke:
+
+obsah
+1.uvod (popis problemu, misia, ciele, stakeholderi, v skratkosti co je design thinking, (ako prebiehal empaticky rozhovor,) )
+2.brainstorming(napady riesenie kt. sme mali (3ways of ideas), planovanie (storytelling), preco sme toto vybrali)
+3. swot (graf, exc tabulky, kriteria uspechu, strategy)
+4. zdroje, naklady rizk (odjadovane naklady a projektovy rozpocet, rizika a jeho management)
+5.prototyp
+6. zaver (zhodnotenie)
+7. zdroje
+
+
+###########
+3. 4. 7.
+###########

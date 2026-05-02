@@ -1,0 +1,10 @@
+kapitola 1.	Pie PS - datum, mena
+kapitola 2.	sean zadania
+kapitola 3. 	popis program (style: ms docs library) 2 priklady	()
+		examples vsetky -> pripady kt mozu nastav spravne ci nespravne
+kapitola 4. 	script kod (editor) formalne napisane -> dokladne komentare, ma byt aj prehladny 	(vsetok kod mus byt kopirovatelny text)
+	 
+
+
+urobit nejaky prepinac ktory nam urobi to, ze ti s prepinacom otvori HTML strnaku kde kde bude to iste ako vyseldok cmd:
+Get-Help Get-Process -Online

@@ -1,0 +1,345 @@
+w4 windows
+
+3 zakladne veci co nam treba
+compute, network, storage
+
+hyperv moze byt aj na lokalnom disku
+ale v produkcii to nebude ono
+bude to dajaky storage ale nie lokalny
+co sa stane ak bude na 1 lokalnom storage-y?
+
+ta co ak lokalny storage padne - je to kvoli redundancii
+
+xfat - dobre s linuxom ale nie s windowsom
+
+ReFs - resident file system
+-malo kto to pouziva
+
+allocation unit size
+ - to suvisi so storage performance
+
+taze mame volume a ten rodzdeli na bloky
+keby nie, tak ak chceme najst 1 file
+tak musi cely disk prejst
+
+ak stratim ten disk, tak stratim aj VM
+
+preco chceme aby vm mal svoj disk a folder
+aby sa lahsie naslo
+ale hlavne kvoli troubleshootingu
+aby to malo system, aby to malo foldre
+
+kazdu rolu a feature kt. stahujeme
+-stahujeme cez server manager
+-ten neexistuje v klientskych ediiciach
+cast role su uz nainstalovane
+
+je tu aj All_Servers
+-ked mame viacero serverov - aby sme vedeli
+ich tu vsetky manageovat
+
+remote desktop infrastrucutre
+-toto nikdy nebudeme riesit na tomto predmete
+-NEklikame
+
+
+server selection
+-je dobry ak nevieme ako sa nas server vola
+
+role su len additional packages
+niesu sucastou OS
+
+dhcp - najjednoduchsia rola
+adds - velka, robustna aplikacia
+
+ad certification services - super, ale
+nechces to troubleshootovat
+-v 2. polroku to budeme robit
+
+klikneme na hyperv
+potom sa nas spyta ci chceme aj tieto featury?
+vzdy ano
+-oni nam umoznuju spravovat ale aj podporuju nam
+tie role
+
+nejde nam to,,,
+mame podporu cpu? - nie
+vypiname masinu lol
+
+edit settings
+cpu -> hardware virtualization cpu - enable
+treba oklamat nasu masinu 
+
+uz neviudime chybovu hlasku
+
+
+nieje dobre ked masina sa len zapne a
+hned nam vyskoci login page
+
+windows admin center - je to web riesenie - kde mame 
+web klienta. pre spravu, feature-y etc.
+
+mozme stahovat aj cez powershell
+ale nieje to dobre, kedze neprechadzame cez wizardom
+to robi vstko v pozadi
+
+guest os - type 2
+nieje take dobre
+kedze zabera vela miesta
+
+hyperv settings
+tu vidime VM disky a config file-y
+
+
+"co priecinok - to vm"
+
+moze to mat nevyhody
+ale pre management - backup, restore
+-tak to chceme mat na jednom
+
+storage migration
+ak mame viacero datastorov tak by sme mohli migrovat
+ale preco by sme to chceli?
+1.dochadza nam miesto na datastore - treba nam rozsirit
+tak sme si pripravili vacsi datastore a teraz
+nam treba tam zmigrovat
+
+2.mame rychlejsi datastore
+
+3. troubleshooting
+migrujeme aby sme vedeli preco nasa masina je pomala napr.
+
+
+co treba teraz konfigrovat?
+network
+-vswitch
+
+v praxi mame segmentaciu sieti
+NET - segmentation
+
+to nas ako ovplivnuje?
+
+minule sme rozpravalli o admin, client, backup LAN
+
+tak 
+1. Net segmentation:
+a. admin LAN
+b. Customer LAN
+to robime cez vswitche
+na jednej strane switchu mame outbound a na druhej
+outbound
+
+-treba nam 2 switche aby sa pripojili na nasu vm
+
+admin lan - internal vswitch
+preto lebo ked treba spravovat - tak v akej
+siete sa pripajame? do nasej siete
+nepotrebujeme aby nasi admini isli po verejnej siete
+
+dame internal a create switch
+naming convention
+vSwitch-AdminLAN-vl100
+vlan100- je to ako tagging vlan na 100
+tak ju nastavime ako prvu
+
+co network potrebuje?
+nepotrebuje sietovy adapter
+- ako hej ale tie internal switche nepotrebuje
+
+uz mame interny switch
+
+robime druhy switch
+customerLAN
+-external switch
+
+vswitch-CustomerLAN-vl200
+
+
+vlan tagging
+-mame len 2 riesenia ako riesit sietovanie
+
+access mode
+-znamena ze dany port je nastaveny na vlan 100
+switch sa nevenuje specialne niejak tym packetom
+
+ale ak v produkcii mam server
+napr. custmer vlan - tych mam 20
+ale ak mam 10 vlan - tak treba 10 kablov
+10 portov - kazdy kabel je ina siet
+
+to je vela - plytvanie - na strane switcha a servera
+
+tak sa pouziva plan b: trunk alebo tagging
+-robi sa to cez 1 kabel, port,,
+v produkcii to bude ale 2 kable kedze
+redundancia
+
+external vswitch uz chce aby sme si zvolili 
+physicky NIC toho hosta
+
+kolko serverov nam treba? (ref z minulej hodiny)
+6 serverov - 2 a 2 a 2
+kvoli redundancii
+ale niekedy treba az 4??? idk kedy though
+
+(spat na nasu masinu)
+musime dat Allow management operating system...
+trochu vypne konekciu ale v pohode
+
+treba dalsi switch taze dalsia sietova karta
+1switch moze byt taggovany len na 1 vlanov
+-na windowse
+
+ale na vmware-y to tak nieje
+
+na vswitch ma este nieco navyse a to sa vola port groupov
+a na nich vlan
+a on (vswitch) moze mat viacero port groupov
+na kazdej NIC je trunk
+
+ak mame vlan 100 a vlan 200
+tak NIC musi byt taggovana vl100 a vl200
+preco?
+aj redundancia
+ale hlavne preto lebo vswitch sa nestara kt. NIC
+ma vl100 a kt. vl200
+bere ich ako rovnocennych
+
+taze ak pride packet na NIC kt. nema ten tagg tak
+ten packet padne
+
+ak nemame port groupu, tak to musime nastelovat na samotnom switchi
+
+vieme nastelovat max 4095 switchov
+
+preco moze byt problem ak meno vm je ina ako host name
+nebudeme vediet kt. patri ku ktorej
+s tym suvisi motirong, backup, auditing
+
+oni funguju na guest OS
+
+teraz pribeh od neho
+vm sa volali inak ako host name-y
+tak nevedeli pridelit do konzoli
+isli do assetu a tam nic nebolo
+=velke zdrzanie
+-pytali zakaznika aky je host name
+zakaznik take nevie
+tak to hladali
+velke zdrzanie a pritom to je taka banalita
+
+c:\vm\
+gen2 - vzdy - namiesto bios ma UFI? uefi?
+vzdy zvol to novsie
+keby sme chceli to starsie?
+kvoli compatibilite - pre legacy systemy etc
+
+memory 2048mb
+dynamic memory for virtual machine
+- bude sa menit
+memory sa bude zvacsovat/zmensovat podla potreby
+
+takze my chceme mat ten dynamic zapnuty
+
+SQL/exchange server - oni maju problem s allocovanim
+lebo oni su sensitivne a nechcu byt dependent na systeme
+kt. im moze zobrat im toto memory
+oni sami chcu si panovat nad memory a tak.
+
+z hladiska industry je dynamic chcene ale z hladiska
+app je to nechcene
+
+
+nechame tam admin lanu
+velkost disku:
+default 127gb
+dame next next a nas pusti
+lenze to sa pouziva na thin provisioning
+(=postupne naplna ulozisko a pri mazani sa uvolni)
+(thick prov. - hned sa ulozisko naplni, a pri mazani sa neuvolnuje)
+defaultne je to thin provisioning
+nasa masina bude zaberat par mega
+
+dame 80gb,
+vieme pridat aj existujuci disk
+->pri backupe, troubleshooting, restore
+
+install os - zkadial? dajme later - nemame teraz iso k dispozicii
+
+mozme zvonku
+-vcenter - edit settings, datastore - iso,
+hocijake iso pripoj na cd
+
+spat na masinu
+dame install from cd
+physical cd/dvd (D:)
+finsih
+
+
+vmcx - config file
+niekedy to bolo xml - ten sa dal lahko citat
+dalo sa aj zmenit na notepade
+ale vmcx sa neda lahko citat
+
+ak vm je priecinok tak druhu vieme si vytvorit
+kopirovanim priecinka
+a nazveme vm2
+
+potom dame import vm
+pyta od nas ci je to kopia, ake id chceme - unique, existing,,
+existing id - by bolo iba vtedy ak by sme robili
+restore
+tak dame new id
+
+hostname, ip adresa - ten sa zmeni
+
+
+pocas behu vm co vieme pridat?
+net.adapter, disk
+procesor za behu nevieme zmenit
+nikdy nemozem presiahnut pocet jadier hosta
+masina sa nam nezapne
+ziadna masina nemoze mat viac ako 16 jadier
+a idem tam nainsatlovat 10 vm kt. kazda bude mat z toho 2
+taze 20 jadier nam treba ked realne mame len 16
+
+mame overprovisioning
+logicke zdvojnasobenie jadier - hyper-trading
+taze 1 logicke cpu sa priradi k 2 alebo 3 vm - 1:2 1:3
+ako si vyberie to cpu?
+odhadovany load a pocet vm
+
+ak bude
+1:4 - tak moze prist situacia ze kazda masina zrazu bude
+mat velky demand
+-zhorsi sa performance
+
+komercne pre mna je 1:4 najlepsie
+lebo predavam 1 cpu 4x
+ale potom ma to dobehne
+da nam to citit, na performance
+
+
+ak chceme mountovat tam iso
+tak musime ist na iscsi controler
+dat dvd drive
+a na tom drive potom namountujeme to nase iso
+
+otazky:
+co viem zmenit online, nase limity
+
+host co ma 12 virt. cpu ked mame 10 cpu
+- dovoli, nedovoli?
+
+
+nested virtualisation
+instalacia hypervisera do vm
+
+
+kt. komponenty viem pridat pocas toho ak masina je
+online/offline
+
+
+
+
+

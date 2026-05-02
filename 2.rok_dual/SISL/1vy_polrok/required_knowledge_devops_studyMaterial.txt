@@ -1,0 +1,376 @@
+required knowledge
+
+
+File System & Permissions	– Understanding file structure, ownership, and access permissions
+##########################
+file structure:
+	/
+	├── bin      → essential user commands
+	├── sbin     → essential admin commands
+	├── boot     → kernel, bootloader
+	├── dev      → devices
+	├── etc      → system configs
+	├── home     → user homes
+	├── lib      → core libraries for /bin, /sbin
+	├── lib64    → 64‑bit libraries (on 64‑bit systems)
+	├── media    → auto mounts (USB, CDs)
+	├── mnt      → manual mounts
+	├── opt      → third‑party software
+	├── proc     → process/kernel info (virtual)
+	├── root     → root’s home
+	├── run      → runtime state (replaces /var/run)
+	├── srv      → service data
+	├── sys      → kernel/hardware interface (virtual)
+	├── tmp      → temp files
+	├── usr      → userland software (not needed to boot)
+	│   ├── bin   → non‑essential user commands
+	│   ├── sbin  → non‑essential admin commands
+	│   └── lib   → libraries for /usr/bin and /usr/sbin
+	└── var      → variable data
+	    ├── log
+	    ├── cache
+	    └── spool
+
+ownership:
+	check uid - /etc/passwd
+
+	User (u) – owner (UID), from /etc/passwd.
+	Group (g) – group (GID), from /etc/group.
+​	Others (o) – everyone else.
+
+	Permissions:
+	r read (4)
+	w write (2)
+	x execute (1)
+
+	Basic commands:
+	chown user:group file
+	chmod 755 file
+	chmod u+x file
+	chgrp group file
+
+access permissions:
+	| Type      | r    | w             | x            |
+	| --------- | ---- | ------------- | ------------ |
+	| File      | read | write         | execute      |
+	| Directory | list | create/delete | enter/access |
+
+	Numeric: r=4, w=2, x=1
+		755 → rwx r-x r-x
+		644 → rw- r-- r--
+
+	Special bits:
+		Setuid (s) → execute file as owner (usually root)
+		Setgid (s) → execute file as group; on dirs, files inherit group
+		Sticky bit (t) → on dirs, only owner can delete/rename files (e.g., /tmp)
+		Commands: 
+			chmod u+s file, 
+			chmod g+s dir, 
+			chmod +t dir
+	Links:
+		Hard link → same inode, cannot cross FS
+		Soft link → pointer to path
+		Commands:
+			ln file link
+			ln -s file symlink
+
+
+Storage Management 		– Disk administration, partitions, and basic LVM concepts
+###################
+Disk administration:
+	Identify disks and usage
+		lsblk — list block devices
+		blkid — Block Identification -- UUIDs, filesystem types
+		df -h — disk usage of mounted filesystems.
+	
+	Partitioning
+		fdisk <disk> → create/delete partitions
+		GPT vs MBR:
+			GPT → modern, >2TB, many partitions
+			MBR → legacy, 2TB limit
+	
+	Filesystems (on a partition or LV, not usually raw disk):
+		Common: ext4, xfs, btrfs
+		Create: mkfs.ext4 /dev/sdX1
+		Check: fsck /dev/sdX1
+	
+	Mounting
+		Temporary:
+			mount /dev/sdX1 /mnt
+			umount /mnt
+		Permanent: /etc/fstab
+			UUID=xxxx-xxxx  /data  ext4  defaults  0  2
+			Test fstab:
+				mount -a
+
+LVM Concepts:
+		Disk/Partition
+		   ↓
+		Physical Volume (PV)
+		   ↓
+		Volume Group (VG)
+		   ↓
+		Logical Volume (LV)
+		   ↓
+		Filesystem	
+
+	Physical Volume (PV)
+		Backed by disk or partition
+		Create: pvcreate /dev/sdb1
+		View: pvs, pvdisplay
+
+	Volume Group (VG)
+		Pool of space from PVs
+		Create: vgcreate vg0 /dev/sdb1
+		Extend: vgextend vg0 /dev/sdc1
+		View: vgs, vgdisplay
+
+	Logical Volume (LV)
+		Acts like a “virtual partition” allocated from a VG
+		Create: lvcreate -L 50G vg0
+		Extend: lvextend -L +10G /dev/vg0/lv0
+		View: lvs, lvdisplay
+
+	Typical end‑to‑end:
+		pvcreate /dev/sdb1
+		vgcreate vg0 /dev/sdb1
+		lvcreate -L 50G -n lv_data vg0
+		mkfs.ext4 /dev/vg0/lv_data
+		mount /dev/vg0/lv_data /data
+
+Swap:
+	sudo fallocate -l 1G  /mnt/swap 
+	sudo chmod 600 /mnt/swap
+	sudo mkswap /mnt/swap
+	sudo swapon /mnt/swap
+	To make permanent, add to /etc/fstab:
+		/swapfile  none  swap  sw  0  0
+
+
+Package Management 		– Installing, updating, and managing software packages
+##################
+
+	| System                    | Update Packages         | Install Package        | Remove Package        | Search Package       | Show Info      | Hold/Lock Package          |
+	| ------------------------- | ----------------------- | ---------------------- | --------------------- | -------------------- | -------------- | -------------------------- |
+	| **Debian/Ubuntu**         | `sudo apt update`       | `sudo apt install pkg` | `sudo apt remove pkg` | `apt search keyword` | `apt show pkg` | `sudo apt-mark hold pkg`   |
+	|                           | `sudo apt upgrade`      |                        | `sudo apt purge pkg`  |                      |                |                            |
+	|                           | `sudo apt full-upgrade` |                        |                       |                      |                |                            |
+	| **Red Hat/CentOS/Fedora** | `sudo dnf update`       | `sudo dnf install pkg` | `sudo dnf remove pkg` | `dnf search keyword` | `dnf info pkg` | `sudo dnf versionlock pkg` |
+	
+	Repositories: 
+		Debian/Ubuntu → /etc/apt/sources.list, 
+		Red Hat → /etc/yum.repos.d/
+
+	Package cache: 
+		Debian → /var/cache/apt/archives, 
+		Red Hat → /var/cache/dnf/
+
+User & Group Administration 		– 	Managing users, groups, and permissions
+############################
+Users:
+	Users:
+		UID < 1000 → system users
+		UID ≥ 1000 → normal users
+
+	Each user has:
+		Username – login identifier.
+		UID (User ID) – unique numeric ID.
+		Home directory – usually /home/username
+		Shell – default command shell (e.g. /bin/bash)
+
+	Files:
+		/etc/passwd → User account info (username, UID, GID, home, shell)
+		/etc/shadow → Encrypted passwords.
+		/etc/group → Group info.
+	
+	Common Commands:
+		useradd -m -s /bin/bash username → Create a new user.
+			-m <dir> make user home dir
+			-s </bin/bash> def shell
+			-G sudo add to sudoers
+		passwd username → Set/change user password.
+		usermod -aG groupname username → Add user to a group.
+		userdel username → Remove a user.
+
+Groups:
+	Key Concepts:
+		GID (Group ID) numeric group ID
+		Users can belong to:
+			Primary group – default group assigned at user creation.
+			Supplementary groups – additional groups for permissions.
+	
+	Common Commands:
+		groupadd groupname → Create a group.
+		groupdel groupname → Delete a group.
+		groups username → List groups a user belongs to.
+		gpasswd -a username groupname → Add user to group.
+	
+Permissions are then applied via:
+	User, group, and others bits on files/dirs.
+	Group membership to grant shared access to directories and resources.
+
+Sudo:
+	/etc/sudoers
+	edit with: visudo
+
+Services & Processes 		–	 Managing daemons and services	
+####################
+Core concepts:
+	daemon: background process providing a service (often ends in d: sshd, httpd).	
+	service: systemd unit of type service, typically a daemon managed by PID 1 (systemd).
+	init system (usually systemd): PID 1, handles boot, service ordering, shutdown.
+
+Essential systemctl service commands:
+	Control service now:
+		sudo systemctl start name      # start now
+		sudo systemctl stop name       # stop now
+		sudo systemctl restart name    # restart now
+		sudo systemctl reload name     # reload config (no full restart)
+		sudo systemctl daemon-reload
+	Boot behavior:
+		sudo systemctl enable name     # start at boot
+		sudo systemctl disable name    # don't start at boot
+		sudo systemctl mask name       # prevent starting (even manually)
+		sudo systemctl unmask name     # undo mask
+
+Status and listing:
+	systemctl status name              	#status + recent logs + main PID
+	systemctl list-units --type=service 	#active services
+	systemctl list-unit-files --type=service # all service units
+
+Unit files:
+	System units: 			  /lib/systemd/system/*.service
+	Local/override/admin units: 	  /etc/systemd/system/*.service
+	After editing unit files, reload: sudo systemctl daemon-reload.
+​
+Processes vs services (exam trap)
+	Process: any running program (ps, top show all).
+	Service: managed daemon under systemd (systemctl controls).
+	Killing with kill may trigger systemd restart if Restart= is set in unit.
+​
+​
+​Listing processes:
+	ps aux              # all processes, BSD style
+	ps -ef              # all processes, SysV style
+	ps -eo pid,user,cmd # custom format
+	top                 # interactive, real-time view
+	htop                # nicer top (if installed)
+
+Process control
+	kill PID                # SIGTERM (polite stop)
+	kill -9 PID             # SIGKILL (force kill)
+	kill -HUP PID           # SIGHUP (often reload config)
+	killall process_name    # kill by name
+	nice -n 10 command      # lower priority (-20 high … 19 low)
+	renice 10 PID           # change running process priority
+
+Networking Basics 	– 	Basic network configuration, DNS resolution, and troubleshooting
+##################
+
+Network stack layers (OSI simplified):
+	Physical: cables, NICs
+	IP: addresses, routing
+
+		IPv4 private ranges:
+			10.0.0.0/24
+			172.16.0.0/24
+			192.168.0.0/24
+		Loopback:
+			127.0.0.1
+			::1
+
+		List interfaces:
+			ip link  	# interface status
+			ip addr  	# IP addresses, interfaces
+			ip route 	# routing table
+
+		Bring interface up/down:
+			ip link set eth0 up
+			ip link set eth0 down
+
+	Transport: TCP/UDP ports
+		
+		List interfaces:
+			ss -tuln # listening ports (TCP/UDP)
+			ss -tulpn    # include process names
+
+	Application: 
+
+		services (HTTP=80, SSH=22, HTTPS: 443, DNS: 53...)
+
+Key files:
+	/etc/hostname 		– system hostname
+	/etc/hosts 		– local DNS resolution
+	/etc/resolv.conf 	– DNS servers (nameserver 8.8.8.8)
+	/etc/network/interfaces (Debian)  
+	NetworkManager (nmcli)
+​
+Hostname:
+	View: hostname, hostnamectl
+	Set: hostnamectl set-hostname newname
+
+Static IP:
+	(Ubuntu/Debian /etc/netplan/ or /etc/network/interfaces)
+	network:
+	  version: 2
+	  ethernets:
+	    enp0s3:
+	      dhcp4: no
+	      addresses: [192.168.1.100/24]
+	      gateway4: 192.168.1.1
+	      nameservers:
+	        addresses: [8.8.8.8, 1.1.1.1]
+	
+	Apply: sudo netplan apply
+
+DNS resolution:
+	Config:
+		/etc/resolv.conf
+	Check DNS:
+		nslookup google.com        # query DNS server
+		dig google.com             # detailed DNS query
+		host google.com            # simple lookup
+		cat /etc/resolv.conf       # DNS servers
+	Troubleshoot DNS:
+		ping 8.8.8.8 → works? (IP connectivity)
+		ping google.com → fails? (DNS issue)
+		Check /etc/resolv.conf permissions (644)
+	Common configuration tools
+		| Distro/Method    | Config location                 | Apply changes                      |
+		| ---------------- | ------------------------------- | ---------------------------------- |
+		| Ubuntu 18.04+    | /etc/netplan/*.yaml             | netplan apply                      |
+		| Debian           | /etc/network/interfaces         | ifdown/up iface                    |
+		| RHEL/CentOS      | /etc/sysconfig/network-scripts/ | nmcli con up/down                  |
+		| systemd-networkd | /etc/systemd/network/*.network  | systemctl restart systemd-networkd |
+
+Troubleshooting workflow:
+	Layer 1-2 (physical/link):
+		ip link show          # interface up?
+		ethtool enp0s3        # link detected?
+		dmesg | grep eth      # driver issues?
+	Layer 3 (IP):'
+		ping -c4 127.0.0.1    # loopback
+		ping -c4 192.168.1.1  # gateway
+		ping -c4 8.8.8.8      # internet
+		ip route              # default route correct?
+	Layer 4+ (services):
+		nc -zv 192.168.1.1 53  # port scan (DNS)
+		ss -tuln | grep :80    # service listening?
+		telnet google.com 80   # TCP connect test
+		curl -I google.com     # HTTP test
+	Firewall check:
+		sudo ufw status        # Ubuntu UFW
+		sudo iptables -L       # iptables rules
+		sudo firewall-cmd --list-all  # firewalld
+
+
+
+
+
+
+
+
+
+
+
+

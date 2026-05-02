@@ -1,0 +1,88 @@
+perfektum
+
+habe/sein vycasovany k rodu ge+koren_slova+t/en
+
+ge neni ak 
+	sloveso ma neodlucitelnu priponu
+	sloveso sa konci na -ieren
+
+ak je odlucitelna je 
+	odlucitelna-ge-koren_slova
+
+lernen / reisen
+
+	ich habe gelernt	wir haben gelernt
+	du hast gelernt		ihr habt gelernt
+	er/sie/es hat gelernt	sie/Sie habt gelernt
+
+	ich bin gereist		wir sind gereist
+	du bist gereist		ihr seid gereist
+	er/sie/es ist gereist	sie?sie sind gereist
+
+slova na teste
+	antworten - odpovedat 			- habe geantwortet
+	begrüßen - pozdravit/privitat 		- habe begrüßt
+	berichten - informovat / podat spravu	- habe berichtet
+	fragen - pytat sa			- habe gefragt
+	wohnen - byvat				- habe gewohnt
+	hören - pocut				- habe gehört
+	machen - robit				- habe gemacht
+	spielen - hrat				- habe gespielt
+	an/kreuzen - oznacit krizikom		- habe angekreuzt
+	arbeiten - pracovat			- habe gearbeitet
+	telefonieren - telefonovat		- habe telefoniert
+	diktieren - diktovat			- habe diktiert
+	suchen - hladat				- habe gesucht
+	markieren - oznacit			- habe markiert
+	beantworten - od/zod-povedat otazku	- habe beantwortet
+	buchen - rezervovat/objednat		- habe gebucht
+	dauern - trvať				- habe gedauert
+	glauben - verit				- habe geglaubt
+	öffnen - otvorit			- habe geöffnet
+	plannen - planovat			- habe geplannt
+	bestellen - objednat			- habe bestellt
+	frühstücken - ranajkovat		- habe gefrühstückt
+	brauchen - potrebovat			- habe gebraucht
+	erklären - vysvetlit			- habe erklärt
+	
+	reisen - cestovat			- bin gereist
+	passieren - stat sa, udiat sa		- es ist passiert
+
+	nebude 
+	schmecken - chutit			- geschmeckt
+
+odpovedat - antworten;
+pozdravit/privitat - begrüßen;
+informovat/podat spravu - berichten;
+pytat sa - fragen;
+byvat - wohnen;
+pocut - hören;
+robit - machen;
+hrat - spielen;
+oznacit krizikom - an/kreuzen;
+pracovat - arbeiten;
+telefonovat - telefonieren;
+diktovat - diktieren;
+hladat - suchen;
+oznacit - markieren;
+od/zod-povedat otazku - beantworten;
+rezervovat/objednat - buchen;
+trvat - dauern;
+verit - glauben;
+otvorit - öffnen;
+planovat - plannen;
+objednat - bestellen;
+ranajkovat - frühstücken;
+potrebovat - brauchen;
+vysvetlit - erklären;
+cestovat - reisen (bin);
+stat sa, udiat sa - passieren (bin);
+
+
+
+
+
+
+
+
+

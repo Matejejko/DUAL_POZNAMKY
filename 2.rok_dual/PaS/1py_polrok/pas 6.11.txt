@@ -1,0 +1,27 @@
+pas 6.11
+
+file "text.txt"
+	Peter je student a ma 15 rokov.
+	Adam je student a ma 18 rokov.
+	Feri je student a ma 24 rokov.
+	Ondrej je farmar a ma 35 rokov.
+	Pali je nezamestnany a ma 25 rokov.
+
+regex-test.sh
+
+#!/usr/bin/env bash
+
+test -f text || {   echo "file text not found, exitting..."   exit 0}
+
+input="$(cat text)"
+
+echo "Zmena malych pimen na velke"echo "$input" | tr "[:lower:]" "[:upper:]"echo
+
+echo "Zmena medzier a entrov na _"echo "$input" | tr "[:space:]" "_"echo
+
+echo "Anonymizacia cisel"echo "$input" | tr "[:digit:]" "*"echo
+
+
+echo "Anonymizacia veku studentov - hardcoded"echo "$input" | sed "s/student a ma [[:digit:]]/*/g"
+
+echo "Anonymizacia veku studentov - . = akykolvek znak"echo "$input" | sed "s/student.....[[:digit:]]/*/g"

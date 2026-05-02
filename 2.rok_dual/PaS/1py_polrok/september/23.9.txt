@@ -1,0 +1,131 @@
+set -x # debugging mode
+set -e # exit on error
+set -u # exit on undefined variable
+
+#pocitanie sa odohrava v $(( ))
+
+echo $(( 5 + 5 ))
+
+echo $(( $RANDOM ))
+
+echo $(( $RANDOM % 5 ))
+
+echo $(( ($RANDOM % 5) + 1))
+
+#command_co_neexistuje -set -e ukonci skript na tomto riadku
+
+echo "posledny riadok skriptu" #set -u ukonci skript na tomto riadku
+
+
+# / / / if, else if, else
+
+meno="Peter"
+
+if [ "$meno" == "Peter" ]; then  # niekedy treba dat dvojite zatvorky -- [[ podmienka ]]
+    # commands if true
+    echo "Meno je Peter"
+
+elif [ "$meno" == "Jano" ]; then
+        echo "Meno je Jano"
+
+else
+    # commands if false
+    echo "Meno nieje Peter"
+fi
+
+
+# / / / test
+
+test "$meno" == "Peter" && echo "Sak to je Peto!"
+
+test "$meno" == "Peter" && {
+        echo "Šak to je Peťo!" || true #toto [ || true] spravy aby to bolo plnohodnotny command (else)
+} || { echo "Ty nie si Peter!" }
+
+
+test -z "$meno" && echo "meno is empty"
+test -n "$meno" && echo "meno is not empty"
+
+# / / / case
+
+case $variable in
+    pattern1)
+        # commands
+        ;;
+    pattern2)
+        # commands
+        ;;
+    *)
+        # default case
+        ;;
+esac
+
+
+
+#dropdown with checking
+
+
+var="orange banana apple"
+
+case $var in
+    *orange*)
+        echo "Matched orange"
+        ;;&
+    *banana*)
+        echo "Matched banana"
+        ;;&
+    *pepper*)
+        echo "Matched pepper"
+        ;;
+esac
+
+
+
+#dropdown without checking - ZSH only, not officialy supported in bash (but works)
+
+var=one
+
+case $var in
+    one)
+        echo "Matched one"
+        ;&
+    two)
+        echo "Matched two as well"
+        ;;
+esac
+
+
+
+# / / /
+
+
+for item in apple banana cherry; do
+    echo "Fruit: $item"
+done
+
+
+for i in {1..5}; do
+    echo "Number: $i"
+done
+
+
+for ((i=1; i<=5; i++)); do
+    echo "Counter: $i"
+done
+
+
+
+for i in {1..5}; do
+    if [ $i -eq 3 ]; then
+        echo "Skipping 3"
+        continue  # skip this iteration
+    fi
+
+    if [ $i -eq 5 ]; then
+        echo "Stopping at 5"
+        break  # exit the loop
+    fi
+
+    echo "Number: $i"
+done
+

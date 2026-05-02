@@ -1,0 +1,116 @@
+UCITEL
+###############
+
+#!/bin/bash
+
+# Nacitanie vstupu
+read -p "Zadaj cele kladne cislo: " number
+
+# Kontrola vstupu
+if ! [[ "$number" =~ ^[0-9]+$ ]]; then
+    echo "Chyba: Zadaj celé kladné číslo."
+    exit 1
+fi
+
+# Funkcia na prevod do binárnej sústavy
+to_binary() {
+    local n=$1
+    local result=""
+
+    if [ "$n" -eq 0 ]; then
+        echo "0"
+        return
+    fi
+
+    while [ "$n" -gt 0 ]; do
+        result=$(( n % 2 ))$result
+        n=$(( n / 2 ))
+    done
+
+    echo "$result"
+}
+
+# Funkcia na prevod do hexadecimálnej sústavy
+to_hex() {
+    local n=$1
+    local result=""
+    local remainder
+
+    if [ "$n" -eq 0 ]; then
+        echo "0"
+        return
+    fi
+
+    while [ "$n" -gt 0 ]; do
+        remainder=$(( n % 16 ))
+
+        case $remainder in
+            10) digit="A" ;;
+            11) digit="B" ;;
+            12) digit="C" ;;
+            13) digit="D" ;;
+            14) digit="E" ;;
+            15) digit="F" ;;
+            *)  digit="$remainder" ;;
+        esac
+
+        result="$digit$result"
+        n=$(( n / 16 ))
+    done
+
+    echo "$result"
+}
+
+# Výstup
+echo "Binarna sustava: $(to_binary "$number")"
+echo "Hexadecimálna sústava: $(to_hex "$number")"
+
+MOJE ZADANIE
+############
+
+#!/bin/bash
+
+read -p "zadaj cele cislo plzky :3 " input
+
+dec="$input"
+bin=""
+
+#dvojkova sustava
+while (( dec > 0 )); do
+    rem=$(( dec % 2 ))
+    bin="${rem}${bin}"
+    dec=$(( dec / 2 ))
+done
+
+#16kova sustava
+hex=$(printf "%X" "$input")
+
+echo "Dvojkova: $bin"
+echo "Sestnastkova: $hex"
+
+
+stromcek
+#########
+
+#!/bin/bash
+read -p "zadaj vysku stromceka: " vyska
+
+
+# ^ = zaciatok $ = koniec (musi zacinat s 1 a 9 a nasledne akekolvek cislo *=lubovolni pocet krat) =~ ->> definuje ze to ma byt z tej mnoziny cisel
+#lepsie a rovnake je ^[:digit:]$
+if ! [[ "$vyska" =~ ^[1-9][0-9]*$ ]]; then
+        echo "zadaj cele kladne cislo."
+        exit 1
+fi
+
+for ((riadok=1; riadok<=vyska; riadok++)); do
+        hviezdy=$((2*riadok - 1 ))
+        medzery=$((vyska - riadok))
+
+        printf "%*s" "$medzery" ""
+        printf "%*s\n" "$hviezdy" | tr ' ' '*'
+done
+
+
+printf "%*s|\n" $((vyska - 1)) ""
+

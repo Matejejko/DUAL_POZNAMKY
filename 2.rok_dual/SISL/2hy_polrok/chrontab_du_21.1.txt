@@ -1,0 +1,9 @@
+Vytvoriť jednoduchý script, ktory bude pastovať echo "text" a nejaky date, chce aby sa to spúšťalo vždy len v pracovný deň (po-pia + od 8 do 16), a musi sa to pustat kazdych 10 minut, okrem obedovej prestávky (12-13), a len v školskom roku (jul + august nie)
+
+finishing:
+
+crontab -e
+tam:
+*/1 8-11,13-15 1-6,9-12 * 1-5 /home/Mpapaj/datum.sh >> /home/Mpapaj/zadanie.txt
+
+a sprav neaky skript

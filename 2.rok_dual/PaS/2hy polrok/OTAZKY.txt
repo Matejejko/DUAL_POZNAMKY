@@ -1,0 +1,89 @@
+Čo je to objekt ? (v objektovo orientovanom programovaní)
+	Objekt je inštancia triedy, ktorá obsahuje dáta (atribúty) a funkcie (metódy) pre manipuláciu s týmito dátami.
+
+Akými spôsobmi vieme spustiť skript/program v pythone ?
+	Skript môžeme spustiť cez terminál príkazom python script.py alebo cez IDE ako PyCharm či VS Code.
+
+Čo je to vývojový diagram ?
+	je grafické znázornenie toku programu alebo algoritmu, ktoré ukazuje kroky a rozhodnutia.
+
+vymenuj funkcie objektu/triedy STRING
+	Napríklad upper(), lower(), replace(), split(), join(), strip(), find().
+
+Aky je rozdiel medzi programom a skriptom?
+	Program je komplexný softvér určený na dlhodobé používanie, skript je jednoduchý súbor kódu určený na rýchle vykonanie konkrétnej úlohy.
+
+Aky je rozdiel medzi compilerom a interpreterom?
+	Compiler preloží celý kód do strojového jazyka naraz, interpreter vykonáva kód po riadkoch počas behu.
+
+Čo znamená shebang a na čo ho využiješ v python scripte script.py
+	Shebang (#!) určuje cestu k interpretovi a umožňuje spustenie skriptu priamo ako spustiteľného súboru.
+
+Čo je to algoritmus ?
+	Algoritmus je presný postup alebo súbor pravidiel/krokov na riešenie problému krok za krokom.
+
+Čo je to abstrakcia v OOP
+	schovane funkcie v objekte (napr. rychlost animacie postavy)
+	princíp, ktorý spočíva v skrytí detailov a zobrazení iba nevyhnutných funkcií objektu. 
+
+Čo je Dedičnosť v OOP
+	Dedičnosť umožňuje jednej triede prebrať vlastnosti a metódy inej triedy.
+	auto zdedy z vozidiel alebo bmw z auto
+
+Čo je polymorfizmus v OOP
+	vytvaranie clasy z inej clasy a prepisujem na nej veci
+	objektov rôznych tried reagovať na rovnakú metódu vlastným, špecifickým spôsobom
+
+Ako vieme escapovat v pythone ?
+	Escapovanie sa robí spätným lomítkom \, napríklad \n
+
+Ako vypíšem premennú v texte ?
+	Použijeme f-string: 
+		meno = "Jana"
+		vek = 25
+		print(f"Volám sa {meno} a mám {vek} rokov.")
+	alebo .format()
+		produkt = "kniha"
+		cena = 15
+		print("Produkt: {}, Cena: {}€".format(produkt, cena))
+
+Aký je rozdiel medzi list a tuple ?
+	List je zmeniteľný (mutable), tuple je nezmeniteľný (immutable).
+
+čo je cyklus, aké cykly poznáme ? čo je iterácia ?
+	Cyklus opakuje kód viackrát, poznáme for a while; iterácia je jeden priechod cyklu.
+
+na čo slúži funkcia type a kedy ju využiješ ?
+	Funkcia type() zistí typ objektu, používame ju pri debugovaní alebo kontrole dát.
+
+načo slúži funkcia ?
+	Funkcia vykonáva blok kódu, ktorý môže byť volaný viackrát s rôznymi vstupmi.
+	nemusime opakovat kod.
+
+Aky je rozdiel medzi return a exit a yield ?
+	return vracia hodnotu z funkcie, exit ukončí program, yield generuje hodnotu a pozastaví funkciu.
+
+Na co sluzi regularny vyraz (regex) ? kde a ako ho vieme pouzit ?
+	je to taky wild card
+	textový reťazec, ktorý obsahuje špeciálne znaky. Najčastejšie sa regex využíva pri vyhľadávaní alebo manipulácií s textom.
+
+Aký je rozdiel medzi "continue" a "break" v cykle ?
+	continue preskočí aktuálnu iteráciu cyklu a pokračuje ďalšou, zatiaľ čo break úplne ukončí celý cyklus.
+
+Čo je to iterácia?
+	Iterácia je jedno opakovanie cyklu
+
+čo je to?   {"peter": 29, "igor": 40}  , ako vypíšem petrov vek ?
+	je to dictionary
+ 	print(vek["peter"])
+
+čo je to?  cislo %2 == 0
+	podmienka, ktorá kontroluje, či je č8íslo párne
+
+ako pridam prvok do listu? ake funkcie má list?
+ 	append() = prida prvok na koniec listu
+
+	sort() – zoradí list
+	clear() – vymaže všetky prvky
+	remove(x) – odstráni prvý výskyt prvku x
+	

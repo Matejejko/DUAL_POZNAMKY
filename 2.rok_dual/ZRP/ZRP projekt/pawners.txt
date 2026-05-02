@@ -1,0 +1,128 @@
+pawners
+==========
+
+	misia projektu
+	---------------
+		- vytvorit apku, kt prepaja ludi a vytvorit si nove vstahi
+	popis cielov projektu
+	-----------------------
+		- byt profitovy
+			- podciele
+		- dat ludom moznost networkovat s inimi ludmi
+			- viac infa, filtracia napr 
+
+	Stakeholders projektu“ koho sa projekt týka ,aké má z neho výhody, povinnosti v pozitívnom aj v negatívnom zmysle 
+	-----------------------------------------------------------------------------------------------------------------
+		- ti sme mi (investujeme cas a peniaze a dufame ze sam z toho vratia $) 
+
+		
+	Predpoklady, za ktorých je možné definované ciele projektu dosiahnuť 
+	--------------------------------------------------------------------
+		- funkcna aplikacia
+		- interest do aplikacie
+		- premium za kt budu chciet ludia platit
+		- schopnost rozsirovat - (going global, rozsirenie funkcionality apky{poke stop ci co})		
+
+	Role a zodpovednosti – projektový tím 
+	--------------------------------------
+				
+		to co sa tika zapisovania tochto projektu
+		brano - team lead
+		matej martin - word
+		denis - prezentacia 
+
+	SWOT analýzu pre realizáciu navrhnutého riešenia aj s grafickým a slovným vyhodnotením 
+	---------------------------------------------------------------------------------------
+		
+		skip
+
+	Work Breakdown Structure  (WBS) – dekompozícia prác na projekte (WBS)  
+	-----------------------------------------------------------------------
+		
+		matej - ekonomika/koordinator
+		denis - backend - funkcnost
+		brano - ceo/marketing
+		Martin - frontend - vyzor \ backup
+		
+
+	Identifikáciu a určenie závažnosti – dopadu možných rizík na projekt 
+	---------------------------------------------------------------------
+		
+		Probability: Low
+Impact: High
+Preventive Measures:
+regular updates
+innovative features
+Mitigation:
+free premium raffle
+Competetion from similar apps
+ 
+Misinformation in Profiles
+Probability: Medium
+Impact: Medium
+Preventive Measures:
+profile verification features
+Mitigation:
+swift customer support
+simple reporting system
+
+App Compatibility Issues
+Probability: Medium
+Impact: Low
+Preventive Measures:
+regular tests
+Mitigation:
+collect diagnostics
+fix it ASAP
+ 
+Poor User Retention After
+Initial Sign-Up
+Probability: High
+Impact: High
+Preventive Measures:
+daily challenges, rewards
+personalized notifications
+Mitigation:
+change app icon every major update
+exclusive features for active users
+
+Poor User Retention After
+Initial Sign-Up
+Probability: High
+Impact: High
+Preventive Measures:
+daily challenges, rewards
+personalized notifications
+Mitigation:
+change app icon every major update
+exclusive features for active users
+ 
+
+	Časový harmonogram projektu- Ganttov diagram 
+	---------------------------------------------
+		
+		
+
+	Rozpočet projektu  - len veľmi orientačne ( vstupy projektu : náklady) 
+	------------------------------------------------------------------------
+		
+		financie na hardware mame a ostatok idk
+CPU Power
+Basic: 2 GHz CPU (single-core) - Estimated Cost: 15 EUR/month
+Premium: 3.5 GHz CPU (quad-core) - Estimated Cost: 50 EUR/month
+RAM
+Basic: 8 GB - Estimated Cost: 30 EUR/month
+Premium: 16 GB - Estimated Cost: 85 EUR/month
+Bandwidth
+Basic: 7.5 Mbps - Estimated Cost: 20 EUR/month
+Premium: 75 Mbps - Estimated Cost: 60 EUR/month
+ 
+
+
+
+=============================================================================
+Prvý slide – úvodný( názov predmetu, téma, meno- kto vypracoval projekt)  
+
+Posledný slide – ZÁVER – zhodnotenie ( nezabudnite zdroje, odkiaľ ste čerpali)  
+
+Prezentáciu si pripravte na 15 minút + 5 minút otázky  

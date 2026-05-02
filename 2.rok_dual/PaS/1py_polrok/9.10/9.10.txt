@@ -1,0 +1,60 @@
+9.10
+
+cat people.csv | head -n1
+
+#! /usr/bin/env bash
+
+delimiter=','
+content=$(cat people.csv)
+
+
+tabulka="$(echo "$content")"
+echo "$tabulka"
+
+table_header="$( echo "$tabulka" | head -n 1 )"
+table_content="$( echo "$tabulka" | tail -n+2 )"
+
+#da sa to cele cez awk ale chceme FOR tak bude for
+
+
+OLD_IFS="$IFS"
+
+IFS=$'\n'
+for row in $tabulka
+do
+    echo "$table_header"
+    echo "$row"
+    name="$(echo "$row" | awk -F "$delimiter" '{print $1}')"
+    visa="$(echo "$row" | awk -F "$delimiter" '{print $3}')"
+    if [ "$visa" == 'yes' ]
+    then
+        echo "$name has valid visa" >> visa_report
+    else
+        echo "$name no visa :(" >> visa_report
+    fi
+
+    #vypis buniek
+    IFS="$delimiter"
+    for bunka in $row
+    do
+#       echo $bunka
+        # : - nerobi nic
+        :
+    done
+    IFS=$'\n'
+
+done
+IFS="$OLD_IFS"
+
+exit 0 #neriesi kod za tim
+
+IFS="$delimiter"
+for bunka in $table_content #v principe v for-loope nepouz. ""
+do
+
+    echo
+    echo "$bunka"
+
+done
+
+IFS="$OLD_IFS"

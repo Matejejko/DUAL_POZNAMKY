@@ -1,0 +1,121 @@
+w4.2 linux
+nastavit ssh kluca
+nastavit na port
+-basically to co barczi
+https://gitlab.com/dualedu/20252026/-/blob/main/zadania/zadanie-6.md
+
++ nastavit aby root sa nevedel priamo pripojit na stroj
++ user sa vie prihlasit iba klucom
+
+-vyvola a budeme to musit aj vysvetlit na tabuli
+preco tam a tam, preco(ne)jde
+
+
+
+postup:
+(robim na gitbashy)
+
+
+phobos$ cd .ssh/
+
+phobos$ ssh-keygen -t ed25519 -C "Laura Sopoligova, laura.sopoligova@t-systems.com"
+pyta potom od vas enter file in which to save key
+dala som lsopolig
+
+phobos$ cat lsopolig
+teraz skopiruj key
+
+
+
+phobos$ cat lsopolig.pub
+aj toto skopiruj
+
+
+
+teraz prihlas sa na rhel masinu cez ssh
+
+ssh -l root@192.168.1.245
+
+
+
+continuation
+---------------------------------------------------------------
+
+
+sme na rhel mashine - z roota chod na usera - u mna je to kiwi
+
+kiwi~$sudo mkdir .ssh && sudo chmod 700 .ssh
+
+(ak subor .ssh uz existuje tak chod nan
+(kiwi~$ cd .ssh
+(kiwi .ssh$ chmod 700 .ssh
+
+kiwi .ssh$ touch authorized_keys
+kiwi .ssh$ chmod 600 authorized_keys
+(s ls -ls si skontrolujes ci mas)
+
+truba som odisla z rhel masiny tak sa ideme tam prihlasovat
+skusali sme ssh -i id_ed25519 kiwi@192.168.1.245
+ale neslo lebo moje id je ine
+
+@phobos .ssh$ ssh -i lsopolig kiwi@192.168.1.245
+
+-toto ma prihlasilo na rhel masinu
+
+kiwi~$ sudo nano .ssh/authorized_keys
+-ak nejde tak daj #sudo dnf install nano
+-alebo pouzi vi
+
+-----------------------
+authorized_keys
+tu sme dali nase pub key
+
+note pre mna: dajak zle skopirovane, nakonci mam 3 znaky naviac
+ale mi to ide?
+radsej nemenim lol
+------------------------------
+
+
+
+kiwi~$ sudo nano  /etc/ssh/sshd_config
+
+---------------------------
+tu je co sme zmenili v sshd_config
+
+#Port 22 -> Port 222
+(ano dvesto22, a bez komentu)
+
+zmente ostatne veci na:
+PubkeyAuthentication yes
+PermitRootLogin no
+-------------------------------
+
+kiwi~$ sudo systemctl restart sshd
+
+a by to malo ist - skusime, dali sme logout
+
+phobos$ ssh -i lsopolig kiwi@192.168.1.245 -p 222
+kiwi~$
+prihlasilo ma
+
+
+
+
+ideme na PUTTY
+tam sme sa prihlasili ako na vcenter a potom
+phobos@$ssh root@192.168.1.245 -p 222 -i .ssh/lsopolig
+nejde (kvoli tomu ze sme rootovi zakazali sa priamo
+prihlasit)
+phobos@$ssh kiwi@192.168.1.245 -p 222 -i .ssh/lsopolig
+kiwi@$
+-prihlasilo ma
+
+ a aby som to stale nemuselo rozpisovat take dlhe tak:
+phobos$ nano connection.sh
+
+------------------
+ssh kiwi@192.168.1.245 -p 222 -i .ssh/lsopolig
+------------------
+
+phobos$ bash connection.sh
+kiwi@$

@@ -1,0 +1,225 @@
+recap 
+- - - 
+1. Get-Command -Verb -
+2. Get-Help -showwindow -ouline -Example
+3. Get-Member (Type, Properties, Methods)
+4. Select-Object
+5. Where-Object {$_}
+
+
+19.11
+- - - 
+
+alias 
+------
+	->> skratky, umoznuju skracovanie pisania samotnych commandletov
+
+	clear -> Clear-Host
+	cd -> Set-Location
+	cat -> Get-Content
+
+Get-Alias ->> vypise aliasy
+
+	ak mame kod pre seba kludne mozeme pouzit aliasy ale ak budeme robit project alebo nieco ohladom uciva
+	tak by sme maly pouzivat cele nazvy a nie aliasy.
+
+Set-Alias ->> vytvaranie vlastneho aliasu
+
+	Set-Alias -Name xxx -Value yyy	(tieto 2 su mandatory)
+
+	Set-Alias -Name gs -Value Get-Service
+
+
+
+- - -
+vsetko co robime v powershelly sa roby v scope-och
+najvrchnejsi je samotny scope powershell.exe
+ked nieco piseme tak v tom je scope script
+v nom su zase napr schope function 1 a scope function 2
+
+existuju tzv scope elements
+	su tim ->> alias, variable, PSOmup
+
+ak spravim alias v scope funkcii 2 bude existovat len kim bude existovat dany scope funkcia 2, 
+
+JE HIERARCHICKY TZ AK NENI SPECIFIKOVANE V FUNKCII POZRIE DO SCOPE SCRIPT A AK TAM NENI POZRIE DO SCOPE PS.EXE, NEFUNGUJE TO ALE NAOPAK
+childs vidia do parentov a nie parent do childov.
+- - -
+
+variable
+- - - - -
+
+		premena do kt ulozime neaky stav.
+		staticka hodnota.
+
+		zacina $ a ptm nazov aky chceme (nie uplne, musia to byt mena kt nepouziva windows [error, host,...])
+		ale mala by identifikovat co sa v nej nachadza
+
+		napr.
+		$services = Get-Service
+		$services
+
+
+
+		PS C:\Users\A200354239> $Vek = Read-Host "Zadaj svoj vek"
+		Zadaj svoj vek: 81
+
+		PS C:\Users\A200354239> $vek
+		81
+
+		PS C:\Users\A200354239> $vek.GetType()
+	
+		IsPublic IsSerial Name                                     BaseType                                                                                                                                         
+		-------- -------- ----                                     --------                                                                                                                                         
+		True     True     String                                   System.Object                                                                                                                                    
+
+
+	mozeme specifikovat typ variable s [] pred $	-->> [typ]$meno | [xxx]$yyy
+		[int]$Vek = Read-Host "Zadaj svoj vek"
+
+
+	New-Variable 	
+		vieme tam viac toho specifikovat
+	
+		New-Variable -Name Vek2 -Value 20 -Option ReadOnly
+
+	este su get-variable, remove-variable
+
+	
+	zmena hodnoty
+		$xxx = nove
+
+
+	$Vek * $Vek2
+	$Vek -eq $Vek2
+
+	zmena hodnoty
+		$a = "I love PowerShell"
+		$a.Replace('PowerShell','Bash')
+
+		ale ak vypiseme $a tak stale je i love powershell 
+		JE CASE SENSITIVE
+	
+	.ToUpper() | .ToLower()
+		umoznuje zmenit znaky na velke a male
+	
+
+pole | array
+- - - - - - -
+
+	$array = @('Jano', 'Stano', 'Denis')
+
+		PS C:\Users\A200354239> $array
+		Jano
+		Stano
+		Denis
+
+	$HashTable = @{name='Name';value='Jano'}
+
+		PS C:\Users\A200354239> $HashTable
+
+		Name                           Value                                                                                                                                                                        
+		----                           -----                                                                                                                                                                        
+		value                          Jano                                                                                                                                                                         
+		name                           Name 
+
+	pridanie k hashtable
+		$HashTable.Add('mesto','Kosice')     
+
+
+if else | loops
+- - - - - - - -
+	<#
+	loops - foreach-object
+	... | ForEach-Object -Begin {scriptA} -Process {scriptMain} -End {ScriptB}
+	#>
+
+		Get-Service | ForEach-Object {
+			Write-Host "Meno servisu je $($_.DisplayName)"
+		}
+
+
+	<#
+	loops - foreach
+	ForEach($item in $Array){ScriptBlock}
+	#>
+
+		$services = Get-Service
+		foreach($item in $service){
+			Write-Host "Meno servisu je $($_.DisplayName)"
+		}
+	
+
+	<#
+	loops - For
+	For($init; Condition; Interakcia){script}
+	#>
+
+	$services = Get-Service
+	for($i=0; $i -lt $services.Count; $i++){
+    		Write-Host "Meno servisu je $($Services[$i].DisplayName)"
+	}
+
+
+
+	$x = 0
+	do{
+	    Write-Host "Meno servisu je $($services[$x].DisplayName)"
+	    $x++
+	}
+	until ($x -eq $services.Count)
+
+	$x = 0
+	do{
+	    Write-Host "[$x]Meno servisu je $($services[$x].DisplayName)"
+	    $x++
+	}
+	until ($x -lt $services.Count)
+
+
+systeminfo
+	info o systeme
+
+
+
+GetType()
+	vypise aky to je typ objektu
+
+		PS C:\Users\A200354239> $c = gs
+
+		PS C:\Users\A200354239> $c.GetType()
+
+		IsPublic IsSerial Name                                     BaseType                                                                                                                                         
+		-------- -------- ----                                     --------                                                                                                                                         
+		True     True     Object[]                                 System.Array                                                                                                                                     
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

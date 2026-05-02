@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Grid | Zaklady</title>
+        <link rel="stylesheet" href="main.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            <div class="box">9</div>
+            <div class="box">10</div>
+            <div class="box">11</div>
+            <div class="box">12</div>
+            <div class="box">13</div>
+            <div class="box">14</div>
+            <div class="box">15</div>
+            <div class="box">16</div>
+        </div>
+    </body>
+</html>
+
+<!-- 
+
+grid a flex ale budeme preberat LEN GRID
+
+pouziva sa na to kde sa budu stlpce zobrazovat
+
+GRID
+####
+(robenie stlpcov, medzier a ich hibanie)
+ak s tim chceme robit, tak grid alebo flex pouzivame na rodicovy
+
+    ak to tam dame tak potomkov roztiahne na celu sirku a vysku rodica.
+
+    rozdelenie na stlpce:
+        grid-template-columns: ;
+        vieme tu specifikovat sirku a pocet stlpcov
+        napr:  grid-template-columns: 100px 200px 100px;
+            ak dame len jedno cislo tak bude specifikovat ze 
+            bude mat len jeden stlpec s tou sirkou
+
+            ak viac tak specifikujeme sirku tych viacerych stlpcov
+            teda ak bude 100px 100px 100px tak budu 3 stlpce kazdy s tou sirkou
+
+            alternativa je repeat(4, 100px)  -> vytvori 4 stlpce kazdy s tou sirkou
+            grid-template-columns: repeat(4, 100px);
+
+    gap: 
+        gap 10px;  -> medzera medzi stlpcami a riadkami je presne 10px
+        ak dame gap 10px 20px;  -> prva hodnota je medzera medzi riadkami, druha medzi stlpcami
+        dovod je ak pouzijeme margin tak vlastne 10px z kazdej strane a medzi prvkami 2 stlpcov teda bude medzera 20px
+
+    justify-content -> posuvanie obsahu horizontalne
+        justify-content: start;  -> obsah sa posunie na zaciatok (vlavo)
+                        center -> na stred
+                        end -> na koniec (vpravo)
+                        stretch -> roztiahne na celu sirku rodica (bacha ak specifikujeme sirku stlpcov)
+                        vieme to obist s fr
+
+                        dalej mame:
+                        space-between -> prvy na zaciatok, posledny na koniec a ostatne rovnomerne medzi nimi   
+                        space-around -> vsetky prvky budu mat rovnaky priestor medzi sebou
+                        space-evenly -> vsetky prvky budu mat rovnaky priestor okolo seba
+
+    align-content -> posuvanie obsahu vertikalne
+        funguje ROVNAKO iba VERTIKALNE
+
+
+
+        GRID/FLEX NA TESTE BUDE!!!!!!!!!!   
+        bude to test na spravenie karticky ze nech vyzera tak a v 
+        takomto rozsireni tak
+
+        
+
+
+
+-->

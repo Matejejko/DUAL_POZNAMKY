@@ -1,0 +1,51 @@
+Jan 13 08:23:05.702 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jan 13 08:23:05.705 HYPERVISOR: Started on IP = localhost, TCP port = 56443.
+Jan 13 08:23:06.152 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 13 08:23:06.153 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips 
+Jan 13 08:23:06.154 GENERAL: working_dir=C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips
+Jan 13 08:23:06.154 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips\90772322-2838-4c85-9768-d9170e7eda31 
+Jan 13 08:23:06.155 GENERAL: working_dir=C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips\90772322-2838-4c85-9768-d9170e7eda31
+Jan 13 08:23:06.156 HYPERVISOR: exec_cmd: vm create R4 4 c3745 
+Jan 13 08:23:06.159 VM: VM R4 created.
+Jan 13 08:23:06.160 HYPERVISOR: exec_cmd: vm set_con_tcp_port R4 5003 
+Jan 13 08:23:06.160 HYPERVISOR: exec_cmd: c3745 get_mac_addr R4 
+Jan 13 08:23:06.161 HYPERVISOR: exec_cmd: vm set_disk0 R4 0 
+Jan 13 08:23:06.162 HYPERVISOR: exec_cmd: vm set_exec_area R4 64 
+Jan 13 08:23:06.163 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:06.164 HYPERVISOR: exec_cmd: vm set_idle_pc R4 0x6024b540 
+Jan 13 08:23:06.167 HYPERVISOR: exec_cmd: vm set_ios R4 C:/Users/A47151537/GNS3/images/IOS/c3745-advipservicesk9-mz.124-15.T6.bin 
+Jan 13 08:23:06.169 HYPERVISOR: exec_cmd: c3745 set_mac_addr R4 c404.2940.0000 
+Jan 13 08:23:06.170 HYPERVISOR: exec_cmd: vm set_nvram R4 256 
+Jan 13 08:23:06.172 HYPERVISOR: exec_cmd: vm set_ram R4 256 
+Jan 13 08:23:06.173 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:06.174 HYPERVISOR: exec_cmd: vm slot_add_binding R4 1 0 NM-1FE-TX 
+Jan 13 08:23:06.175 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:06.176 HYPERVISOR: exec_cmd: vm slot_add_binding R4 2 0 NM-1FE-TX 
+Jan 13 08:23:06.177 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:06.178 HYPERVISOR: exec_cmd: vm slot_add_binding R4 3 0 NM-1FE-TX 
+Jan 13 08:23:06.180 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:06.181 HYPERVISOR: exec_cmd: vm slot_add_binding R4 0 16 WIC-2T 
+Jan 13 08:23:06.182 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:06.182 HYPERVISOR: exec_cmd: vm slot_add_binding R4 0 32 WIC-2T 
+Jan 13 08:23:12.354 HYPERVISOR: exec_cmd: nio create_udp udp-cefd9caf-9e44-4b59-b2ce-a0cd6d57d69b 10016 127.0.0.1 10017 
+Jan 13 08:23:13.382 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R4 0 1 udp-cefd9caf-9e44-4b59-b2ce-a0cd6d57d69b 
+Jan 13 08:23:13.383 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:13.456 HYPERVISOR: exec_cmd: nio create_udp udp-b0f38412-9ebe-4b5c-8a2f-685aa2ce0cf4 10020 127.0.0.1 10021 
+Jan 13 08:23:13.462 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R4 0 0 udp-b0f38412-9ebe-4b5c-8a2f-685aa2ce0cf4 
+Jan 13 08:23:13.464 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:36.738 HYPERVISOR: exec_cmd: vm set_ghost_status R4 2 
+Jan 13 08:23:36.739 HYPERVISOR: exec_cmd: vm set_ghost_file R4 C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips\c3745-advipservicesk9-mz.124-15.T6.bin-256.ghost 
+Jan 13 08:23:36.742 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 08:23:36.745 HYPERVISOR: exec_cmd: vm set_config R4 configs\i4_startup-config.cfg 
+Jan 13 08:23:36.745 HYPERVISOR: exec_cmd: vm start R4 
+Jan 13 08:24:37.043 HYPERVISOR: exec_cmd: vm extract_config R4 
+Jan 13 08:24:37.057 HYPERVISOR: exec_cmd: vm extract_config R4 
+Jan 13 12:33:15.452 HYPERVISOR: exec_cmd: vm get_status R4 
+Jan 13 12:33:15.453 HYPERVISOR: exec_cmd: vm stop R4 
+Jan 13 12:33:15.744 VM: VM R4 shutdown.
+Jan 13 12:33:15.749 HYPERVISOR: exec_cmd: vm extract_config R4 
+Jan 13 12:33:15.754 HYPERVISOR: exec_cmd: vm delete R4 
+Jan 13 12:33:15.754 VM: VM R4 destroyed.
+Jan 13 12:33:15.758 HYPERVISOR: exec_cmd: hypervisor stop 
+Jan 13 12:33:15.935 HYPERVISOR: Stopped.
+Jan 13 12:33:15.935 GENERAL: reset done.

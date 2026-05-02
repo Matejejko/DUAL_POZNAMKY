@@ -1,0 +1,76 @@
+﻿function Start-StoppedService {
+<#
+.Synopsis
+   funkcia zobrazuje stav definovaneho servisu/sov a umoznuje ich restartovat.
+   umoznuje vykonat tieto operacie na lokalnom alebo vzdialenom systeme.
+.PARAMETER <ServiceName>
+.DESCRIPTION
+   funkcia ocakava MENO jedneho alebo viacerych windows servisov.
+   vzdy vykona analyzu servisov a vypis do konzoly.
+   ak uzivatel chce restartnut servis/y umozni mu to cez prompt.
+   Uzivatel moze zadat RESTART  cez y/Y.
+   Funkcia umoznuje vykonat restart/analyzu na lokalnom alebo vzdialenom systeme/systemoch
+.INPUT
+    Funkcia ocakava na setup meno systemi (hostname/IPv4)
+   Funkcia ocakava EXISTUJUCI servis alebo servisy (ich mena)
+.OUTPUT
+   Funkcia robi vypis do konzoly (konzola APP)
+.EXAMPLE
+   Start-StoppedService -name wuauserv
+    
+    Status   Name               DisplayName                           
+    ------   ----               -----------                           
+    Stopped  wuauserv           Windows Update                        
+    chces tento servis RESTARTNUT? (Y/N): y
+.NOTES
+    SupportedOS: Windows ...
+    Lastupdate: xxxx
+    LastUpdateDate: xx.yy.oooo
+    History: xx...
+#>
+
+    [CmdletBinding()] #umozni aby sa funkcia tvarila ako commandlet
+    
+    Param(
+        # Parameter pre zadanie mena servisu
+        [Parameter(Mandatory=$false,
+                   Position=0)]
+        [string[]]$ComputerName= $env:COMPUTERNAME,
+        [Parameter(Mandatory=$true,
+                   Position=0)]
+        [string[]]$ServiceName
+    )
+
+    Begin{
+        clear-host
+        Write-Host "####################" -ForegroundColor Cyan
+        Write-Host " My first function" -ForegroundColor Cyan
+        Write-Host "        v2.0" -ForegroundColor Cyan
+        Write-host "     Autor MATEJ" -ForegroundColor Cyan
+        Write-host "####################" -ForegroundColor Cyan
+    }
+     Process{
+         foreach ($computer in $ComputerName) {
+            #1) Zisit stav servicu
+                Write-Host " "
+                Write-Host "Zvolený service má takýto status:" -ForegroundColor Magenta
+                Get-Service -ComputerName $ComputerName -Name $ServiceName
+
+            if($ServiceName.Count -eq 1){
+                #2) Restart/Start servicu/servisov
+                    Write-Host " "
+                    $UserInput = Read-Host "`nChceš tento service/servisy REŠTARTNÚŤ (y/n) ?"
+                    if ($UserInput -eq "y" -or "$UserInput" -eq "Y"){
+                        Write-Host "`nVyžiadal si REŠTART servicu" -ForegroundColor Red
+                        Invoke-Command -ComputerName $ComputerName -script {Restart-Service -Name $ServiceName -WhatIf}
+                    }else{
+                        Write-Host "`nNevyžiadal si reštart servicu" -ForegroundColor Green
+                    }
+            }
+        }
+    }
+
+    End{
+        Write-Host "`nFunkcia bola ukončená" -ForegroundColor Yellow
+    }
+}

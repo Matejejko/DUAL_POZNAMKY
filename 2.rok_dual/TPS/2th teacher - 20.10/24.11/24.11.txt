@@ -1,0 +1,193 @@
+SID komunikacia
+---------------
+
+SIP msg similar concept to HTTP msg
+client-server protocol.
+
+advantages and disadvantage
+
+flexibility	reliability
+low-cost	delay
+		jitter (zmena onekorenia packetov)
+		packet loss
+		power dependent
+		emergency tracking
+
+
+cisco unified communications manager
+====================================
+CUCM 
+
+is the main basic call-routing component it vehaves as PBX
+
+CUCM supports clustering of servers to provide high availability and scalability. 
+DB redundancy is provided by sharing a common DB.
+
+3 types:
+	publisher (main DB)
+	subscriber (communicating with endpoints)
+	TFTP (storage of config files)
+
+IOS - is call manager express
+	runs within the local router.
+
+
+phone boot process (SIP phone)
+------------------------------
+
+telefon v sieti
+naloduje sa
+vyhlada zariadenia okolo
+vyziada IP od DHCP servera
+telefon sa spoji s DHCP
+telefon dostane IP, masku, default gateway a moze aj DNS.	(dhcp default prve 3 a nasledne moze nastavenim aj viac)
+okrem toho mu podhodi adresu 150 co je adresa TFTP servera.
+spoji sa s TFTP a hlada tam svoj config 			(xml file podla mac adresy)
+stiahne si ho
+v tom configu je IP adresa samotneho konkretneho call managera s kt ma komunikovat.
+
+
+===============================|
+samotna konfiguracia v packete.|
+===============================|
+
+1. router on the stick 
+en
+  conf t
+	int fa0/0
+		no sh
+		exit
+	int fa0/0.10
+		encapsulation dot1Q 10
+		ip address 10.0.10.1 255.255.255.0
+		exit
+	interface fa0/0.50
+		encapsulation dot1Q 50
+		ip address 10.0.50.1 255.255.255.0
+		exit
+2. switch 
+en
+  conf t
+	na switch trunk a na telefony access
+
+	interface fa0/10
+		switchport mode trunk
+		exit
+	interface range fastEthernet 0/1 - 9
+		switchport mode access
+		switchport access vlan 10
+		switchport voice vlan 50
+		exit
+
+3. dhcp
+router ->
+  en
+    conf t
+	ip dhcp pool DATA
+		network 10.0.10.0 255.255.255.0	
+		default-router 10.0.10.1
+		exit
+	ip dhcp pool VOICE
+		network 10.0.50.0 255.255.255.0
+		default-router 10.0.50.1
+		exit
+
+5. option 150
+router ->
+  en
+    conf t
+	ip dhcp pool VOICE
+		option 150 ip 10.0.50.1 (ip option 150 teda TFTP servera)
+		exit
+
+6. telephon service
+router ->
+  en
+    conf t
+	telephony-service
+		max-dn 144
+		max-ephones 42
+		ip source-address 10.0.50.1 port 2000
+		auto-reg-ephone
+		exit	
+	
+7. idk co to je
+router ->
+  en
+    conf t
+	ephone-dn 1
+		number 2001
+		exit
+	ephone-dn 2
+		number 2002
+		exit
+	ephone-dn 3
+		number 2003
+		exit
+	ephone-dn 4
+		number 2004
+		exit
+	end
+ 	wr
+	reload
+
+ak nejde vsetko uloz aj switch a tak a uloz a resetni packet.
+ak dalej nejde tak manualne
+
+manualne pridavanie telefonov a cisiel kt budeme pouzivat
+
+router ->
+  en
+    conf t
+	ephone 2
+		mac-address 0002.1741.75b8 	mac daneho telefona na vlan 50
+		exit
+	ephone 4
+		mac-address 0006.2ad8.71b8
+		exit
+
+8. nastavenie telefonov
+router ->
+  en
+    conf t
+	ephone 2
+		button 1:1
+		exit
+	ephone 4
+		button 1:4
+		exit
+	
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

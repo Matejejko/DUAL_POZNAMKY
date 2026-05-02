@@ -1,0 +1,188 @@
+Linux 8.10
+
+ÚLOHA:
+Vytvor 2x nový swap s veľkosťou 2 GB — jeden z nového LV (logického volume) a druhý zo súboru.
+
+SWAP
+=====
+
+Je to priestor na disku, ktorý funguje ako virtuálna pamäť.
+Keď sa RAM zaplní, systém môže presunúť neaktívne dáta do swap priestoru, aby aktívne procesy mohli ďalej bežať.
+
+Nastavenie swapu
+----------------
+1. Swap partícia — vyhradená časť disku.
+2. Swap súbor — bežný súbor, ktorý sa správa ako swap priestor.
+
+Oba fungujú rovnako z pohľadu jadra, ale správa swap súboru je flexibilnejšia,
+zatiaľ čo LV alebo partícia je tradičnejšia a odolnejšia.
+
+Zhrnutie úlohy
+==============
+	- vytvoriť 2 GB swap na LVM
+	- vytvoriť 2 GB swap súbor
+
+Krok 1:
+Pred vytvorením čohokoľvek skontroluj, čo už je neake swap aktívne:
+
+    sudo swapon --show
+    - - - - - - - - - -
+
+	Ak sa nič nezobrazí, znamená to, že swap nie je aktívny.
+	Ak niečo je, vyzerá to napríklad takto:
+
+	    NAME        TYPE        SIZE  USED  PRIO
+	    /dev/dm-1   partition   2G    0B    -2
+	
+	    /dev/dm-1  – cesta k existujúcemu swapu a jeho názov
+	    partition  – kernel ho rozpoznal ako swap partíciu alebo LV
+	    size       – veľkosť v GB
+	    used       – aktuálne používané miesto
+	    prio       – priorita swapu (kernel rozhoduje, ktorý swap použiť ako prvý)
+
+Zobraz logické volume a disky:
+
+	sudo lvs	- 
+ 		ukase info a logickych volumes (akoby particie z VG [volume group])
+		meno lv, 
+		meno vg z kt je,
+		, (atributy lv) w- zapisovatelny
+		total size,
+	
+	sudo vgs	- 
+		meno, 
+		number of fyzickych volumes, 
+		num of logickych volumens total, 
+		pocet snapshotov,
+		stav a vlastnosti VG,
+		size, 
+		free size
+	
+	sudo lsblk	- ukazuje fyzicky a logicky storage
+				disk - sda
+				partition - sda1, sda2, sda3
+				lvm - vg00...
+				na konci su mount pointy
+
+Krok 2:
+a) Vytvorenie nového LV
+	spravime lv s nazvom swap_lv vo VG kt je dostupna
+
+	sudo lvcreate -L 2G -n swap_lv vg00_system
+	- - - - - - - - - - - - - - - - - - - - - -
+
+	lvcreate - spravy novu logical volume
+	-L - urcuje velkost novej LV
+	-n - pomenuje novu LV
+	vg00_system - urcuje z kt vg spravy lv
+
+
+b) Formátovanie na swap
+
+	sudo mkswap /dev/vg00_system/swap_lv
+	- - - - - - - - - - - - - - - - - - - 
+
+c) Trvalé pripojenie po reštarte
+
+	sudo vim /etc/fstab
+	- - - - - - - - - - 
+
+	Pridaj tento riadok:
+
+	/dev/vg00_system/swap_lv none swap sw 0 0
+	- - - - - - - - - - - - - - - - - - - - -
+		lokalita
+		none alebo swap		-	k comu ma byt pripojeny 
+		swap			-	typ
+		sw			-	moznost pripojenia toto znamena swap enabled
+		0			-	zalohovaci nastroj ignoruje swap
+		0			-	kontrola suboroveho systemu pri starte swap sa nekontroluje 
+
+	Potom obnov systémového démona:
+	
+	systemctl daemon-reload
+	- - - - - - - - - - - -
+
+d) Aktivuj swap
+
+	sudo swapon /dev/vg00_system/swap_lv
+	- - - - - - - - - - - - - - - - - - -
+
+e) Overenie
+
+    cat /proc/swaps
+    free -h
+
+
+Krok 3:
+a) Vytvorenie swap súboru
+
+	sudo fallocate -l 2G /swapfile
+	- - - - - - - - - - - - - - - -
+		fallocate - pridel cast disku k suboru
+		-l 2G - kolko mu pridelit
+		/swapfile - misto a meno tohto suboru
+	
+	# alebo
+	sudo dd if=/dev/zero of=/swapfile bs=1024 count=65536
+		dd - create file
+		if=/dev/zero - vypln ho nulami
+		of=/swapfile - output file
+		bs=1024 - block size napis 1024 bytov (1KB) at a time
+		count= 65536 - kolko blokov ich ma napisat
+
+b) Formátovanie ako swap
+
+	sudo mkswap /swapfile
+	- - - - - - - - - - - 
+
+c) Nastavenie oprávnení
+
+	sudo chmod 600 /swapfile
+	- - - - - - - - - - - - -
+
+	ak to nepsravime tak to nebude fungovat lebo Linux odmietne pouzit tento subor ak ho nikto iny
+ 	ako root moze citat
+
+d) Úprava /etc/fstab
+
+	/swapfile none swap sw 0 0
+	- - - - - - - - - - - - - -
+
+e) Obnovenie démona
+
+	sudo systemctl daemon-reload
+	- - - - - - - - - - - - - - -
+
+f) Okamžité zapnutie swapu
+
+	sudo swapon /swapfile
+	- - - - - - - - - - -
+
+g) Overenie
+
+    cat /proc/swaps
+    free -h
+
+Všetky príkazy:
+===============
+sudo swapon --show
+vgs (lvs, lsblk)
+sudo lvcreate -L 2G -n swap_lv vg00_system
+sudo mkswap /dev/vg00_system/swap_lv
+sudo vim /etc/fstab
+    /dev/vg00_system/swap_lv none swap sw 0 0
+systemctl daemon-reload
+sudo swapon /dev/vg00_system/swap_lv
+cat /proc/swaps
+free -h
+
+sudo fallocate -l 2G /swapfile
+sudo mkswap /swapfile
+sudo chmod 600 /swapfile
+sudo vim /etc/fstab
+    /swapfile none swap sw 0 0
+sudo systemctl daemon-reload
+sudo swapon /swapfile
+cat /proc/swaps
+free -h

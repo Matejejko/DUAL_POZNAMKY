@@ -1,0 +1,40 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    body {
+        padding: 10px;
+
+        .container {
+            width: 600px;
+            height: 600px;
+            border: 5px solid #c8102E;
+            padding: 10px;
+            border-radius: 5px;
+            display: grid; /* zapnutie gridu */
+            gap: 2px; /* medzera medzi potomkami */
+            /* x-sova suradnica / horizontalny smer: start, center, end, stretch, space-between, space-evenly, space-around */
+            justify-content: center;
+            /* y-sova suradnica / vertikalny smer: start, center, end, stretch, space-between, space-evenly, space-around */
+            align-content: stretch;
+            /* nastavenie stlpcov */
+            grid-template-columns: repeat(4, 100px); /* 100px 100px 100px */
+            
+            .box {
+                display: grid;
+                align-content: center;
+                text-align: center;
+                background: #041E42;
+                color: #FFFFFF;
+                padding: 5px;
+                border-radius: 5px;
+                transition: 250ms;
+
+                &:hover {
+                    background: #B9975B;
+                }
+            }
+        }
+    }
+}

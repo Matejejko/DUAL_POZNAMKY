@@ -1,0 +1,23 @@
+for.sh:
+
+	#!/usr/bin/env bash
+
+	file_content="$(cat file)"
+
+	echo "$file_content" | wc -l
+
+	for line in $file_content
+	do
+	        echo $line
+	done
+
+while.sh
+	#!/usr/bin/env bash
+
+	while read line
+	do
+	        echo "$line"
+	done < file
+
+treba pouzivat time ./script na porovnvanie rychlosti ze vieme najst co najoptimalnejsi a najrychlejsi sposob
+tu while je o polovicu rychlejsie ako for

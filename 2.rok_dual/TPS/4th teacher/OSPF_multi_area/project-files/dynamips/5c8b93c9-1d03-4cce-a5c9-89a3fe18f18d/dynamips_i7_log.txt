@@ -1,0 +1,49 @@
+Jan 13 08:23:07.439 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jan 13 08:23:07.441 HYPERVISOR: Started on IP = localhost, TCP port = 56456.
+Jan 13 08:23:07.922 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 13 08:23:07.922 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips 
+Jan 13 08:23:07.923 GENERAL: working_dir=C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips
+Jan 13 08:23:07.923 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips\5c8b93c9-1d03-4cce-a5c9-89a3fe18f18d 
+Jan 13 08:23:07.924 GENERAL: working_dir=C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips\5c8b93c9-1d03-4cce-a5c9-89a3fe18f18d
+Jan 13 08:23:07.924 HYPERVISOR: exec_cmd: vm create R7 7 c3745 
+Jan 13 08:23:07.927 VM: VM R7 created.
+Jan 13 08:23:07.928 HYPERVISOR: exec_cmd: vm set_con_tcp_port R7 5006 
+Jan 13 08:23:07.928 HYPERVISOR: exec_cmd: c3745 get_mac_addr R7 
+Jan 13 08:23:07.929 HYPERVISOR: exec_cmd: vm set_disk0 R7 0 
+Jan 13 08:23:07.929 HYPERVISOR: exec_cmd: vm set_exec_area R7 64 
+Jan 13 08:23:07.930 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:07.931 HYPERVISOR: exec_cmd: vm set_idle_pc R7 0x6024b540 
+Jan 13 08:23:07.933 HYPERVISOR: exec_cmd: vm set_ios R7 C:/Users/A47151537/GNS3/images/IOS/c3745-advipservicesk9-mz.124-15.T6.bin 
+Jan 13 08:23:07.934 HYPERVISOR: exec_cmd: c3745 set_mac_addr R7 c407.26e0.0000 
+Jan 13 08:23:07.935 HYPERVISOR: exec_cmd: vm set_nvram R7 256 
+Jan 13 08:23:07.936 HYPERVISOR: exec_cmd: vm set_ram R7 256 
+Jan 13 08:23:07.936 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:07.937 HYPERVISOR: exec_cmd: vm slot_add_binding R7 1 0 NM-1FE-TX 
+Jan 13 08:23:07.937 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:07.938 HYPERVISOR: exec_cmd: vm slot_add_binding R7 2 0 NM-1FE-TX 
+Jan 13 08:23:07.939 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:07.939 HYPERVISOR: exec_cmd: vm slot_add_binding R7 3 0 NM-1FE-TX 
+Jan 13 08:23:07.940 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:07.940 HYPERVISOR: exec_cmd: vm slot_add_binding R7 0 16 WIC-2T 
+Jan 13 08:23:07.941 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:07.941 HYPERVISOR: exec_cmd: vm slot_add_binding R7 0 32 WIC-2T 
+Jan 13 08:23:15.662 HYPERVISOR: exec_cmd: nio create_udp udp-beb22fd8-a0ec-4da1-9e8f-6fcb6533059e 10034 127.0.0.1 10035 
+Jan 13 08:23:16.675 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R7 1 0 udp-beb22fd8-a0ec-4da1-9e8f-6fcb6533059e 
+Jan 13 08:23:16.676 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:37.033 HYPERVISOR: exec_cmd: vm set_ghost_status R7 2 
+Jan 13 08:23:37.034 HYPERVISOR: exec_cmd: vm set_ghost_file R7 C:\Users\A47151537\GNS3\projects\OSPF_multi_area\project-files\dynamips\c3745-advipservicesk9-mz.124-15.T6.bin-256.ghost 
+Jan 13 08:23:37.034 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 08:23:37.046 HYPERVISOR: exec_cmd: vm set_config R7 configs\i7_startup-config.cfg 
+Jan 13 08:23:37.047 HYPERVISOR: exec_cmd: vm start R7 
+Jan 13 08:24:37.381 HYPERVISOR: exec_cmd: vm extract_config R7 
+Jan 13 08:24:37.391 HYPERVISOR: exec_cmd: vm extract_config R7 
+Jan 13 09:57:13.619 HYPERVISOR: exec_cmd: vm set_ios R7 C:/Users/A47151537/GNS3/images/IOS/c3745-advipservicesk9-mz.124-15.T6.bin 
+Jan 13 12:33:15.846 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 13 12:33:15.849 HYPERVISOR: exec_cmd: vm stop R7 
+Jan 13 12:33:16.081 VM: VM R7 shutdown.
+Jan 13 12:33:16.085 HYPERVISOR: exec_cmd: vm extract_config R7 
+Jan 13 12:33:16.088 HYPERVISOR: exec_cmd: vm delete R7 
+Jan 13 12:33:16.088 VM: VM R7 destroyed.
+Jan 13 12:33:16.092 HYPERVISOR: exec_cmd: hypervisor stop 
+Jan 13 12:33:16.586 HYPERVISOR: Stopped.
+Jan 13 12:33:16.586 GENERAL: reset done.

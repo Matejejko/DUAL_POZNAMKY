@@ -1,0 +1,29 @@
+ssh klud
+	ssh-keygen -t ed25519
+	vim .ssh config
+		Host sisl
+  			Proxyjump phobos
+ 			Hostname 192.168.1.193
+  			User Mpapaj
+  			Port 22
+  			IdentityFile ~/.ssh/dual-key
+	ssh-copy-id -i sisl
+
+ZMENA PORTU
+	sudo nano /etc/ssh/sshd_config
+	  #port 22 -> port 222
+ 	sudo systemctl restart sshd
+	spat na zaciatok a zmenit port 22 na 222
+
+PRIHLASOVANIE IBA KLUCOM
+
+	sudo vim /etc/ssh/sshd_config
+		PubkeyAuthentication yes
+		PasswordAuthentication no
+	sudo systemctl restart sshd
+
+ZAKAZANIE PRIHLASENIE SA POD ROOT-OM
+	sudo vim /etc/ssh/sshd_config
+		PermitRootLogin no
+	sudo systemctl restart sshd
+

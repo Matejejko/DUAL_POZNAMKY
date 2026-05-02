@@ -1,0 +1,8 @@
+D.U.
+
+vytvorte skript alebo funkciu v bashi,
+ ktorá určí či súbor 
+(ktorého meno zadáme do 1. argumentu),
+ je bash script alebo python script/program (command 'file') , 
+a podla toho nám vypíše v akom bashi/pythone by ho spustil
+(bash --version or python3 --version)

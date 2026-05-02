@@ -1,0 +1,93 @@
+/*co je nesting ako sa zapisuje ako funguje. 
+ako funguje & v nesting-u
+hover a preco pred je &, 
+co znamena zapisanie s medzerami, >, MOZNO +.*/
+
+main {
+    article {
+        & > header {
+            /*& odkazuje na article je to ako: main article > header*/
+            background: darkgreen;
+            h1 {
+                background: black;
+                color: white;
+                &:hover {
+                    background: yellow;
+                }
+                &:before,
+                &:after {
+                    /*uprav to co je pred h1 a to co je za h1*/
+                    content: "";
+                    width: 5px;
+                    height: 25px;
+                    background: pink;
+                    display: inline-block;
+                }
+                &:after {
+                    background: plum;
+                }
+                & + section {
+                    /* to iste roby ako hore ale s +kom */
+                    background: aqua;
+                }
+            }
+            section {
+                span {
+                }
+            }
+        }
+        section {
+            p {
+            }
+        }
+        footer {
+        }
+    }
+}
+
+/*
+/* to to musi byt priamy rodic (spam je priamo v headeri) 
+header > span {
+    background: dodgerblue;
+    color: yellow;
+}
+
+/* + najde section a ak hned pred nim je h1 tak zmeni farbu (doslova hned po sebe musia ist) 
+header h1 + section {
+    background: aqua;
+}
+
+/*v main v article v header v section a 2hy span
+main article header section span:nth-child(2) {
+    font-weight: bold;
+}
+
+/*tu to aplikuje aj na vzdialenych rodicov (spam moze by aj hlbsie v headeri)*/
+/* header span {
+    background: dodgerblue;
+    color: yellow;
+} */
+
+/*
+span {
+    background: dodgerblue;
+    color: yellow;
+}
+
+/* takto to nerobit */
+/*
+main article header section span {
+    background: red;
+    color: white;
+}
+
+main article {
+    box-shadow: 0 0 10px black;
+    border: 2px solid red;
+}
+
+main article:hover {
+    border: 2px solid blue;
+}
+
+/* specialne znaky su: " ", ~, +, > */

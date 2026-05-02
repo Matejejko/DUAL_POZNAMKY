@@ -1,0 +1,129 @@
+siete -novy ucitel (za nahadu)  20.10
+
+VOIP overview
+=============
+
+	ISO/OSI
+	-------
+	rámec pre sieťovú komunikáciu rozdelený do siedmich vrstiev, ktoré popisujú,
+	ako dáta prechádzajú od aplikácie po fyzické medium
+
+	VOIP
+	----
+	Voice over IP
+	
+	PSTN
+	----
+	public switched telephone network
+	standardna telefonna siet
+
+
+
+how voice data are created	-	kodek	!
+--------------------------
+	kodek - sposob aki zakodujeme audio
+	a)vzorkovanie - pocas toho ako hovorime membrana v mikrofone sa hibe a meni elektricky prud a vytvori vlnovky v case.
+	b)kvantovanie - od vlnovky sa odpocita jej hladina kazdych xy casu
+	c)kodovanie - prirady kazdu hladinu k neakemu 8bit zazname/slovu
+
+
+
+kompresia:
+kodek G.711	!
+-----------
+	je to univerzalny/mandatory kodek
+	kazde zariadenie toto musi vediet tento kodek
+	rychlost 64kbs	!!!
+
+
+
+RTP (real-time transport protocol) !
+------------------------
+na prenos multi-media je iba jeden protocol to je RTP
+audio a/alebo video
+je na aplikacnej vrstve
+
+synchronizacne vlny - ze ked to pride k prijemcovy, tak si vie packety poukladat na to aby rec bola plinula
+
+
+
+qos - quality of service
+- - - - - - - - - - - - -
+priradzuje prioritu na to ako sa maku packety posielat
+pride sa do hlavicky informacia - ked router dostane tento packet dostane info ze sa posuva multimedia a prioritizuje ho.
+
+
+
+
+7 layer - deli sa na 20mili-sekund
+4 layer - RTP/header
+3 layer - UDP/header
+2 layer - IP header
+1 layer - ethernet header
+
+	na konci mame ramec kde 1/3 su data a ostatok su hlavicky
+	je to wasting/neoptimalne
+
+	pouziva sa to koli kontabilite s starimy zariadeniami
+
+ine kodeky su:
+	MP3	-	tu je ten rozdiel toho ze sa skala frekvencie zmenil na 15 do 15000hz
+	na tomto principe su vacsina kodekov
+	preco? - lebo chceme setrit data | bandwidth
+
+
+kodek G.729	!
+-----------
+2 najviac pouzivany vo SVETE	
+ma 8kbs/s prenos
+
+pouzity sa na  WAN (G.711 v LAN) !!!!!!!!! v teste 
+dovod je internetovy bandwidth, doma si vieme dovolit G.711 von chceme bandwith co najviac optimalizovat
+
+
+
+voice activity detection (VAD)
+------------------------
+prenasa sa len v tedy ak realne rozpravam
+vdaka tomu sa neroby zbitocne encodovanie a namiesto toho generuje šum
+- pocujeme ten 'šum' v hovore
+
+
+
+komponenty VOIP network-u	!
+-------------------------
+1. call processor - telefon,
+2. call processor - spojovatelka/ustredňa	(precita source a destination a hlada v databaze na zaklade toho preposiela)
+3. voice gateway - device kt nas spaja s vonkajsim svetom (rooter s vlozenou voice kartou)
+
+
+
+
+trunk - konekcia bodu a do bodu b a presnejsie to ze tam vsetko prechadza
+
+
+
+signalizacne protokoly	!
+----------------------
+
+SIP - Session Initiation Protocol
+	je najviac pouzivany vo svete
+H.323
+MGCP
+SCCP
+
+SS7
+
+
+
+
+
+
+
+
+
+
+
+
+
+

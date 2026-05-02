@@ -1,0 +1,32 @@
+Required Linux Knowledge Areas
+
+Participants are expected to have practical knowledge in the following areas:
+
+RedHat
+
+1.	Linux Command Line Proficiency 	– Confident use of the terminal and navigation through the Linux filesystem  	->> done - learned
+2.	File System & Permissions 	– Understanding file structure, ownership, and access permissions		->> done - learned
+3.	Services & Processes 		– Managing daemons and services							->> done - 
+4.	Networking Basics 		– Basic network configuration, DNS resolution, and troubleshooting		->> done - 
+5.	Storage Management 		– Disk administration, partitions, and basic LVM concepts			->> done - learned (i guess)
+6.	Package Management 		– Installing, updating, and managing software packages				->> done - learned
+7.	Shell Scripting Basics 		– Writing simple scripts for automation						->> fck shell
+8.	User & Group Administration 	– Managing users, groups, and permissions					->> done
+
+
+reorder 
+
+1.	Linux Command Line Proficiency 	– Confident use of the terminal and navigation through the Linux filesystem  	->> done
+
+2.	File System & Permissions 	– Understanding file structure, ownership, and access permissions		->> done
+5.	Storage Management 		– Disk administration, partitions, and basic LVM concepts			->> done
+
+8.	User & Group Administration 	– Managing users, groups, and permissions					->> done
+
+4.	Networking Basics 		– Basic network configuration, DNS resolution, and troubleshooting		->>
+
+3.	Services & Processes 		– Managing daemons and services							->> done
+
+6.	Package Management 		– Installing, updating, and managing software packages				->> done
+
+7.	Shell Scripting Basics 		– Writing simple scripts for automation						->> IDK

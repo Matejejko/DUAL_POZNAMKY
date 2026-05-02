@@ -1,0 +1,33 @@
+.category-article-list {
+    h2 {}
+    .categories {
+        margin: 0 0 0 1rem;
+        /* none, upper-roman, lower-roman, lower-alpha, upper-alpa, decimal, square, circle, disc */
+        list-style-type: upper-roman;
+        
+        & > li {
+            .label {
+                background: orangered;
+                color: white;
+                display: block;
+                padding: 0.5rem 1rem;
+                font-weight: 500;
+            }
+            .articles {
+                margin: 0 0 0 1rem;
+                /* none, upper-roman, lower-roman, lower-alpha, upper-alpa, decimal, square, circle, disc */
+                list-style-type: lower-alpha;
+
+                li {
+                    padding: 0.5rem 1rem;
+                    background: rgb(255, 107, 54);
+                    font-weight: 200;
+                    
+                    &:nth-child(odd) {
+                        background: rgb(255, 127, 81);
+                    }
+                }
+            }
+        }
+    }
+}

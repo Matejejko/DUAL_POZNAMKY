@@ -1,0 +1,4 @@
+domaca uloha:
+vytvorte docasne subory mena.XXXXXX a vek.XXXXXX  a pomocou prikazu paste vytvorte subor "vekova_kategorizacia.XXXXXX"  v skripte vypiste realpath suboru vekova kategorizacia.
+ 
+vytvorte docasny subor professions.XXXXXX v ktorej bude iba zoznam povolani. pomocou tohoto suboru v skripte vypiste pocet studentov.

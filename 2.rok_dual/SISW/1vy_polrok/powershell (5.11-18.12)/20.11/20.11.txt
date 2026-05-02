@@ -1,0 +1,89 @@
+if else
+- - - - -
+
+	<#
+	IF/Else
+	syntax:
+	if(condition){scriptblockA}
+	elseif(condition){scriptblockB}
+	else {scriptblockC}
+	#>
+
+	$service = Get-Service wuauserv
+	If($service.Status -ne "Running") {
+	    Start-Service -Name $service.Name
+	#    Get-Service wuauserv | Start-Service
+	#    $service | Start-Service
+	}
+
+pipeline
+- - - - -
+	s pipelinou funguje -Id, -InputObject a -Name
+		1. by value
+		2. by property name
+
+
+Get-Service | Stop-Service -WhatIf -ErrorAction SilentlyContinue	->> ukase kt services vieme vypnut
+
+switch
+- - - - 	
+	<#
+	switch
+	syntax:
+	    switch(RiadiacaPremenna){
+	        "HodnotaA" {ScriptBlockA}    #ak chceme aby sa ukoncil pri prvej zhode dame ku koncu ; break ->> {scriptblock; break}
+	        "HodnotaB" {ScriptBlockB}
+	        "HodnotaC" {ScriptBlockC}
+	        default {ScriptBlockD}
+	    }
+	#>
+
+	$servername = Read-Host "zadaj meno servera"
+	switch -Wildcard ($servername){
+	    "*MUC*" {Write-Host "server lokacia je Mnichov"}
+	    "*FFM*" {Write-Host "server lokacia je Frankfurkt"}
+	    "*LON*" {Write-Host "server lokacia je Londin"}
+	    "*SQL*" {Write-Host "server APP je SQL SERVER"}
+	    "*DC*" {Write-Host "server APP je Domain Controller"}
+	    "*DNS*" {Write-Host "server APP je DNS server"}
+	    default {Write-Host "neznamy server" -ForegroundColor Red}
+	}
+
+
+zadanie
+vytvor powershell kod aby vypisal beziace servisy (displayname) zelenou a nebeziace servisy cervenou do konzoly
+
+	$data = Get-Service
+	$data | ForEach-Object {
+	    if($_.Status -eq "Running"){
+	        Write-Host $_.DisplayName -ForegroundColor Green
+	    } else {
+	        Write-Host $_.DisplayName -ForegroundColor Red
+	    }
+	}
+
+
+#kod v PS, aby zobrazil info o volume C o jeho 
+#vekosti[GB], volnom mieste [GB] a volnom mieste [%]
+
+	Get-Volume -DriveLetter C | Select-Object -Property @{
+	n="Size[GB]";e={[system.Math]::Round($_.Size/1Gb,2)}},@{
+	n="Remaining[GB]";e={[system.Math]::Round($_.SizeRemaining/1Gb,2)}},@{
+	n="utilization[%]";e={[system.Math]::Round($_.SizeRemaining/$_.Size*100,2)}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

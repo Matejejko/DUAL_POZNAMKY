@@ -1,0 +1,99 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+html {
+	body {
+        min-height: 100vh;
+        display: grid;
+        /*overflow: hidden;*/
+        grid-template-rows: auto 1fr auto;  /* to fr tu reprezentuje vsetky volne pixely */
+		.header-app {
+            background: orangered;
+            display: grid;
+            grid-template-columns: repeat(2, auto);
+            justify-content: space-between;
+            align-items: center;     /* kazdy prvok vo vnutry dostane samotny zarovnanie */
+                                     /* ak chcem hybat s celim tak pouzijeme align content */
+            padding: 10px;
+			.logo {
+                width: 100px;
+                border-radius: 50%;
+            }
+			.menu {
+				a {
+                    color: white;
+                    text-decoration: none;
+                }
+			}
+		}
+		.content {
+            background: cornflowerblue;
+            color: white;
+        }
+		.footer-app {
+            padding: 10px;
+            background: #444444;
+            color: white;
+            display: grid;
+            gap: 10px;
+			.paragraphs {
+                display: grid;
+                grid-template-columns: repeat(3, auto);
+                gap: 20px;
+				p {
+                    text-align: justify;
+                }
+			}
+			.copyright {
+                text-align: center;
+            }
+		}
+	}
+}
+
+/*
+   vh - vertical height
+   vv - sirka proste
+ */
+
+/*
+    min-height
+    zober minimalnu vysku zariadenia, ale prisposoby to obsahu
+    je to proste lepsie ako height
+
+    height
+    nastav pevnu vysku, bez ohladu na obsah   ????????????asu
+*/
+
+/*
+    overflow: hidden;
+    schova co preteka z stanovenej vysky alebo sirky
+    vlastne to zablokuje scrollovanie
+*/
+
+/*
+        grid-template-rows: 3;
+        je ako grid-template-columns iba pre riadky
+ */
+
+/*
+    fr - ako hodnota reprezentuje cast dostupneho priestoru
+    fr je vraj pomerova jednotka - tz
+                                    mame kocku s 600px width a k tomu je
+                                    grid-template-columns: 1fr 2fr 3fr;
+                                    zoberie vsekt fr a vydeli tu 600ku a prerozdely kazdemu casti
+                                    tak prva bunka bude mat 100px, druha 200px a tretia 300px
+
+ */
+
+/*
+    rozdiel medzi align-items a align-content
+    align-items - zarovna jednotlive prvky v bunke
+    align-content - hybe vsetkymi prvkami v bunke naraz
+*/
+
+/*
+    justify-content - hybe prvkami horizontalne
+    justify-items - zarovna jednotlive prvky horizontalne
+ */

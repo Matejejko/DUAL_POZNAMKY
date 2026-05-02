@@ -1,0 +1,35 @@
+main {
+	.media-container {
+		/* width: 500px; */
+
+		.photos {
+			&:hover {
+				/* background: red; */
+				.photo {
+					filter: grayscale(1);
+				}
+			}
+			.photo {
+				/* width: 200px; */
+				width: 40%;
+				height: 300px;
+				margin: .5rem;
+				object-fit: cover;
+				object-position: center center;
+				border-radius: .25rem;
+				border: 10px solid white;
+				border-bottom-width: 70px;
+				box-shadow: 0 0 5px rgba(0,0,0,.5);
+				transition: 250ms;
+
+				&:hover {
+					transform: scale(1.1) rotate(15deg);
+					filter: grayscale(0);
+				}
+			}
+		}
+		.video {
+			width: 100%;
+		}
+	}
+}

@@ -1,0 +1,5 @@
+#v menu si hrac zvoli obtiaznost(hard = protivnik ma +1 na kocke a viac zivotov) a pocet zivotov
+# hrac bude hrat proti pocitacu a bude hadzat kocku 
+# v svojom kole si hrac vyberie akou kockou chce hadzat (moznosti D4 D6 D8 D12) - nemoze to byt neexistujuca kocka (napr 3hranna)
+#kto hodi mensie cislo strati zivot
+# bonus. ak hrac vyhra, vie vyuzit zolika (+1 do hodu kocky pred hodom)

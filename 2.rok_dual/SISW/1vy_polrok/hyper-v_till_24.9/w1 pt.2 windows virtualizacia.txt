@@ -1,0 +1,485 @@
+w1 pt.2 W virtualizacia
+preco virtualizacia?
+cloud hybe dnes svetom - cloud nevie fungovat bez virtualizacie
+ale virtualizacia vie fungovat bez cloudu
+
+aj fyzicke device treba - bez nich to nejde
+provider (orange etc) vam poskytne krabicku = router
+a potom satellite tiez treba
+tak isto funguje aj pri serveroch
+kt. sluzby su zakl. kt. ziadna firma bez nej sa nevie obyst
+= web server - web stranka
+jje to jedna z roli windowsu
+
+zavisi aj od aplikacie kt. chceme bezat - nektore stranky bezia na linuxe a niektore na windowse
+
+na stranke dame kto som co som etc.
+
+potom treba aby zamestnanci vedeli s vami komunikovat - email
+aby zamestnanci vedeli a authentifikovat a pracovat - treba ADDS
+
+1. web stranka
+2. email server
+3.ADDS - active directory domain services
+
+tieto tri treba niekde ulozit
+kupine tri server - lenze jeden server stoji cca 30 000e
+taze dokopy 90k e treba aby sme boli dostupny taze treba dvojmo
+taze namiesto 3 treba 6 serverov - popripade keby jeden server padol = redundancia = High Avaibility
+
+email je dolezity pre riadenie/management - oni riadi posielaju emaily 
+
+
+ked riesime tickety/objednavka - tak cez email
+6serveri = 180ke a to este potrebujeme kto nam
+ten jardwer nainstaluje,config.potom  treba najst miesto na chladenie
+
+takto to fungovalo bez cloudu
+
+virtualizacia nam umoznuje ze nase 2 server su ulozene do ....
+
+potom mi tie bedne niejak prepojime cez niejaky storage box - bez toho to nefunguje
+a tie bedne maju niejake OS a potom APP
+
+takze realne kupime 2 (virtualne)servre - a oni nam zaberaju miesto ovela mensie ako normalne servre
+
+a to je nic - su virtualne taze ziadne miesto
+
+tie vir.m. casom treba zvysit RAM
+
+vo fyzickom hardveri - tam je limit aky ma RAM CPU etc
+ve;kpu vyhodou VM je ze tam nieje taky limit ako na fyzickom
+
+vo virtualizacii sa aj downtime minimalizuje
+tam ked chceme dat increase (ram a cpu) tam netreba downtime
+ale ked chceme zmensit taku z treba downtime
+
+tie fyz. bedne volame HyperV Hosty
+taze mame 2 HyperV Hosty
+
+
+vieme presuvat cez v motion
+lepsia skalovatelnost
+max. 1 reboot
+toto na fyz. je nemozne
+to su velke vyhody pri virtualkach
+
+
+rack mounted servre - to su take placky kt. sa posuvaju do suflikoch
+- j oni uz maju velky vykon
+oni maju vpredu 10/16/12 disky
+tie disky sa volaju HP = hotpluck
+to znamena ze ak sa okazi, technik ho vyberie
+pocas chodze a ho vymeni
+
+RAID1 treba min. 1 disk
+ak mam aspon 2 disk tak vieme robit hotpluck
+
+
+obe maju data indenticke
+a raid zabezpeci aby sa mi to zbackupovalo
+
+doma je to velke riziko - take staticke veci, treba aj naramok
+aby sme sa uzemnili
+
+nove datacentrum je BIERE - je to v DEU
+- ciste prostredie, technici maju biele rukavice
+maju take sufliki keby museli daco montovat
+robota bez stresu, ale hlucny - ventilatori
+
+dnes mame 2 hracov - top provideri
+1. ESXi
+2.HyperV
+(3.oracle)
+
+esxi pozuivame v labe
+hyperv je od microsoftu
+
+citrix xen - neinvestuje velmi do upgrade
+oracle - vyznnamny hrac - ma svoj hypervisor
+
+kto odkupil od koho esxi
+- zvysili cenu
+- zakaznik stratil zaujem
+hyperV sa stal viac znamym/chcenym
+
+rok cca 2000
+vam vedelo setrit 10% - virtualizacia
+asi setrenie zdrojov - ci uz finacna alebo energeticka
+
+VMware na aws
+
+vm su hardware independent - im je jedno co je pod nim
+- taze niesu kompatibilne]-tam e conversia
+
+vo vm tam je guest OS
+hypervisor nieje OS
+
+guest OS vobec netusi ze meci nim je niejaky hypervisor
+preto si masina mysli ze je priamo na nom nainstalovana
+
+jednoduchost set up-utia (nie lepsi support), lepsi experience
+lebo treba aj zaskolitludi, treba migrovat - to stoji aj peniaze
+
+
+preto sa telekom aj pyta zakaznikov ze ci mozu mat
+aspon raz rocne mat maintanence  aby sa  uogradevoalo by bola lepsia bezpecnost
+niekedy sa to nerobilo
+niektory nemecky zamest hovorili
+"ak tofunguje nedotykaj sa"
+
+
+lmao cinske prislovie
+neexistuje nic co si nevies predstavit
+nieje to nemecke?
+
+zakaznici maju radi a chcu mat nove veci
+
+niekedy fungovalo vo firme agile
+chceli to mat pre celu firmu
+ale ono to nie vsade funguje
+lebo napr. je tam aj plany na zajtra
+ale oni nevedia ci zajtra dostanu ticket alebo nie
+
+teraz prisli cloudy - aws, azure
+americke - je tam Donald trump, ale bezpecnost
+je tam dodrzana
+
+Huawei tam nieje security - (nie nahodou Alibaba cloud?)
+musis citat terms and policy - tam pise ze vsetky
+data kt. tam das su hned majetkom tej firmy
+
+
+ulozisko - t.j. ze cast vasej identity idu s nim
+
+co je hypervisor - je to dajaky softver ale nie OS
+kt, umoznuje virtualizaciu
+- NIEJE TO OS
+-lebo niejake specifika plni ale nie vsetky preto to nieje os
+
+zabera iba pra stovak MG
+ma to dajaky footprint, je to uzavrete
+stale maly oproti inym
+
+
+vHost -
+VM alebo contajnery
+contajner je podobny ako VM
+lenze kernel ma kazda masina zvlast
+ale contajner - si tam zdialaju cast OS ovladacov atd. - takze zaberaju este mensiu cast
+lepsie sa daju preniest
+
+ale nie vsetko vieme contajnerizovat 
+a nie vsetko chceme contajnerizovat
+
+uplink - je to sietova karta toho hosta
+v praxis kazdy host ma ich az 8-12
+preco?
+
+doma mame 1 siet
+ale vo firme ako telekom - tam mame min. 3
+1. admin LAN
+2. backup/storage LAN
+3. customer LAN
+
+my mame viac ako 3 ale toto (hore) je zlaty standard
+
+preco nie 1 siet?
+lebo chceme oddelit ten traffic
+a my sa nechceme navzajom vyrusiovat
+aby packet necakali - co ak je to dolezity packet?
+od zakaznika napr.?
+ale tie siete aj daco stoja - a tie ceny preniesieme zakaznikovy
+
+
+kvoli bezpecnosti (preco mame 3 siete)
+ale aka security?
+
+na 1 sieti mame 1 firewall na ceste
+FW budem pustat alebo nepustat traffic
+taze ma allow/deny
+rule1. len pre app
+rule2. pre admin
+rule 3 zakaznik?
+
+- toto len tazko spravime
+dalo by sa to spravit len tazko
+
+ale ak mame 3 siete - tak mame aj 3 FW
+customer FW
+admin FW
+backup FW
+
+- to uz rychlejsie nastavim  tym ani
+neimpoacktnem ostatne firewall
+
+
+FW admin je najviac restriktivny
+customer FW je ako otvorena knizka
+tam ti nespravi ze - neotvori ti ze security
+ale na admin lan ti to spravi ze neotvori kvoli security
+
+tak spravili tak ze namiesto admin lan isli na customer lan
+
+backup vacsinou nema ziaden FW
+a hovori sa ze je to security breach - ale aka?
+ved tam ani security nie je
+
+
+
+
+v admin lan 3389 ti neotvori
+
+ale v customer lan 3389 je
+
+
+
+
+datastore - to je akekolvek ulozisko rimerna pre VM
+niejake ulozisko kde vieme ulozit nase VM
+napr. DAS, NAS, SAN
+to je so?
+das storage - direct attack /attach??
+-je lacny, ale ma obmedzenu velkost
+
+nas storage - to vieme kupit aj doma
+-zapojime cez eternet kabel
+- vudu tam aplikacne data - nebudu tam filmy
+niekde ale najdes tam filny, hry alebo piorno
+ale ono to nieje na to 
+
+cena storage boxu aj so soppurtom stala 600k eur
+-wait teraz akeho storage,,,
+
+san storeafe box - komunikacie cez ne ide cez fiber channel
+-je to ovela ryhclejsoie
+okrem rychlosti na fiber channeli mame aj ine
+a to je aj sirka pasma
+
+sirka pasma - to je ze kolko info moze ist
+-teda kolko dialnic su tam stavane
+
+niekolko milimetrovy fibrovy kabel
+tensi ako jeho prst
+to je viac akoby vsetky dialnice na celej zeme
+
+opticky kabel nieje opticky internet
+je to marketingovy tak toho antiku
+lebo to ide cez kabel???
+
+
+najdrahsie je san riesenie
+nato treba aj zvlast kartu - jedna stoji aj 1k eur
+nemozeme dat ani na normalny switch/router
+treba specialne swotche a routere na optiku
+tie su 5 krat drahsie
+
+taze san asi bezi iba na optiku??
+
+
+nevieme to nasadit v hutnickom preimysle
+ale preco?
+tam su specificke zariadenie ko lambda sondy
+alebo drvic
+ale ono to sa neda virtualizzovat
+mozno nie ze sa neda ale nikto to tomu nevenuje pozornost
+
+ku kazdej maschine otrebujes aj (ku ktomu pasujuci vm???)
+
+napr. niekedy bol aj problem GPU
+- deisatky rokov toto ani neexistovalo
+
+
+vswitch 
+-je to dobre spravene
+napr. ked chceme spojit server v datacenter tak to musi ist cez switch
+
+to prve zariadenie je furt switch
+inbound -> vswitch L3 -> outband ??
+
+appliance
+je uzavrety img
+a tam  date  tu svoju aplikaciu
+nieje o kontajner ale VM
+lebo je to uzavreta
+je to ako hotova
+
+aky je rozdiel medzi 3?
+hladaj na internete,,,
+im confusion you mean diff. btw appliance, virtualization
+and,, what? contajnerisation
+
+to co sme kreslili je serverova virtulaizacia
+
+ale existuje aj desktopova virtualizacia
+taze osob. pc sa virtualizuju
+
+oni maju iba obrazovky a mozno maku bednicku
+ale nemaju bednu
+nie su portable
+vola sa to tenky klient
+
+vyhoda desktopovej virtualizacie je ze my ako admin
+mame 3k zamestnancov - dame im tenkych klientov
+hosty tam zostanu - budu tam 2 Hosty
+a v nich bude img1, img2 ( a mozno aj dalsi img)
+
+VM1 pojde na img1, VM2 pojde na img2
+zamestnancii sa pripajaju na VM
+
+my mozeme aj naklonovat img
+a zmenime ze ten naklonovany img bude primarny
+a ten povodny bude sekundarny
+taze teraz ak sa zamestnanci pripoja budu hlavne pouzivat zdroje z primarneho
+
+img1 moze byt Linux, a img2 moze byt windoes
+tie masiny nebezia furt
+ked my sa logoff tak oni sa aj vypnu
+
+tie change sa nedavaju zachovavat  nevyhoda
+
+
+network virtualization - vseitch, vnic
+
+storage virtualization - datastore - jemu je jedno
+aka technologia je pod nim
+alebo kombinacia tych echnologii
+application virt. to su citrixi
+
+pros:
+consolidacia serverov - taze 100 srverov vie bezat na 10 serverov
+staci mi len zlomok serverov
+
+hw independent
+tie vm mozeme presunut kde len chceme - mozeme skonvertovat
+HA a skalovatelnost
+
+node 1 node2
+potrebujem viac RAM? to nemozne na fyzickom
+ale na virtualnom mame len za par klikov
+
+len 30% boli pouzivane - ono to stat nemoze
+taze na virtualke my to vieme presne dat 
+aby to pasovalo nasej appke
+
+
+ako nadizajnume velkost servera? ked nevieme
+aka velka ram alebo memory?
+tak musime spravit rezervu
+
+
+nizsie naklady a anpajanie, chladenie
+
+snapshoty =/=bakup
+backup trva normalne vela hodin
+ale na virt. to spravi pocas beziaceho stroja
+rychleksie
+
+snapshot NIEJE backup
+
+
+cons: drahsie
+-ale diskutabilne lebo savisi od velkosti applikacie
+nie vsetky komponenty vieme dat
+-ale to nieje ani ciel virtualky aby boli vsade
+nie vsetky aplikacie nevudu bezat
+- tie velmi stare nebudu bezat ale tie aj uz nikto nepouziva
+
+
+kurzy/knihy
+3naj kurzy
+udemy 
+aj firma vydava tam kurzy
+pluralsight
+-vzniklo nvp lektory - velmi ?elite? dobra kvalita asi z jeho rozpravania
+
+manning.com
+je len pre fajnsmekerov
+su tam primarne len knizky
+ako aj kurzy su tam ale hlavne knizky
+
+
+packtpub.com -- odporucane
+tiez knihy
+ale aj dobre kurzy
+toto je asi naj
+
+percipio.com
+-uz asi pozastale
+
+
+vsetky knihy inside out su TOP
+windows server management
+-tak mastering knihy
+Mastering Windows Server2022
+
+ale aj knihy kt. sa volaju Cookbook
+-to su rozobrate riesenia z praxe.
+ale su to na konkretn problem na daily operation
+
+mame to aj za zmlomok ceny za 3 mesiace
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

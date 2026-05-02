@@ -1,0 +1,56 @@
+ssh podla mna
+
+phobos$ cd .ssh/
+
+phobos$ ssh-keygen -t ed25519 -C "meno, mail"
+	-C	komentar ku klucu
+ 	-t	typ kluca
+pyta potom od vas enter file in which to save key
+
+cat ,,,.pub	a copy it
+
+teraz prihlas sa na rhel masinu cez ssh
+
+kiwi~$sudo mkdir .ssh && sudo chmod 700 .ssh
+
+	(ak subor .ssh uz existuje tak chod nan
+	(kiwi~$ cd .ssh
+	(kiwi .ssh$ chmod 700 .ssh
+
+kiwi .ssh$ touch authorized_keys
+kiwi .ssh$ chmod 600 authorized_keys
+(s ls -ls si skontrolujes ci mas)
+
+exit
+
+@phobos .ssh$ ssh -i lsopolig kiwi@192.168.1.245
+
+kiwi~$ sudo nano .ssh/authorized_keys
+tu sme dali nase pub key
+
+kiwi~$ sudo nano  /etc/ssh/sshd_config
+
+---------------------------
+tu je co sme zmenili v sshd_config
+
+#Port 22 -> Port 222
+(ano dvesto22, a bez komentu)
+
+zmente ostatne veci na:
+PubkeyAuthentication yes
+PermitRootLogin no
+
+sudo systemctl restart sshd
+
+phobos$ ssh -i lsopolig kiwi@192.168.1.245 -p 222
+
+
+v ~/.ssh spravime config
+do neho 
+4 Host meno servera alebo co dame proste za ssh
+  3         HostName ip servera
+  2         User user na servery
+  1         IdentityFile ~/.ssh/kluc
+5           Port 222
+
+

@@ -1,0 +1,16 @@
+pozriet inody (alebo neako tak sa to vola)
+
+shell script kt kazdu 1m zbierat 
+
+date:
+hostname:
+pocet procesov: ; 
+cpu load za 1m ; 
+-//- 2m: ; 
+-//- 5m: ; 
+mem used: ; 
+sdb : read:    kbs
+      write:   kbs
+
+.txt nazov observability v /tmp
+

@@ -1,0 +1,6 @@
+cygwin warning:
+  MS-DOS style path detected: C:\Users\A47151537\OneDrive - Deutsche Telekom AG (1)\Zaloha2022\GNS3\projects\OSPF_multi_area\project-files\dynamips
+  Preferred POSIX equivalent is: /cygdrive/c/Users/A47151537/OneDrive - Deutsche Telekom AG (1)/Zaloha2022/GNS3/projects/OSPF_multi_area/project-files/dynamips
+  CYGWIN environment variable option "nodosfilewarning" turns off this warning.
+  Consult the user's guide for more details about POSIX paths:
+    http://cygwin.com/cygwin-ug-net/using.html#using-pathnames

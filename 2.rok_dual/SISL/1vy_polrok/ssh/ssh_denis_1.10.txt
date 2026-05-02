@@ -1,0 +1,30 @@
+ssh-denis
+
+	- spojazdenie cez ssh
+	- zakazat root access login
+	- zakazat hesla
+	- zmena portu na 222
+
+ssh-keygen -t ed25519 -C "Mpapaj"
+
+chmod 700 .ssh
+chmod 600 kluc
+
+ssh-copy-id -i public_kluc user@IP
+
+a
+
+ssh -i ~/.ssh/private_kluc user@IP
+	ak to nepojde musime to manualne presunut do servera
+
+
+skopiruj verejny kluc a do .ssh/authorized_keys
+
+a ptm znovu sa loginnut s 
+
+ssh -i ~/.ssh/private_kluc user@IP
+
+treba skontrolovat prava na server 
+
+/etc/ssh/sshd 
+	tam zmenime vsetky prava a port a co ine treba

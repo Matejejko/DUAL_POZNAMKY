@@ -1,0 +1,140 @@
+sudo apt update
+
+sudo apt install sysstat
+
+sudo apt list systat	validate the install
+
+
+	sudo vim /etc/default/sysstat
+		ENABLED="true"
+	this will enable the sar data collection
+
+	in order to initiate data collectiong, the sysstat service must run.
+		sudo systemctl start sysstat
+	to confirm its running use 
+		sudo systemctl status sysstat
+	sudo enable sysstat
+		will enable sysstat to start when the server starts up
+
+
+config files:
+	/etc/cron.d/sysstat	(activity report every x min) default 10m
+	/etc/sysstat/sysstat	more options that can be configured
+
+ls -l /var/log/sysstat
+	bude tu subor ale ak nepreslo tych 10m tak tam nic este neni
+
+CPU utilization data
+	sudo sar -u
+
+	sudo sar -u <interval in seconds> <counts> --> sudo sar -u 2 5 -->
+	2 = initiate date gathering every 2 s
+	5 = number of times the commands will be run
+
+	%user	-	Percentage of CPU time spent on user processes
+	%nice	-	-//- spent on user processes with a nice (priority) value.
+	%system	-	Time spent running kernel/system processes.
+	%iowait	-	Time the CPU was idle waiting for I/O operations (like disk or network).
+	%steal	-	Time stolen from this VM by the hypervisor (if running in a virtualized 			environment).
+	%idle	-	Time the CPU was completely idle.
+
+mem utilization data
+
+	sudo sar -r
+
+	same as cpu
+
+	kbmemfree	-	free physical memory in KB
+	kbavail		-	Memory available to start new applications without swapping.
+	kbmenused	-	Used physical memory (in KB).
+	%memused	-	 -//- in %
+	kbbuffers	-	mem used for kernel buffer
+	kbcached	-	Memory used for page cache
+	kbcommit	-	Memory that has been “committed” to processes
+	%commit		-	Percentage of memory committed compared to total available 
+				swap + RAM
+	kbactive	-	actively used mem
+	kbinact		-	inactive mem
+	kbdirty		-	mem waiting to be written to disk
+		
+
+I/O and transfer rate statistics
+	sudo sar -b
+
+	same as cpu
+
+	tps	-	transfers per second - total number of requests sent to the device
+	rtps	-	read transfers per second - unmber of read requests.
+	wtps	-	write transfers per second - number of read requests.
+	dtps	-	discard transfers per second
+	bread/s	-	bytes read per second from the device
+	bwrtn/s	-	bytes written per second to the device
+	bdsdc/s	-	Bytes discarded per second
+
+swap utilization data (space on your disk (or SSD) that Linux uses as “virtual memory”)
+	sudo sar -S
+
+	same as cpu
+
+	kbmemfree	-	Free physical memory (RAM), in kilobytes.
+	kbswpfree	-	Free swap space, in kilobytes.
+	kbswpused	-	Used swap space, in kilobytes.
+	%swpused	-	Percentage of swap space currently used.
+	kbswpcad	-	Amount of swap memory cached (i.e., data swapped out but still in 				memory).
+
+
+disk
+	sudo sar -d
+
+	same as cpu
+
+	DEV	The device name (e.g., sda, nvme0n1p1)
+	tps	Transfers per second — total I/O requests per second to the device
+	rd_sec/s	Sectors read per second
+	wr_sec/s	Sectors written per second
+	avgrq-sz	Average size (in sectors) of I/O requests
+	avgqu-sz	Average number of requests in the I/O queue
+	await	Average time (ms) for I/O requests to complete (includes waiting)
+	r_await	Average read request time (ms)
+	w_await	Average write request time (ms)
+	svctm	Average service time (ms) per I/O request (approximate)
+	%util	Percentage of time the device was busy doing I/O
+
+
+sudo sar -r 2 5 >> cpu_stat.txt
+	will the output of the gathered will be put into the file cpu_stat.txt
+
+Produce reports for a specific time frame by using the parameters -s 
+	sar -s 02:00:00 -e 04:00:00
+
+-r
+	improves readability
+
+see past usage
+	
+	sar <what> -f /var/log/sysstat/<specific file>
+
+You can run these to quickly see if your system is healthy:
+
+sar -u 1 3     # CPU load
+sar -r 1 3     # Memory usage
+sar -S 1 3     # Swap
+sar -b 1 3     # I/O
+sar -n DEV 1 3 # Network
+
+
+running sar
+	need sudo privelages
+
+	sudo sar -u -f /var/log/sysstat/(file)
+		dnu ukazuje den, image, load average
+
+	
+	sar -u	->>	current usage of the server
+
+	sar -r	->>	info about ram usage
+
+	sar -S	->>	Swap usage (how much is used and how much is free)
+
+	sar -b	->>	info about output and input (network)
+

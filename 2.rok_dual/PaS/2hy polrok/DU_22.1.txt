@@ -1,0 +1,13 @@
+v branchi script, v repo-automation foldri:
+-vytvoríte folder "git-actions" , v ktorom:
+- vytvorte skripty:
+make-changes.sh
+vytvorí súbor zmeny.txt, kde nahrá náhodný text/obsah 
+(to už nechám na vás, či to bude dátum/náhodné číslo/hash/ /dev/random obsah...)
+push-changes.sh
+spraví sa git add, git commit, git push
+fetch-changes.sh
+spraví sa git fetch
+vykoná sa  git pull (pripadne git rebase origin/script)
+otestujte si to, zapnite prvy, druhy, potom tretí skript. a pozrite či to máte aj na githube.
+nakoniec vytvorte posledný skript "test-git-actions" , ktorý vám spustí všetky tri skripty. 

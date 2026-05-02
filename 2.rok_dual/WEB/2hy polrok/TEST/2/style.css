@@ -1,0 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600&family=Montserrat:wght@400;500;700&display=swap");
+
+body {
+    margin: 0;
+    font-family: "Montserrat", sans-serif;
+    background: #d9d9d9;
+    color: #3d3d3d;
+}
+
+.page-wrap {
+    min-height: 100vh;
+    padding: 24px 16px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.travel-card {
+    width: 560px;
+    background: #ebebeb;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.25);
+}
+
+.travel-card__image {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16 / 11;
+    object-fit: cover;
+}
+
+.travel-card__title {
+    margin: 14px 0px 10px;
+    font-family: "Dancing Script", cursive;
+    font-size: 60px;
+    line-height: 1;
+    font-weight: 600;
+    color: #57aeb1;
+}
+
+.travel-card__author {
+    margin: 0 0 8px;
+    font-size: 20px;
+    font-weight: 500;
+    color: #4d4d4d;
+}
+
+.travel-card__description {
+    margin: 0 0 18px;
+    font-size: 20px;
+    line-height: 1.45;
+    color: #9a9a9a;
+}
+
+.travel-card__price {
+    margin: 0 0;
+    font-size: 60px;
+    line-height: 1.05;
+    font-weight: 700;
+    color: #57aeb1;
+}
+
+.travel-card__details {
+    margin: 0 0 2px;
+    font-size: 15px;
+    line-height: 1.2;
+    font-weight: 500;
+    color: #444;
+}
+
+.travel-card__buy-link {
+    display: inline-block;
+    margin: 0 0 12px;
+    font-size: 25px;
+    line-height: 1.15;
+    text-decoration: none;
+    color: #3f3f3f;
+}
+
+@media (max-width: 900px) {
+    .page-wrap {
+        padding: 16px 12px;
+    }
+
+    .travel-card__title,
+    .travel-card__author,
+    .travel-card__description,
+    .travel-card__price,
+    .travel-card__details,
+    .travel-card__buy-link {
+        margin-left: 14px;
+        margin-right: 14px;
+    }
+}

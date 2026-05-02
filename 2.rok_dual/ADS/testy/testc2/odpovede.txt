@@ -1,0 +1,37 @@
+1. data dictionary
+2. Statické, Dynamické
+3. SQL
+4. DDL (Data Definition Language)
+   DML (Data Manipulation Language)
+   DCL (Data Control Language)
+   TCL (Transactional Control Language)
+5. DML
+6. DDL
+7. DCL
+8. TCL
+9. Číselné tipy, 
+   Znakové tipy, 
+   Dátumové (time stamp) tipy, 
+   row id, 
+   Objemné (blob)
+10. Znakové
+11. Číselné
+12. Dátumové
+13. Objemné
+14. Row ID
+15. Tabuľka
+16. Tabuľka
+17. Premenuje názov stĺpca v neakej tabulke
+18. Pridá nové stĺpce do neakej tabulky
+19. Vypíše všetko z tabuľky
+20. Pomocou príkazu -> DISTINCT
+21. spojenie 2 retazcov medzi kt sa nachadza (||)
+    Spojenie 2 reťazcov do 1 -> SELECT meno || ' ' || priezvisko FROM osoby;
+22. AND, OR, NOT
+23. ASC (vzostupne) [DEFAULTNÁ]
+    DESC (zostupne)
+24. ACID = Atomicity
+	   Consistency
+	   Isolation
+ 	   Durability
+25. jednozáznamové a agregované

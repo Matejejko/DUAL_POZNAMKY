@@ -1,0 +1,54 @@
+
+Vypis pribeh (3 spôsoby)
+cat pribeh
+more pribeh
+less pribeh
+
+Vypis hlavicku pribehu:
+head pribeh = hlavicka -> vyuzitie ( cat pribeh | head -n 1 )
+
+Vypis päticku pribehu:
+tail pribeh = hlavicka -> vyuzitie ( cat pribeh | tail -n 2 ) / ( cat pribeh | tail -n+1 [vypise bez prveho riadku])
+
+
+cat pribeh | head -n 14 | tail -n 1 [vypise len 14. riadok)
+
+
+Kolko znakov ma pribeh?
+cat pribeh | wc -?
+
+Kolko slov ma pribeh?
+cat pribeh | wc -w
+
+Kolko riadkov ma pribeh?
+cat pribeh | wc -?
+
+Kolkokrat sa v pribehu spomina meno Peter?
+
+Kolko neprazdnych riadkov ma pribeh?
+cat pribeh | awk NF | wc -l
+
+Vypis 10. riadok pribehu.
+sed -n '10p' pribeh
+
+Vypíš príbeh [ 3 sposoby ]
+
+vypíš hlavičku príbehu
+
+vypíš pätičku príbehu
+
+
+kolko znakov ma pribeh ?
+
+kolko slov ma pribeh ?
+
+kolko riadkov ma pribeh ?
+
+Kolkokrat sa v pribehu spomina meno Peter?
+
+kolko neprázdnych riadkov ma pribeh?
+
+
+vypíš 10. riadok príbehu
+
+koľko viet je v príbehu ?

@@ -1,0 +1,8 @@
+konnen 		can			immer		vzdy
+kennen		knew - poznat		fast immer	takmer vzdy
+Wissen		know - vediet		oft		casto
+					normalerweise	normalne
+					manchmal	niekedy
+					selten		zriedka
+					nie		nikdy
+

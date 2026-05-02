@@ -1,0 +1,29 @@
+.category-article-list {
+    h2 {}
+    .categories {
+        margin: 0 0 0 1rem;
+
+        & > li {
+            .label {
+                /* background: orangered;
+                color: white;
+                display: block;
+                padding: 0.5rem 1rem; */
+                font-weight: 500;
+            }
+            .articles {
+                margin: 0 0 0 1rem;
+                li {
+                    /* padding: 0.5rem 1rem;
+                    background: rgb(255, 107, 54);
+                    color: white;
+                    font-weight: 200; */
+                    
+                    &:nth-child(odd) {
+                        /* background: rgb(255, 127, 81); */
+                    }
+                }
+            }
+        }
+    }
+}

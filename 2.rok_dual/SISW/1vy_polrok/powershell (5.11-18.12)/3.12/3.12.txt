@@ -1,0 +1,85 @@
+3.12   SISW
+najdenie cim veci
+->
+PS C:\Users\A200354239> gcm -Noun CIM*
+
+CommandType     Name                                               Version    Source                                                                                                                        
+-----------     ----                                               -------    ------                                                                                                                        
+Cmdlet          Get-CimAssociatedInstance                          1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Get-CimClass                                       1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Get-CimInstance                                    1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Get-CimSession                                     1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Invoke-CimMethod                                   1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          New-CimInstance                                    1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          New-CimSession                                     1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          New-CimSessionOption                               1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Register-CimIndicationEvent                        1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Remove-CimInstance                                 1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Remove-CimSession                                  1.0.0.0    CimCmdlets                                                                                                                    
+Cmdlet          Set-CimInstance                                    1.0.0.0    CimCmdlets       
+
+najdenie wmi veci
+->
+PS C:\Users\A200354239> gcm -noun wmi*
+
+CommandType     Name                                               Version    Source                                                                                                                        
+-----------     ----                                               -------    ------                                                                                                                        
+Cmdlet          Get-WmiObject                                      3.1.0.0    Microsoft.PowerShell.Management                                                                                               
+Cmdlet          Invoke-WmiMethod                                   3.1.0.0    Microsoft.PowerShell.Management                                                                                               
+Cmdlet          Register-WmiEvent                                  3.1.0.0    Microsoft.PowerShell.Management                                                                                               
+Cmdlet          Remove-WmiObject                                   3.1.0.0    Microsoft.PowerShell.Management                                                                                               
+Cmdlet          Set-WmiInstance                                    3.1.0.0    Microsoft.PowerShell.Management                                                                                               
+
+
+
+info o biose
+=================
+
+	PS C:\Users\A200354239> Get-WmiObject -class win32_bios
+
+
+	SMBIOSBIOSVersion : R25ET42W (1.23 )
+	Manufacturer      : LENOVO
+	Name              : R25ET42W (1.23 )
+	SerialNumber      : PW0BXDPB
+	Version           : LENOVO - 1230
+
+
+viac detailne info 
+-------------------
+
+	Get-WmiObject -class win32_bios | fl *
+
+
+
+OS info
+========
+
+	PS C:\Users\A200354239> Get-WmiObject -Class win32_operatingsystem
+
+
+	SystemDirectory : C:\WINDOWS\system32
+	Organization    : Deutsche Telekom AG
+	BuildNumber     : 22631
+	RegisteredUser  : Deutsche Telekom AG
+	SerialNumber    : 00330-80000-00000-AA480
+	Version         : 10.0.22631
+
+ine info co mame vediet
+
+	PS C:\Users\A200354239> Get-CimInstance -ClassName win32_operatingsystem
+
+	SystemDirectory     Organization        BuildNumber RegisteredUser      SerialNumber            Version   
+	---------------     ------------        ----------- --------------      ------------            -------   
+	C:\WINDOWS\system32 Deutsche Telekom AG 22631       Deutsche Telekom AG 00330-80000-00000-AA480 10.0.22631
+
+
+install date
+=============
+
+	PS C:\Users\A200354239> Get-CimInstance -ClassName win32_operatingsystem | select install*
+
+	InstallDate         
+	-----------         
+	15. 8. 2024 11:58:34
+

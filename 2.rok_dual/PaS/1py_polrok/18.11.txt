@@ -1,0 +1,86 @@
+REGEX  
+  1 #!/usr/bin/env bash
+  2
+  3 cat regex-text
+  4
+  5 echo "grep multiple characters via regex"
+  6
+  7 cat regex-text | grep [aei]
+  8 cat regex-text | grep -E "s/[aei]/X/g"
+  9
+ 10 echo "^ for reverse match"
+ 11 cat regex-text | grep [^aei]
+ 12
+ 13 echo "$ is end of line"
+ 14 cat regex-text | sed -E "s/$/X/g"
+ 15
+ 16 echo "? - element before can occur 0-1 times"
+ 17 echo "* - element before can occur 0-n"
+ 18 echo "+ - element before can occur 1 - n"
+ 19
+ 20 # . je hocijaky znak
+ 21 # [:digit:] najde vsetky cisla
+ 22 cat '[[:digit:]]' regex-text
+ 23
+ 24 #takto funguje aj alpha - pismena
+ 25 #alnum - pismena aj cisla
+ 26 #space - whitespace
+ 27 # upper/lower
+ 28 #punch - interpunkcia
+
+
+jan je pan co ma par ran
+ema ma mamu a mama ma emu
+
+Pila pila pilu pri pile,
+pili pili pili celú chvíľu.
+Keď dopili pilu pri pile,
+pila už nepila – stála v sile.
+
+V lese rástol lesík,
+v lesíku malý lesník,
+lesník niesol lesný lup,
+do lesa viedol lesný trup.
+
+
+pes spi psi spia.
+
+ARRAY
+  1 #!/usr/bin/env bash
+  2
+  3 #vytvorenie pola
+  4 pole=(jablko hruska slivka)
+  5
+  6
+  7 #vytvorenie urciteho elementu pola
+  8 echo "${pole[0]}"
+  9
+ 10 #vypis celeho pola
+ 11 echo "${pole[@]}"
+ 12
+ 13 #echo "{pole[*]}"
+ 14
+ 15 #zadefinovanie hodnoty na indexe x
+ 16 pole[3]="banan"
+ 17
+ 18 #vypis celeho pola
+ 19 echo "${pole[@]}"
+ 20
+ 21 #vypis velkosti pola
+ 22 echo "${#pole[@]}"
+ 23
+ 24 #zapis noveho elementu cez prepocitany index
+ 25 index_noveho_elementu="${#pole[@]}"
+ 26 pole[$index_noveho_elementu]="ananas"
+ 27 #pole[${#pole[@]}]="ananas"
+ 28
+ 29 #vypis celeho pola
+ 30 echo "${pole[@]}"
+ 31
+ 32 #pridanie elementu do pola bez znalosti indexu velkosti pola
+ 33 pole+=("gruska")
+ 34
+ 35 #vypis celeho pola
+ 36 echo "${pole[@]}"
+
+

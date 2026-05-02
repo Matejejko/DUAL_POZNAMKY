@@ -1,0 +1,138 @@
+html ma vlastnu strukturu 
+	elementy vzdy zacinaju < a koncia s > 
+	su parpve aj neparove <div></div>\ <link>
+	su blokove a inline <div>\<a>
+
+
+nesting:
+======================
+
+	je to proces vnarania selektovor doseba,
+	takze pisanie css tak ako je struktura html-ka
+
+funkcnost &
+======================
+
+	odkazuje na aktualny selektor, v kt. sa nachadza	
+	
+	article {
+  	    & > header {
+    		background: red;
+  	    }
+	}
+
+	Čiže & = „sem vlož aktuálny selektor“ (v tomto prípade article).
+
+hover
+=======================
+	:hover sa pripaja ku neakemu selektoru
+	a robi to ze ak selektor je "hovernuty" tak sa upravi podla specifikacii
+ 	kt su urcene v tomto css sektore.
+&:hover
+	hover + &
+
+zapis s " ", ">", "+"
+=======================
+	medzera
+	---------------------
+		znamena "potomok" - hladaj element niekde vnutry ineho
+		
+		header span {
+		    ...
+		}
+		
+		vyberie všetky <span> vnútri <header>
+
+	>
+	---------------------
+		znamena "priamy potomok" - element musi byt HNED vnutri
+		
+		header > span { 
+		    ... 
+		}
+
+		vyberie iba span kt je vo headery ale nie hlbsie
+
+	+
+	---------------------
+		znamena "susedny next sibling" -> element nasledujuci hned po inom
+		Musí to byť presne hneď za tým elementom
+
+		ak neni PRIAMO ZA TAK NEFUNGUJE
+
+		h1 + section { 
+		    ... 
+		}
+
+		vyberie section kt je hned po h1
+
+	~
+	---------------------
+		znamená "všetci nasledovní súrodenci"
+
+		h1 ~ section { 
+		    ... 
+		}
+
+		vyberie všetky sekcie kt nasleduju po <h1>, nie len tú prvú ale musia
+		byt v tom istom rodicovy.
+
+trieda (class)
+=======================
+	Trieda sa používa na označenie skupiny elementov, ktoré majú mať rovnaký štýl.
+	moze mat viac tried naraz
+	V HTML sa píše ako atribút class="..." 
+	a v CSS sa volá s bodkou (.).
+
+ID
+=======================
+	ID je unikátny identifikátor – používa sa pre jediný konkrétny element.
+	V HTML sa píše ako id="..." 
+	a v CSS sa volá s mriežkou (#).
+
+padding a margin
+=======================
+	Predstav si element ako krabičku:
+		obsah (text, obrázok)
+		vnútorný priestor = padding
+		rámik = border
+		vonkajší priestor = margin
+	používajú 4 smery (top, right, bottom, left)
+	padding
+	---------------------
+		vnútorný odstup (medzi obsahom a okrajom elementu)
+		zväčší priestor vo vnútri elementu (text sa „odsadí od okraja“).
+
+	margin
+	---------------------
+		vonkajší odstup (medzi elementmi navzájom)
+		zväčší priestor okolo elementu (odsunie ho od iných vecí).
+
+|		   |	     [  	 element	   ]	    |		       |
+|<---- margin ---->|[ border [ padding [ CONTENT ] padding ] border]|<---- margin ---->|
+|		   |	     [				   ]	    |		       |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

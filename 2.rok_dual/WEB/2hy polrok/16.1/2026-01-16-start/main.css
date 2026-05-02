@@ -1,0 +1,33 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+html {
+    body {
+        padding: 10px;
+
+        .container {
+            width: 600px;
+            height: 600px;
+            border: 5px solid #c8102e;
+            padding: 10px;
+            border-radius: 5px;
+            /* study from */
+            display: grid;
+            grid-template-columns: repeat(4, 100px);
+            gap: 10px 30px;
+            justify-content: center;
+            align-content: center;
+            /* to */
+
+            .box {
+                text-align: center;
+                background: #041e42;
+                color: #ffffff;
+                padding: 5px;
+                /* margin: 1px; */
+                border-radius: 5px;
+            }
+        }
+    }
+}

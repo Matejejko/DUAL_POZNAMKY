@@ -1,0 +1,17 @@
+hostnamectl set-hostname {meno}
+
+sudo useradd -m -s /bin/bash -G wheel newusername
+	-m → creates the home directory (e.g., /home/newusername)
+	-s /bin/bash → sets the login shell
+	-G wheel → adds the user to the sudo grou
+sudo passwd newusername
+
+Enable interface manually
+	sudo ip link set <interface> up
+	sudo dhclient <interface>
+	
+vyziadanie ip's	
+	sudo dhclient -v <interface>
+	sudo dhclient -v <interface>
+
+ak das / sudo dhclient -v - da to vsetkzm kartam

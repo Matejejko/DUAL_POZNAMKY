@@ -1,0 +1,87 @@
+co tvori db
+	aktivna cast
+	pasivna cast db
+
+co je db instancia
+	aktivna cast db servedra ma na starost procesy je z procesov a os pamate
+co je db
+	pasivna dast db servera zlozena z suborov v priecinkoch na disku
+db subory su
+	control files, data files, online redo log files, parameter file, passwd file, backup file, 
+	archive log file, alert and trace log files,
+	
+	
+	B - backup file
+	A - archive log file
+	C - control file
+	O - online redo log file
+
+	P - parameter file
+	A -alert/trace file
+	D - data file 
+	A - password file (as in account)
+
+relacny model
+	subory su v tabulkach kt medzi seboru maju vztahy
+OFA
+	optimal flexible architecture
+	subor config pokinov, kt zabezpecuje dobre organizovanu instalaciu oracle
+oracle base
+	korenovy adresar
+oracle home
+	miesto kde je nainstalovany amotny oracle
+orainventory
+	miesto kde su nainstalovane oracle produkty
+oratab
+	miesto kde su informacie o db a kt instancia ju spravuje 
+oraSID
+	nazov db podla kt oracle rozpoznava db
+user,background a server procesy
+	1. background - spusta sa pri spusteny oracle instancie
+	2. user - zacina ked sa user poziada o pripojenie k serveru
+	3. server - vytvori sa, ked sa uzivatel pripoji do db
+zakladne rozdelenie ora pamete
+	PGA	-	nezdielana pamet, obsahuje udaje a riadiace info pre aktivnu cat db
+	SGA 	-	zdielana pamet, obsahuje udaje a kontrolne info pre instanciu oracle DB (samotna db)
+pouzitie DB buffer cache
+	sluzi na ulozenie vsetkych dat z disku ku kt chceme pristupovat, tu sa vykonavaju zmeny a nasledne
+	ak je potvrdena , tak sa zapise do disku
+pouzitie redo buffer
+	slozi ako docastne ulozisko v ramke, kam db zapisuje prikazy kt vykonava
+	nasledne sa z tadialto presuvaju do online redo log suborov
+background procesy
+	PMON - process monitor - ma na starosti startovanie, vypinanie, monitorovanie, zhodenie a nahodenie
+	SMON - system monitor - obnova db po pade a citenie docastnych segmentov
+	LGWR - log writer - zapisuje z redo buffera do redo log suborov teda z ramky na disk
+	ARCH - archiver - archivacia DB
+	CKPT - checkpoint - zabezpecuje synchronizaciu udajov v pameti s diskom a aktualizuje hlavicku suborov
+			    oznacuje body, kde je db uloznena bezpecne
+shutdown procedura
+	normal	-	nepovoluje nove pripojenia, caka na odpojenie vsetkych aktualne pripojenych pouzivatelov
+	transactional - nepovoli nove pripojenie, odpoji userov co nic nerobia a caka na dokoncenie otvorene 
+			tranzakcie
+	immediate -	rychle vypnutie, pricom zabezpeci rollback otvorenych tranzakcii, 
+	aboart -	nudzove okamzite vypnutie, vsetko sa okamzite vypne, db bude nekonzistentna
+
+startup procedura
+	nomount - stratup nomount -	spustenie db instancie, alokuju sa zdroje z DB		
+	mount - startup mount - system nacita info o fyzickej database
+	open - startup - len v tomto stave sa vieme k db pripojit 
+co je tranzakcia
+	logicka jednotka prace v db kt obsahuje jeden alebo viac prikazov sql
+co je to recovery
+	administrativna cinnost kt. obnovuje db do konzistentneho stavu db
+co znamena rollback/confirm transakcie
+	rollback - vrati transakciu do povodneho stavu
+	confirm - potvrdi transakciu a trvalo ulozi zmeny do db
+
+
+
+
+
+
+
+
+
+
+

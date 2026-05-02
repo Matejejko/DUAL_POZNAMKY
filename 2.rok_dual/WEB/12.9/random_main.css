@@ -1,0 +1,64 @@
+body {
+    background-color: gray;
+}
+header {
+    background-color: black;
+    margin-top: -10px;
+    margin-left: -8px;
+    margin-right: -8px;
+}
+.img {
+    width: 10vh;
+    height: 10vh;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.text {
+    animation: rgb 10s infinite linear;
+    font-size: 50px;
+    font-family: "JetBrains Mono", monospace;
+}
+.text:hover {
+    transform: rotate(1200deg);
+    transition: transform 5s;
+    animation: rgb 0.5s infinite linear;
+}
+.me {
+    font-family: "JetBrains Mono", monospace;
+    rotate: 360deg;
+}
+@keyframes rgb {
+    0% {
+        color: rgb(255, 0, 0);
+    } /* red */
+    25% {
+        color: rgb(0, 255, 0);
+    } /* green */
+    50% {
+        color: rgb(0, 0, 255);
+    } /* blue */
+    75% {
+        color: rgb(255, 255, 0);
+    } /* yellow */
+    100% {
+        color: rgb(255, 0, 0);
+    } /* back to red */
+}
+.middle {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 100vh;
+    text-align: center;
+    flex-direction: column;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: darkgray;
+    margin-bottom: -20px;
+    margin-left: -7px;
+    margin-right: -7px;
+}

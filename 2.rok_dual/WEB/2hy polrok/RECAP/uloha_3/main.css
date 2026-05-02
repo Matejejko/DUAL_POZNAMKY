@@ -1,0 +1,112 @@
+body {
+    background-color: black;
+    display: grid;
+    min-height: 100vh;
+    place-items: center;
+}
+main {
+    width: 55vh;
+    height: 55vh;
+    background-color: white;
+    background-color: purple;
+    place-items: center;
+    grid-template-columns: 2fr 1fr 1fr;
+    grid-template-rows: 1fr;
+}
+
+.div_img {
+    grid-column: 1;
+    grid-row: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5vh;
+    padding-bottom: 1.5vh;
+}
+
+.div_img img {
+    border-radius: 50%;
+    width: 20vh;
+    height: 20vh;
+}
+
+.div_text {
+    grid-column: 1;
+    grid-row: 2;
+    width: 280px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh;
+}
+
+.div_text h3 {
+    background-color: lightcyan;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    padding: 0 1vh;
+}
+
+.div_button {
+    grid-column: 1;
+    grid-row: 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 9vh;
+}
+
+button {
+    background-color: tomato;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    width: 120px;
+    height: 40px;
+}
+
+button:hover {
+    background-color: lightcoral;
+}
+
+@media (min-width: 600px) {
+    main {
+        width: 80vh;
+        height: 30vh;
+        grid-template-columns: 1fr 1.5fr;
+        grid-template-rows: 1fr 1fr;
+        display: grid;
+        gap: 0px;
+        place-items: unset;
+    }
+
+    .div_img {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        padding: 5vh;
+        padding-right: 0;
+    }
+
+    .div_text {
+        grid-column: 2;
+        grid-row: 1;
+        padding-top: 8vh;
+        justify-content: flex-start;
+        padding-bottom: 0vh;
+        padding-left: 0;
+        margin-bottom: -1vh;
+    }
+
+    .div_button {
+        grid-column: 2;
+        grid-row: 2;
+        padding: 0vh;
+        padding-left: 0;
+        align-self: start;
+        justify-content: flex-start;
+    }
+}

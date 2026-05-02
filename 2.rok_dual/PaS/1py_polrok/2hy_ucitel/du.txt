@@ -1,0 +1,16 @@
+#!/bin/bash
+
+read -p "zadaj cele cislo plzky :3 " input
+
+dec="$input"
+bin=""
+
+while (( dec > 0 )); do
+    rem=$(( dec % 2 ))
+    bin="${rem}${bin}"
+    dec=$(( dec / 2 ))
+done
+hex=$(printf "%X" "$input")
+
+echo "Dvojkova: $bin"
+echo "Sestnastkova: $hex"

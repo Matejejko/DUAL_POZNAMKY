@@ -1,0 +1,44 @@
+.article-container {
+    border: 1px solid #acacac;
+    padding: 10px;
+    margin-bottom: 10px;
+    background: #fff;
+    transition: 250ms;
+
+    &:hover {
+        background: #f2f2f2;
+    }
+
+    header {
+        h1 {
+            font-size: 2rem;
+            color: orangered;
+        }
+        section {
+            margin-top: 10px;
+            font-size: .75rem;
+            color: #444;
+
+            span {
+                font-weight: 200;
+
+                &:nth-child(1) {
+                    font-weight: 600;
+                }
+            }
+        }
+    }
+    article {
+        margin: 15px 0;
+
+        p {
+            margin: 5px 0;
+            font-weight: 200;
+        }
+    }
+    footer {
+        font-weight: 200;
+        font-size: .75rem;
+        color: #444;
+    }
+}

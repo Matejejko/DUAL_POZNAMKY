@@ -1,0 +1,110 @@
+GNU nano 2.9.8                                                                palindrom-sposoby
+ 
+Ako zistime ci je slovo palindrom ?
+ 
+1. rozdelim slovo na polovicu, druhu otocim, a porovnam
+ 
+ 
+2. porovnavam slovo po jednom pisneme
+ 
+ 
+3. vytvorim kopiu slova, otocim ju a porovnam
+ 
+ 
+ 
+KRITERIA CO JE NAJLEPSIE?
+ 
+zalezi co pre mna zname najlepsie
+1. vypoctovy vykon / resources
+        - co najmenej computingu (CPU, execution time)
+        - co najmenej riadkov (MEM)
+ 
+2. pochopitelnost kodu, programmer-friendly
+        - kod, ktory bude najzrozumitelnejsi
+        - ak sa menia programatory
+        - ak projekt robi vela ludi
+
+
+palindrom 2
+- - - - - - -
+
+1 #!/usr/bin/env bash
+  2
+  3 # rozdelim slovo na polovicu, druhu otocim, a porovnam
+  4
+  5 #input 2 sposoby
+  6 #1. sposob (pochopitelnejsi)
+  7 read -p "Zadaj slovo: " slovo
+  8
+  9 #2. sposob (menej CPU)
+ 10 #slovo="$1"
+ 11
+ 12 pocet_pismen="$(echo -n "$slovo" | wc --chars)"
+ 13 #pocet_pismen_MENEJCPU="${#slovo}"
+ 14
+ 15 #parny pocet 2 sposoby
+ 16 #1. sposob (pochopitelnejsi)
+ 17 if [ $(( "$pocet_pismen" % 2 == 0 )) ]
+ 18 then
+ 19    parny_pocet=true
+ 20 else
+ 21    parny_pocet=false
+ 22 fi
+ 23
+ 24 #2. sposob
+ 25 #predelenie_dvomi=$"(echo "scale=2; 9 / 2" | bc | awk -F '.' '{print$2}')"
+ 26 #test "predelenie_dvomi -gt 0 && parny_pocet=true
+ 27
+ 28 if [ "$parny_pocet" == "true"  ]
+ 29 then
+ 30    polovica_znakov=$(( $pocet_pismen / 2 ))
+ 31    prva_polovica=${slovo::polovica_znakov}
+ 32    druha_polovica=${slovo::-polovica_znakov}
+ 33
+ 34    echo "Tvoje slovo je : $prva_polovica - $druha_polovica"
+ 35 else
+ 36    :
+ 37 fi
+ 38
+ 39 #vypise 1 znak -> echo -n ${var::1}
+ 40 #odkroji 1 znak -> ${var::-1}
+ 41 #vypise jeden posledny znak
+
+
+palindrom 1 
+- - - - - - -
+
+   1 #!/usr/bin/env bash
+  2
+  3 # vytvorim kopiu slova, otocim ju a porovnam
+  4
+  5 #input 2 sposoby
+  6 #1. sposob (pochopitelnejsi)
+  7 read -p "zadaj slovo " slovo
+  8
+  9 #2. sposob (menej CPU)
+ 10 #slovo="$1"
+ 11
+ 12 #obratene slovo v novej premennej
+ 13 obratene_slovo=$(echo "$slovo" | rev)
+ 14
+ 15 if [ "$slovo" == "$obratene_slovo" ]
+ 16 then
+ 17    echo "slovo $slovo je palindróm"
+ 18 else
+ 19    echo "slovo $slovo  nie je palindróm"
+ 20 fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+

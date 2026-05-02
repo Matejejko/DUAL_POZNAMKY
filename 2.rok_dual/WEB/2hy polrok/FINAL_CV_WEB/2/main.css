@@ -1,0 +1,377 @@
+/* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    color: #e0e0e0;
+    background-color: #121212;
+    line-height: 1.7;
+}
+
+a {
+    color: #27ae60;
+    text-decoration: none;
+}
+
+a:hover {
+    color: #2ecc71;
+}
+
+/* ===== HLAVICKA ===== */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(10, 10, 10, 0.95);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid #222;
+    z-index: 100;
+}
+
+.header-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 12px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-photo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #27ae60;
+}
+
+.logo-name {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #27ae60;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 8px;
+}
+
+nav > ul > li > a {
+    color: #999;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+nav > ul > li > a:hover {
+    color: #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+/* ===== SPOLOCNE PRE SEKCIE ===== */
+section,
+footer {
+    padding: 80px 24px;
+}
+
+section h2,
+footer h2 {
+    font-size: 1.8rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #e0e0e0;
+}
+
+/* =============================================
+   SEKCIA: O MNE
+   - text vlavo, statistiky vpravo
+   ============================================= */
+.section-omen {
+    background-color: #121212;
+    padding-top: 140px;
+}
+
+.profile-photo {
+    display: block;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 40px;
+    border: 3px solid #27ae60;
+}
+
+.omen-obsah {
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
+    align-items: flex-start;
+}
+
+.omen-text {
+    flex: 1;
+}
+
+.omen-text p {
+    color: #aaa;
+    margin-bottom: 14px;
+    font-size: 1rem;
+}
+
+.omen-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    min-width: 140px;
+}
+
+.stat {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 10px;
+    padding: 18px;
+    text-align: center;
+}
+
+.stat strong {
+    display: block;
+    font-size: 2rem;
+    color: #27ae60;
+}
+
+.stat figcaption {
+    font-size: 0.8rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+/* =============================================
+   SEKCIA: VZDELANIE
+   - casova os vlavo so zelenou ciarou
+   ============================================= */
+.section-vzdelanie {
+    background-color: #161616;
+}
+
+.vzdelanie-lista {
+    max-width: 700px;
+    margin: 0 auto;
+    border-left: 3px solid #27ae60;
+    padding-left: 30px;
+    list-style: none;
+}
+
+.vzdelanie-item {
+    margin-bottom: 32px;
+    position: relative;
+}
+
+.rok {
+    display: inline-block;
+    background-color: rgba(39, 174, 96, 0.15);
+    color: #27ae60;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.vzdelanie-item h3 {
+    color: #e0e0e0;
+    font-size: 1.15rem;
+    margin-bottom: 4px;
+}
+
+.skola {
+    color: #888;
+    font-size: 0.9rem;
+    margin-bottom: 6px;
+}
+
+.vzdelanie-item p {
+    color: #999;
+    font-size: 0.92rem;
+}
+
+/* =============================================
+   SEKCIA: SKUSENOSTI
+   - karty s hornym zelenym okrajom
+   ============================================= */
+.section-skusenosti {
+    background-color: #0e0e0e;
+}
+
+.skusenosti-grid {
+    max-width: 1000px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+    list-style: none;
+}
+
+.skusenost-karta {
+    background-color: #1a1a1a;
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 28px;
+    border-top: 3px solid #27ae60;
+    transition: transform 0.2s;
+}
+
+.skusenost-karta:hover {
+    transform: translateY(-4px);
+}
+
+.skusenost-karta h3 {
+    color: #27ae60;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+}
+
+.firma {
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-bottom: 4px;
+}
+
+.obdobie {
+    display: block;
+    color: #666;
+    font-size: 0.82rem;
+    margin-bottom: 12px;
+}
+
+.skusenost-karta > p:last-child {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* =============================================
+   SEKCIA: ZALUBY
+   - 2x2 grid s emoji ikonami
+   ============================================= */
+.zaluby-obsah {
+    max-width: 900px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    list-style: none;
+}
+
+.zaluba {
+    background-color: rgba(30, 30, 30, 0.8);
+    border: 1px solid #2a2a2a;
+    border-radius: 12px;
+    padding: 28px;
+    text-align: center;
+    transition: border-color 0.2s;
+}
+
+.zaluba:hover {
+    border-color: #27ae60;
+}
+
+.zaluba-emoji {
+    font-size: 2.4rem;
+    display: block;
+    margin-bottom: 12px;
+}
+
+.zaluba h3 {
+    color: #e0e0e0;
+    margin-bottom: 8px;
+    font-size: 1.05rem;
+}
+
+.zaluba p {
+    color: #999;
+    font-size: 0.9rem;
+}
+
+/* =============================================
+   PATA / KONTAKT
+   ============================================= */
+footer {
+    background-color: #080808;
+    text-align: center;
+    border-top: 1px solid #1a1a1a;
+}
+
+.kontakt-obsah {
+    max-width: 500px;
+    margin: 0 auto 30px;
+    font-style: normal;
+}
+
+.kontakt-polozka {
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a1a;
+    font-size: 0.92rem;
+}
+
+.kontakt-polozka strong {
+    color: #ccc;
+    margin-right: 8px;
+}
+
+.kontakt-polozka span {
+    color: #888;
+}
+
+.copyright {
+    color: #444;
+    font-size: 0.8rem;
+    margin-top: 20px;
+}
+
+/* ===== RESPONZIVITA ===== */
+@media (max-width: 768px) {
+    .omen-obsah {
+        flex-direction: column;
+    }
+
+    .omen-stats {
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .stat {
+        flex: 1;
+    }
+
+    .zaluby-obsah {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 500px) {
+    .header-inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .section-omen {
+        padding-top: 160px;
+    }
+}

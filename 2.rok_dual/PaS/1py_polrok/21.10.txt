@@ -1,0 +1,93 @@
+set -e ->> fix je set true takze ak nieco ide do erroru tak das koniec a || true
+
+  1 #!/usr/bin/env bash
+  2
+  3 set -e
+  4 set -u
+  5
+  6
+  7 argument=${1:-default_value}
+  8
+  9 test "$argument" == "hodnota1" && {
+ 10     echo "zadal si argument 'hodnota1'"
+ 11     command_kt_neexistuje || true
+ 12     "hodnota1" || true
+ 13 } || {
+ 14     echo "zadany argument bol $argument"
+ 15 }
+ 16
+ 17 echo "posledny riadok skriptu"
+
+
+F U N K C I E
+=============
+  ----------------------------------
+  1 #!/usr/bin/env bash
+  2
+  3 function moja_funkcia() {
+  4     echo "toto je moja funkcia"
+  5 }
+  6
+  7 moja_funkcia
+  ----------------------------------
+		funkcie volame ako prikazy
+
+  -------------------------------------------------------
+  1 #!/usr/bin/env bash
+  2
+  3 premenna="hodnota1"
+  4
+  5 function moja_funkcia() {
+  6     echo "toto je moja funkcia"
+  7     echo "prvy argument funkcie je $1"
+  8     local lokalna_premenna="lokalna_hodnota"
+  9     echo "$lokalna_premenna volana z vnutra funkcie"
+ 10 }
+ 11
+ 12
+ 13 moja_funkcia "prvy_argument"
+ 14
+ 15 #-z ak je nulova vykonaj toto
+ 16 test -z "$premenna" && {
+ 17     echo "premenna 'premenna' nie je definovana"
+ 18 }
+ 19
+ 20 test -z "$lokalna_premenna" && {
+ 21     echo "premenna 'premenna' nie je definovana"
+ 22 }
+ --------------------------------------------------------
+
+
+  1 #!/usr/bin/env bash
+  2
+  3 echo "----- seriozna funkcia -----"
+  4 #funkcia ktora urcuje vaznost suboru
+  5
+  6 function vaznost_suboru() {
+  7     local skore_vaznosti=0
+  8     local nazov_suboru="$1"
+  9     local obsah_suboru="$(cat "$nazov_suboru")"
+ 10     echo "$subor" | grep -i -e internal -e confidential >/dev/null 2>dev/null && {
+ 11         skore_vaznosti$(( $skore_vaznosti + 2 ))
+ 12     }
+ 13     local pocet_riadkov_suboru=$"(echo "$obsah_suboru" | wc -l)"
+ 14     skore_vaznosti=$(( $skore_vaznosti + ($pocet_riadkov_suboru / 10) ))
+ 15
+ 16     # output funkcie
+ 17     echo "subor: $nazov_suboru"
+ 18     echo "Vaznost: $skore_vaznosti"
+ 19 }
+ 20
+ 21 echo "spustam vaznost suboru s prvym argumentom skriptu"
+ 22 vaznost_suboru "$1"
+
+
+
+
+
+
+
+
+
+
+

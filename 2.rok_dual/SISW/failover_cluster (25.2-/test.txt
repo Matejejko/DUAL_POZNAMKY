@@ -1,0 +1,9 @@
+Windows na teste
+ 
+Čo je Scale-Out File Server a aké má výhody oproti general use ?
+Načo je dobré mať preferred ownera ?
+Poskytuje MicrosoftFailoverCluster load balancer ? - NIE
+Ci NetworkLoadBallanced poskytuje daco ? - ANO
+Prečo neponúka load balancer Microsoft failover cluster ? - zbytočnosť, clustrovaná APP beží vždy na 1 konkrétnom node, tak darmo by loadballancoval na node2, ale tam by zlyhaval
+Rozdiel medzi Prevent a Allow failback
+Čo je Quorum ?

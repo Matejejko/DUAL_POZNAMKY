@@ -1,0 +1,146 @@
+w2_2
+
+windows 16 a 19 su velmi podobne
+
+u zakaznikov to funguje tak
+n-2
+verzia kt. sa vydala a plus 2 predosle verzie
+takze terajsia verzia je 2025
+a plus 2 verzie kt. su 2022 a 2019
+iba tieto tri verzie si vie zakaznik objednat
+
+naming convention
+MLCMLC00APP001
+prve tri je meno projektu
+druhe 3 je meno miesta: munchen, frankfurt,...
+00 - je delimiter, abys em rozlisli ako medzeru
+app - je ze co je to
+- moze to byt app, dns abo dhcp
+001 - je to preto lebo kazdy nazov musi byt nikatny, nemoze
+sa to opakovat
+
+de123456789
+je to asset (cmdb)
+tu cisla nemaju zmysel, su randomne, unikatne cisla
+vyhoda tu je ze je viac anonymny
+nevyhoda - mozme sa pomylit s cislami
+
+prihoda - print server
+ma kratky reboot
+pritn server obsluhoval velky plant kt. spravoval aj plyn
+a tam stali kamiony kt. chceli kamiony cerpat
+
+ten typek ten server rebootol
+na site - museli dat plyn spat do kanistra/flias
+zkalibrovat znova tu flasu a naliat spat
+vypadok bol pol dna, kamiony stali
+strata desat milion eur
+
+
+ten vypadok netrval iba 1 minutu ako si myslel
+a vypadok bol vo viacerych site-och
+
+v produkcii kazdy system ma svoju rolu
+ak neviem s urcitostou naco to sluzi
+tak nemozeme to tak s tym pristupovat
+
+ak treba robit change, tak ju rob!
+predosli chlapik to preskocil
+
+ak chcem e mat vm tak daj tam viac ako 2cpu
+ale na teraz to staci
+memory-kedze chceme mat hypervisor tak musime mat viac
+4gb NEbude stacit
+dame si 8gb
+
+
+disk provisioning su thin a thick
+existuje over-provisioning
+vytvarat vm cez over-provisioning
+
+v disku mam 10tb
+ram 520gb
+jadier/core 256 cpu
+a postupne ako budeme deployovat, tak sa budeme priblizovat k hodnotam
+
+zostalo mi 6 core-ov, 126, 2tb
+museli by sme pridat lebo uz mame malo resourcov
+ale nemusime lebo mame overprovisioning
+taze dame deployovat masinu s konfig:
+
+ako to ze mi to dovololo spravit ak tolko zzdrojov nemam?
+
+mame nejaky vykon a cas (graf)
+
+ram/cpu (disk nie)
+|
+|    n
+|   /  \
+|  |	\  /\
+|  |	 u   \
+|  /	      \/\
+| /		 \
+
+
+co vidime? velka vacsina vm nepouziva vsetky svoje zdroje, celu svoju kapacitu
+taze s my vyuzijeme toe nepouzite zdroje
+taze predame 10x viac zdroje ako realne mame
+ale potom ak viac masin chcu mat viac zdrojov
+tak mame problem
+
+prejavy sa to v performance, masina nam moze vyhorit
+viac ako 4 masiny nerobime
+
+v datastore
+ak allocujeme nasu masinu 100gb z datastoru
+tak mame moznost thin a thick
+lebo z toho thin - realne bude zaberat len malu cast
+nie tych 10gb ale par mg
+a dynamicky sa bude rozsirovat az na tych 10gb
+ale nikdy nebude viac
+
+
+ak mame plny datastore tak nam padne
+preto ak je datastore 2/3 full tak da order??
+order...
+idk co order
+
+na vm - network - nikdy na deployment nedavaj e1000
+daj vmx daso take
+
+bootovanie
+psx - to je po sieti
+vie bootovat po sieti
+
+modra tabulka - to je bios
+dostaneme sa na booot managera
+ale chova sa ako iny stroj
+
+
+ako to ze na startovacej vm nevieme zmenit cpu a ram?
+ked na hotpluck to sa da?
+defaultne hotpluck cpu a ram nie je zapnuty
+treba ho zapnut
+
+niejake os take stale nevedia ale vsetky wondowsi vedia
+
+kedze pouzivame hypervisor - tak dame datacenter edition
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
