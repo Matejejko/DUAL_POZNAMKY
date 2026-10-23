@@ -1,0 +1,11 @@
+https://docs.microsoft.com/en-us/training/modules/describe-cloud-compute/
+
+https://docs.microsoft.com/en-us/training/modules/describe-core-architectural-components-of-azure/
+
+https://docs.microsoft.com/en-us/training/modules/describe-azure-compute-networking-services/ 
+
+https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/
+
+https://learn.microsoft.com/sk-sk/training/paths/describe-azure-management-governance/
+
+
