@@ -1,0 +1,289 @@
+tps gns config
+
+
+
+
+na bgp potrebujeme tcp spojenie ale aj ip connectivitu
+
+
+protokol isis
+
+
+----------
+
+P2# router ospf 1
+P2# nwteork 2.1.0.0 0.0.0.3 a 0
+
+P1# router ospf 1
+P1# network 1.1.0.0 0.0.0.3 a 0
+P1# network 1.2.0.0 0.0.0.3 a 0
+P1# network 1.3.0.0 0.0.0.3 a 0
+P1# network 1.4.0.0 0.0.0.3 a 0
+
+PE1# router ospf 1
+teraz onsmaujeme len 3x a nie4x
+ale este treba oznamit lookback
+PE1# network 1.1.0.0 0.0.0.3 a 0
+PE1# network 2.1.0.0 0.0.0.3 a 0
+teraz lookback
+PE1# network 10.10.10.10 0.0.0.0 a 0
+do sh run | section ospf
+
+a toto zreplikovat na vsetky PE
+
+PE2# router ospf 1
+PE2# network 1.2.0.0 0.0.0.3 a 0
+PE2# network 2.2.0.0 0.0.0.3 a 0
+PE2# network 20.20.20.20 0.0.0.0 a 0
+
+PE3#
+PE3# router ospf 1
+PE3# network 1.3.0.0 0.0.0.3 a 0
+PE3# network 2.3.0.0 0.0.0.3 a 0
+PE3# network 30.30.30.30 0.0.0.0 a 0
+
+
+PE4# router ospf 1
+PE4# network 1.4.0.0 0.0.0.3 a 0
+PE4# network 2.4.0.0 0.0.0.3 a 0
+PE4# network 40.40.40.40 0.0.0.0 a 0
+
+msli by sme vediet ostatne PE pingnut z loopback adries
+
+do write
+do sh ip route
+do ping 30.30.30.30
+
+teraz aby sme si boli isty ze sa naucil aj nas lo?
+do ping 30.30.30.30 source loopback4
+
+vie aj cestu k nasej ip-cke to je super
+inak by tento ping nesiel
+takze my vieme jeho lo a on vie nas lo
+
+lebo napr. tranzitna siet z kt. ingame nieje oznamena
+takze ping nam nemusi ist
+ale stroje vedia zo sebou komunikovat lebo ich tranzit je oznameny
+tak na to treba davat pozor
+
+hranicne routere 4
+ale peering je kazdy s kazdym - tak kolko? 6
+
+takze 5
+lebo peering medzi 3 a 4 nemusime dat peering
+lebo 1 a 2 su nase route reflectori?
+a kazdy router ma mat peering voci route reflectormi
+a zaroven oni 2 medzi sebou
+
+bgp speakerami - takze u nich nebudeme konfiugrovat vobac
+
+kazdy router moze byt clen len 1 AS
+
+PE1# router bgp 12345
+PE1# neighbor 20.20.20.20 remote-as 12345
+PE1# neighbor 30.30.30.30 remote-as 12345
+PE1# neighbor 40.40.40.40 remote-as 12345
+
+PE2# router bgp 12345
+PE2# neighbor 10.10.10.10 remote-as 12345
+PE2# neighbor 30.30.30.30 remote-as 12345
+PE2# neighbor 40.40.40.40 remote-as 12345
+
+PE3# router bgp 12345
+PE3# neighbor 10.10.10.10 remote-as 12345
+PE3# neighbor 20.20.20.20 remote-as 12345
+
+PE4# router bgp 12345
+PE4# neighbor 10.10.10.10 remote-as 12345
+PE4# neighbor 20.20.20.20 remote-as 12345
+
+do show ip bgp summary
+
+musia sa vidiet - musia mat connectivitu - tcp 
+
+preco nemusi ist bgp peering?
+preklep - zle ip, zle heslo etc.
+
+musi byt funkcny routing tam a spat
+
+treba vediet interfacy
+
+bgp musi stale byt z lo interface
+
+takze musime nakonfigurovat u kazdeho suseda z akeho
+interface maju ist updatey
+-
+
+
+PE1(config-router)# neigbour 20.20.20.20 update-source loopback 1
+PE1(config-router)# neigbour 30.30.30.30 update-source loopback 1
+PE1(config-router)# neigbour 40.40.40.40 update-source loopback 1
+
+
+PE2(config-router)# neigbour 10.10.10.10 update-source loopback 1
+PE2(config-router)# neigbour 30.30.30.30 update-source loopback 1
+PE2(config-router)# neigbour 40.40.40.40 update-source loopback 1
+
+PE3(config-router)# neigbour 10.10.10.10 update-source loopback 1
+PE3(config-router)# neigbour 20.20.20.20 update-source loopback 1
+
+
+do sh ip int br | section loopback
+
+PE1# show ip bgp sum
+
+naucenych prefixov je 0
+lebo sme nic neoznamili
+
+je to v stave up and established
+nahodili sme ospf aby bola dostupnost okrajovych routerov
+a dali sme source aby sme dali z akeho interface-u maju ist update-y
+
+tereaz ideme na bgp preeing medzi PE a CE routerami
+
+
+CE1# router bgp 65001
+CE1# neighbor 20.0.0.2 remiote-as 65001
+
+teraz ideme robit peering na PE1 - ale toto nespravime na loopback ale na ip takze:
+je to externe bgp - takze je podmienka aby bol priamo pripojeny na siseti a ak nieje tak musi tam byt next hop prikaz
+
+
+CE1# neighbor 10.10.0.1 remote-as 12345
+
+CE2# router bgp 65001
+CE2# neigbour 10.0.1.1 remote-as 65001
+CE2# neigbour 20.20.1.1 remote-as 12345
+
+externy peereing
+
+
+--------------------------------
+
+28.10.
+
+CE1# conf t
+CE1# router bgp 65001
+CE1# neighbor 10.0.1.3 remote-as 65000
+CE1# neighbor 10.0.1.4 remote-as 65000
+
+CE2# conf t
+CE2# router bgp 65001
+CE2# neighbor 10.0.1.3 remote-as 65000
+CE2# neighbor 10.0.1.4 remote-as 65000
+
+C1# router bgp 65000
+C1# neighbor 10.0.1.1 remote 65001
+C1# neighbor 10.0.1.2 remote 65001
+
+C2# router bgp 65000
+C2# neighbor 10.0.1.1 remote 65001
+C2# neighbor 10.0.1.2 remote 65001
+
+do wr
+
+do sh bgp sum
+
+-- lava strana uz je
+
+vyberieme si dynamicky routing - napr ospf
+
+C3(config)#  router os 1
+#do sh ip int br
+C3(config-router)# network 30.0.0.0 0.0.0.3 a 0
+C3(config-router)# network 50.0.0.1 0.0.0.255 a 0
+(for 50 idk the correct ip)
+
+router os 1
+CE3#neighbour 30.0.0.0 0.0.0.3 a 0
+CE3#neighbour 50.3.0.0 0.0.0.255 a 0
+redistribute ospf 1
+do wr
+
+C4# conf t
+C4# ip route 0.0.0.0 0.0.0.0 40.0.0.1 
+40.-to je asi ip next hopu?
+
+CE4# ip route 50.4.0.0. 255.255.255.0 40.0.0.2
+CE4# router bgp 65003
+CE4# do sh bgp sum
+CE4# redistribute static
+
+PE1# do sh ip bgp
+teraz pozrieme v routovacej tabulke
+nieje to tam
+
+takze musime to pridat do routovacej tabulke
+moze to byt v bgp tabulke ale ak nieje v routovacej tabulke tak to nepojde
+preco to nieje v routovacej tabulke?
+
+pozrieme bgp tabulku - tam je zobacik - znamena ten najlepsia cesta
+a ta ip co je najlepsia cesta - ta je v routovacej tabulke
+
+preco nieje 30. ako best ip?
+na to aby prefix mohol byt best tak potrebuje
+mat/byt ako next hop v bgp - ale nieje
+
+lebo pozera na hranicny router AS
+preto
+
+
+PE3# neighbor 10.10.10.10
+
+
+PE4router bgp 12345
+PE4#neighbor 10.10.10.10 next-hop-self
+PE4#neighbor 20.20.20.20 next-hop-self
+
+PE1#router bgp 12345
+PE1# neighbor 20.20.20.20 next-hop-self
+PE1# neighbor 30.30.30.30 next-hop-self
+PE1# neighbor 40.40.40.40 next-hop-self
+
+PE2#router bgp 12345
+PE2#neighbor 10.10.10.10 next-hop-self
+PE2#neighbor 30.30.30.30 next-hop-self
+PE2# neighbor 40.40.40.40 next-hop-self
+
+akoby sa robi route reflector?
+na pe3 a pe4 su peering tak tam netreba
+
+ale na pe1 a pe2 treba povedat kt. klinety su route reflectory - tak sa vytvori route reflector
+
+PE1# neighbor 30.30.30.30 route-reflector-client
+PE1# neighbor 40.40.40.40 route-reflector-client
+
+toto je dobre spravit na zaciatku a nie ku konci ked je uz v produkcnom - lebo na chvilu ono nam to flapne
+takze konektivita na chvilu zlyha
+
+PE2# neighbor 30.30.30.30 route-reflector-client
+PE2# neighbor 40.40.40.40 route-reflector-client
+
+ciel bol aby C routere poznali vsetky prefixy od ostatnych site-ov - takze ine C routere
+
+
+v CE poznaju 
+ale C nie lebo tam je default route-a
+pozerame ci vidime vsetky 50-tky ip
+
+
+it is very imp that we redistribute bgp inside the ospf!!!
+
+CE3# router os 1
+CE3# redistribute bgp 65002 subnets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

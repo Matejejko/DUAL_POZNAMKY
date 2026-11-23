@@ -1,0 +1,338 @@
+w7
+
+bgp tabulka - su tam vsetky cesty a s nimi aj attributy
+v smerovacej tabulke tam su tie najlepsie cesty
+
+bgp speaker - tan router kde je nakonfigurovany bgp protocol
+vo vnutry nekonfigurujeme routere na bgp - lebo su vo vnutri
+a nie na 'hranici'/okrajoch nepotrebuju komunikovat
+
+po niejakom caso sa posielaju incrementalne update-y co sa zmenilo
+
+interne bgp
+-su v tom istom as
+
+ v 2 roznych as = externe bgp
+
+za normalnych okolnosti musia byt priamo spojeny
+
+--
+
+iBGP
+-dolezite obmedzenie - informacie musia ziskat priamo a nie
+sprostredkovanie
+-protisluckova ochrana
+
+treba bgp peering
+
+
+mame fintu ak AS je velky: route reflectory a confederacie
+
+bgp spravy:
+open, keepalive, update, notification
+
+open - pouziva pri otvaranie bgp spojenie
+tam mu povieme: cislo protokolu bgp, cislo mojho AS, moj holdtime, moj router ID
+
+uz po tom, sa posielaju len incremenatalne spravu - ak sa nieco zmenilo, update-y
+
+keepalive - overenie ci sused zije, - opakovane po niekolko sec.
+toto zavisi od holdtime - ak dlho nedostaneme spravu od druheho routera
+
+update - prenasaju informaciu o CESTE (nie sieti)
+-obsahuje aj bgp attributy (to su jej cesty) a NLRI (network layer reachability information)
+bgp posiela informacie o cestach a akym cielom sa vieme k tym cestam dostat
+(do akych sieti sa vieme danou cestou dostat)
+
+protokol typu: link state and distance vector
+ale bgp nieje ani ani
+bgp je path vector
+
+
+notification -  posiela sa v pripade chyby + jej opis
+po notifikacii sa bgp spojenie zrusi
+
+
+stavy v komunikacii so susedom v bgp
+
+bgp peering alebo nadviazat susedsky stav
+
+idle - startovaci stac, sused je definovany ale stale sme so susedom nekomunikovali
+
+connect - ak sme uspesne nadviazali TCP spojenie so susedom
+
+
+open sent - poslali sme spravu open
+a ak dostaneme od neho odpoved na nasu open spravu ideme do stavu
+open confirm
+ale ak posleme open ale do 5 sec. nedostaneme od neho confirm tak ideme do stavu
+ACTIVE - to je zle, active znamena ze sa stale snazime a posielam open spravu
+a cakame na jeho confirm
+
+(netreba zabudnut ze aj druhy router treba nakonfigurovat aby nam to islo)
+
+established- tento stav je ak vsetko prebehlo uspesne
+sme uspesny susedia
+vieme vymienat nase bgp cesty (a nie prefixy) a siete cez aku danu cestu su dostupne
+
+---------------
+
+co treba robit ak sa nam nepodari nadviazat bgp spojenie?
+
+active: bud 1. sme poslali open a cakame na odpoved
+2. my cakame na tcp spojenie od druheho routera
+
+idle: nemusime poznat cestu k nemu
+nevieme vytvorit tcp spojenie
+
+ale pozor:
+v atabulke musi byt explicitne spomenuta cesta - a nie default route
+def. route sa nepouzije!!
+
+stav sa moze osciovat medzi active/idle
+to sa moze stat npar.: sused nema cestu k nam
+nepsravna adresa susedov (preklep)
+napr. sused nema nakonfigurovany nas ako suseda
+nezhoda v cislach AS
+FW blokuje komunikaciu
+mozne zlyhanie autentifikacie - zle heslo
+
+
+
+
+v globalnom rezime
+# router bgp autonomous-system
+v routeri moze behat len 1 instanci bgp a nie viac a musi byt sucastou 1 AS
+(a mozno tiez nie viac)
+
+routerid - bud admin da
+alebo si pozrie vsetky lookback a vyberie tu najvacsiu ip
+alebo pozrie interface-y kt. su v stave up
+
+
+config-router#
+ideme konfigurovat bgp
+
+ideme povedat kto je sused
+
+# nieghbout (ip-add) a napiseme cislo AS toho suseda
+
+to zavisi kvoli tomu ci je to interny alebo externy sused
+
+ak cislo ssueda je ine ako moje - je externy sused (external bgp peering)
+ak rovnaky - tak mame interny bgp peering
+
+source bgp spravy je zobrane z interface-u kt. ide zo mna von
+a to iste musi koresponodvat aj cstou spat - u suseda
+
+
+--
+ale mi chceme mat aj redundanciu
+
+update-source
+mi chceme povedat z akeho interface-u budu odchadzat nase bgp spravy k tomu neighbourovi
+
+ak interface zomrie - tak co? 
+tak nebudeme to viazat na - ale na nasu ip-cku naseho lookbacku
+lookback ten je vacne zivi - ten nikdy neskape ale treba ho naucit na interfacy?
+
+cost sa da pouzit, to nam nikto nevezme - stale to mozme pouzit
+ale nase gro je ze pouzijeme ip naseho lookbacku
+ak nie tak by sa pouzila ina ip a to nechceme aby sa stalo
+
+chceme aby source and destination ip by stale bola ta ista
+
+igp vieme aj oznamit tuto lo siet
+lebo to ze mame lo nestaci musime aj povedat kde je ten lo, ako n=ho najst
+
+router nevnima na lo ak soused kt. je priamo pripojeny (aj ked moze byt priamo pripojeny)
+
+
+# nieghbour ip-addr ebgp-multoihop ttl
+ttl - time to live?
+
+shutdown 
+
+zatial sme vytvorili bgp peering so susedom ale este nie co mame tomu susedovi poslat
+
+network ip mask netmask
+
+igp tomu prikazu nechapal
+on si prezrel interface-y a ukazal nam vsekty
+rozhrania/ip kt. spadaju do tej siete kt. sme mi dali do prikazu
+
+napr. dame 10.0.0.0
+a igp nam vypluje:
+10.1.1.2
+10.2.2.3
+
+bgp - neprehladava interface ale routovaciu tabulku a hlada pre
+presnu zhodu
+a ak najde v tabulke tak bude oznamovat presne tej ip
+a ak nenajde tak  nespravi/nebude oznamovat nic
+
+
+sumarizacia
+rovanaka AS path
+
+--
+
+reatart bgp
+preco to chceme?
+
+lebo ak susedia komunikuju prestanu si posielat update a uz iba posielaju
+incremenetalne zmeny
+a niekedy chceme aby si tieto veci znova poslali
+hard/soft reset
+
+
+
+hard reset - kompletne mi zrusi peering - vsetko sa zahodi
+a musime ho vytvorit znova
+
+
+
+clear ip bgp *
+-taky prikaz nema byt - je velmi nebezpecny
+toto je hard reset
+to nebude rychle - potrva to - a zakaznik to pociti
+aj robotu mozes stratit
+
+clear ip bgp soft out - to je soft reset
+
+
+
+
+
+------------------------
+
+w7.2
+bgp attributy to su co?
+co prenasa bgp attributa?
+info o cestach?
+
+co je cesta v kontexte bgp protokolu?
+cesta je 
+postupnost vsetkych AS aby sme sa dostali do ciela
+
+tieto cesty maju vlastnosti = bgp attributy
+alebo aj path attributes
+
+ake vlastnstosti moze ta cesta mat?
+
+-well-known mandatory, well-known discretionary, optional transitive, optional nontransitive
+-toto velmi nemusi vediet
+
+
+
+route mapy
+
+bgp sa pouziva pre najlepsiu cestu k destinacie
+
+v route mapach vieme aj filtrovat
+na to aku cestu my pouzijeme - to attributy vyhodnotia v niejakom poradi?
+
+as_path - to je samotna cesta k cielovej siete
+ako vznikne? prilepi svoje cislo as path na zaciatok
+
+
+ma ochranny vyznam pred roiutovacimi sluckami
+pouzijeme tento mechanizmus
+ak od suseda sa naucime niejaky prefiz
+a v as_path attribute uvidime svoje vlastne cislo - tak to neakceptujem
+lebo to znamena ze uz tu bolo v mojom AS
+
+aka je protisluckova ochrana v internom bgp?
+to ze sa nebude sprostredkovat info inemu bgp susedovi
+
+next-hop
+-ip adresa nasledujuceho skoku
+ale v bgp je to trochu inak
+
+next-hop - je to ip adresa hranicneho routera v nasledujucom AS
+
+next hope - nezmenim
+ak druhy roiutere sa to naucia od druheho routera - naucia sa aj ten next hope
+a tie routere nemusia ani poznat cestu k next-hopu
+
+a nemusi to fungovat - ako opravit?
+-oznamit tu siet/cestu a tak sa budu vediet k tomu dostat
+
+alebo prinnutime aby hranicny roouter prepisal tu ip na svoju ip.
+
+bgp attributy: as_path, next_hope, origin, weight, local_pref, med
+
+origin
+value:
+i - siet ma povod v sucasnom AS
+e - siet je distribuovana z hostorickeho egp protokolu
+? - povod siete nie je znamy
+
+weight
+
+-dava nam preferenciu danemu smeru ale iba lokalne na routeri
+-toto sa nepreposiela
+
+takze router sa vie sam za seba rozhosnut kt. cesta je viac vyhodnejsia do svojho ciela
+
+default value: 327682
+-tot sa da prepisat route mapov
+
+local preference - toto indikuje preferenciu cesty ale toto
+uz sa siri ostatnym vnutornym bgp neighbourom
+
+cim vyssia hodnota - tym vieac je ta cesta uprednestnena
+default value: 100
+
+med - multi exit discriminator
+
+on vie povedat kt. z ciest ku mne ma preferovat on.
+
+-to susedovi hovorime ake on ma preferovat ku nam
+
+
+to je zaujimave lebo je to a v nazve AS
+ze my nevieme spravit konfiguroacnu zmenu ineho
+
+ale tu je ako vynimka
+je to skor
+
+router vie poradit aku cestu ma sused pouzit a on moze ale nemusi tu cestu aj zvolit
+
+route-mapa - to je ako ACL
+
+as_path - vieme vyuzit aj na ot aby sme znevyhodnotili jednu cestu
+v externom bgp as_path moze byt pre mna kriticka pre najdenei zvyhodnenie cesty
+
+-ale vieme zvyhodnit - tak ze dame tame niekolko krat tu cestu na AS path a tym
+to znevyhodnime
+ale da sa aj AS overwrite
+
+
+pre konfiguraciu CE stale davame cislo toho isteho AS (??)
+cislo vo svete nemusi byt unikatne
+ale musi byt unikatne u zakaznika
+
+
+protisluckova ochrana v externom bgp je co?
+ak sa cez ebgp ucim niejaky prefix co uz je v as-path
+tak to dropnem
+
+med="metric"
+
+-by default je to nula
+med je naopak - cim mensie cislo tym viac vyhodnejsia cesta
+
+poradie vyhodnocovanie bgp attribute
+
+
+
+route reflector
+to je vynimka z pravidla ze ibgp sa nesmu sprostredkovavat info inym internym susedom
+rr toto moze robit
+
+nevyhoda: ak rr zdechne, tak ostatny su v kasi
+mozme to skoro volat SPOF
+tak preto chceme mat RR aspon 2
+
+

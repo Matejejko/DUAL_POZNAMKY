@@ -1,0 +1,370 @@
+-----------------------------
+
+tps w5
+
+pisomka vo w7
+
+HA: redundancy, technology, people, processes, tools,,,
+people: prac. navyky, komunikacne schopnosti etc.
+processes - maju byt dobre nastavene aby nas dobre podporili, mat dokumentaciu etc.
+
+su rozne protocol aby sme mali convergenciu
+aby sa zkonvergovali co najskor
+
+optimal redundancy - red. ma byt optimalna
+nema byt privela redundancie - aj to je zle
+nema byt SPOF - single point of failure
+
+alternate paths
+nsf n sso - musia byt synchhronizovane databazy
+aby sme bez probblemov vedeli prejst na druhu database
+
+routing protocols
+
+control plane and data plane 
+
+vlan and access switches 
+nema byt daisy switch
+nema byt pripojeny na access switcha ale na distribucnu vrstvu
+
+stack switch
+ale switch musi podporovat stack
+=to je ked prepojime viac switchov a funguje ako 1 switch
+
+preco chceme stack? - kvoli stp slucke
+l2 to musi byt strom a nie kruznica -  inak sa zacykli
+chceme vidiet v logickej structure ako 1 switch a nie 2
+
+
+implementing network monitoring
+
+-nevyhnutne, treba mat prehlad
+maybe see statistics
+napr. ako velmi su vytazene linky
+
+lan bandwidth nieje lacna
+
+ako sme s prenosovou kapacitou? pouzivame ju?
+
+hlavna miotiacia na monitoring:
+ak s anieco pokazi chceme to vediet hned
+
+lebo ak nastane chyba tak sa nema stat ze to ako prve
+pocujeme od zakaznika
+ale mi by sme uz aspon mali mat na polovicu vyriesseny problem kym sa zakaznik to dozvie
+
+a a k nefunguje nieco dobre treba mat vedomosti co nefunguje a riesit
+
+event management
+
+vsetko chceme monitorovat - aby sa zakznik tesil
+
+network management tools: syslog, snmp, ip sla, netflow
+
+
+
+
+syslog - system login
+snmp simple network management protocol
+sla = service level agreement
+
+na routeri si vieme nastavit testovanie tej nasej sieste
+
+syslog
+log = zaznamy
+
+syslog - maha zbierat logy na server
+
+console - toto my vlemi nepouzivame
+kede console je ked sa pripojime na zariadenie cez kabel
+ale nam to je na nic ak tie zariadenia su v nemecku
+
+console - live vystup
+
+tty - terminal
+
+by default sa tu neloguje
+ale da sa dat prikaz - terminal monitor
+a uvidime logy aj na terminal
+
+
+syslog server - tie logy sa posielaju tu
+tie logy sa ukladaju tu, ale ibe trochu nie na stale
+
+ak chceme analyzovat problem tak deme na syslog server
+
+
+syslog sa posielaju pomocou syslog protocol
+514 port
+
+severity lvl = zavaznost
+information, warning,,,
+
+syslog facilities - to su identificatory
+timestamp - velmi dolezity, musime vediet kedy sa to stalo
+
+timestamp - also important to know which timezone
+
+looking at ppt 
+pozor toto nieje traffic logy ale system logy
+nevidime co tam prechadza, co tam tecie
+ale co sa stalo
+
+ako sa to konfiguruje? logging ipaddress
+
+
+snmp
+cez ten protocol vieme aj zariadenia manageovat
+cez to vieme dpo zariadeni a napchat nieco do configuracii
+
+manager - monitorovaci system kde bezi snmo manager
+
+na nich (router? zariadenie?) tam je agent snmp
+MiB = management information Basee - je to DB objkektov
+pisu info v predurcenom foirmate - to sa pouziva v snmp srpave
+
+zdielaju medzi sebou mib premenyych - variables
+
+
+vtedy prihlasim s a do routera a pisem prikazy - teraz prihlasim sa na managmenet tool
+a tam pisem veci
+
+a pritim sme sa na zariadenie ani neprihlasili len na ten management tool(appka) sme si to vyklikali
+ta appka vyklikala v tych zariadneni za mna
+cez snmp vieme ziskoat info ale zaroven aj ich pushnut
+
+RFC - request for comments
+suu to otvorene sietove standarty
+
+kazdy vendor si moze spraviit/vytvorit zariadneie ako chce
+ale ak chceme aby 2 zariadneie 2 vyrobcov vedeli medzi sebou komunikovat
+tak musia vediet so sebou komunikovat v rovnakom jazyku - teda ten standart
+
+
+rfc1918 - private adresne priestory
+-toto sa pouziva v privatnych rostrediach - 192.168..., 10.,,
+
+
+trap - je ako nevyziadana sprava - niejaka udalost nastala
+
+trap - podobne ako syslog - vyzbierali nieco nevyziadane
+
+managed device
+ak sa pouziva na management zariadeni tak to musi byt dobre zabezpecene
+aby neprisiel hacker
+ale snmp nieje na to dobre zabezpecene tak vtedy snmp netreba pouzivat
+
+
+inform request - je potrvdzovany
+
+community string - read and/or? write
+predstav si heslo
+ak vieme heslo vieme pisat??
+
+snmp vr.3
+toto sa idporuca pouzivat - starsie snmp verzia NIE
+
+ 
+snmp reccomendations-> only vr.3 is recommentded
+
+
+ip sla
+
+ziskavame proaktivne nieco
+tu vieme vygenerovat sietovu prevadzku 
+-tam vtedy sme sledovali realny svet
+
+tu uz vieme nieco testovat, pingnut
+-vdajka tomu zistime niejake info navyse
+napr. ci je sluzba dostupna, ci odpoveda na pingy,
+info o oneskoreni etc.
+
+ip sla - hlavne sa pouziva na sledovanie dostupnosti zariadnei
+
+aku ma odozvu = ako je daleko
+
+
+v ip sla vieme dat aby spravilo configuracnu zmenu zariadneia bez toho
+aby si admin sadool a on tam napisal tu konfiguraaciu
+nemusime nikoho budit
+
+implementing redundant 
+
+tos = types of service
+
+netflow - zbiera tok info
+-sietova prevadzka
+
+preco je to tok ale nie prevadzka??
+
+tok
+ked sa pozrieme na siet su tam rozne packet z roznych sourcoev a destinacii
+ale tok je ked packet maju jeden source a jeden destination
+
+mnozstvo packetov tvori jeden tok
+ine mnozstvo tvori druhy tok
+ale neda sa vsetky toky seldovat - zblaznime sa
+
+
+flow record
+
+sposob ako zistit co v tom toku/sieti skkutocne preteka
+
+
+
+-----------------------------------------------------------------------
+
+CEF
+
+ako funguje router
+prepaja siete
+v routovacej tabulke su zoznamy sieti kt. on pozna
+
+
+ak nepozna, moze poznat next hop
+dostane packet porovna ip z routovacej tabulky
+ako porovn aip? ci patri do siete? ako vie ze patri do siete?
+podla masky - ale v packete nieje maska...
+
+zobere zo svojej routovacej tabulky ip a masku
+vypocita a pozrie ci ta ip by mohla patrit do tej siete
+
+
+ale ako posielame packet na next hop tak predtym potrebujeme
+datr arp ziadost - ziska tMAC adresu - enkapsulavia
+
+
+zapuzdrit packet do ramca (do l2 - hladali sme mac) a poslat
+ten ramec do next hop-u
+
+taze sa v L3 hope sa spravi ako rewrite informacii L2 ramca
+a potom posle dalej
+
+backbone of internet - router - moze mat ak 100k+ zaznamov v routovacej tabulke
+to je vela vypoctoveho vykonu pre router - co teraz?
+
+mame router cache
+
+a tento cache bola cesta k cef
+
+cef = cisco express forwarding
+
+
+control plane and data plane
+precu su 2 take nazvy a v com sa odlisuju?
+
+
+v routovacaej tabulke: dynamicky sa routy dostali ce routovaci protkol
+od nas - staticky
+a priamo pripojene kablom - toto mu nemusime povedat (?)
+
+ine routree si pozdielaju ake informacie/routovacie tabulky maju
+a keby nieco chybalo to co maju ine routere, tak si pridaju
+
+
+routovaci a routavany protokol - rozfiel
+routing vs routed protovol
+
+
+routovaci - ospf, bgp
+routovany protovol - ip protocol
+
+routovaci protokol umoznuje routom routovat routovany protokoly 
+
+control plane - routovaci protokoly
+naplnaju routovaciu tabulku
+a prenasa informaciu dostupnosti sieti
+(tam je routing information base)
+
+
+data plane 
+ip packet - ich preposielanie
+
+fib - forwarding information base
+- v data plane
+
+
+vo fib je zaznam do adjacency table
+adjacency table sa vytvara z arp cache-e
+
+
+--------------
+
+	BGP
+
+route module 6
+
+border gateway protocol
+
+AS = autonomny system
+
+uloha routovacieho protocol je naplnit routovaciu tabulku
+
+AS = skupina sieti a smerovacov zdielaju spolocnu smerovaiu politiku
+
+tento provider ma taky AS druhy ma iny AS
+
+mozme mat viac ako 1 AS - ak je na to dovod
+napr. ine pouzitie
+
+ako spravca mozme sa starat o viac AS
+
+IGP = interior gateway protocol
+=ospf, ,,bgp
+
+v As moze pracovat IGP
+
+ja ma AS oni maju AS = ja mam tu internet, oni tam maju internet (?)
+
+AS  ako 1 entita
+=zvonku dovnutra nevidno
+
+AS predstav si jeden obrovsky router s vela pripojenych sieti
+
+AS sa identifikuju cislom
+
+otazka: cez aky AS sa dostanem k cielu?
+
+metrika cislo kt. odraza vyhodnost tej cetsty - moze byt vypocitana rozne podla
+protocolu kt. sa pouizje
+
+smerovanie medzi AS je bez sluckove
+
+bgp=179port/tcp
+aby bgp fungoval treba mat ten port funkcny
+
+-musime vediet susedov a ich susesky vztah
+
+v zozname smerovacej tabuliek je len zonzam tych najlepsich ciest
+ale v bgp tabulke je zoznam vsektych ciest
+
+router d - nema bgp takze nieje bgp speakerom
+bgp peer - neighbours
+
+kto je bgp sused? - prvy bgp router methinks
+
+interne bgp neighbour - iba ak zdielaju ten isty AS
+
+externy - maju iny AS
+
+co je v bgp tabulke ? - bgp attributy
+lebo chceme zistit aj bgp attr.
+
+bgp susedia - nemusia byt priamo projeny'
+mame tu interny routing s bgp takze sa tam vieme dostat
+
+ebgp - externy
+-za normalnych okolnosti maju byt pripojeny cez kablom
+
+
+preco treba vediet ci je to interny/externy bgp peering?
+lebo sa inak spravaju
+
+externy susedia si shareuju smery obvyklim sposobom
+naucil som sa od svojho suseda nieco - tak si ulozim a 
+oznamim ostatnym mojim bgp susedom
+
+interny - zisti info priamo a nie sprostredkovanie
+A nesmie to povedat dalsim routerom (B) - nema sprostredkuvat dalej tu info
+ale ako sa router B dozzvie ? musi sa spytat a zisti to len priamo od C
+=ochrana pred routovacim sluckam v internom bgp

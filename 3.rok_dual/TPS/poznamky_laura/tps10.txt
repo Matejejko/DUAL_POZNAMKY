@@ -1,0 +1,89 @@
+tps week??
+
+recap:
+backbone nemohol poslat packety
+ips = internet service provider
+
+backbone - privatna wan-ovska siet
+
+preco jeden typek nevedel pingovat druhehp?
+lebo r1 a r2 nevedel o existencii tych sieti
+a ako to? lebo bolo propagovane cez bgp
+
+ako sa to da riesit? pouzitie RF-ko
+
+na to aby sa nam to neposiealo na routeri mame VRF
+ale medzi linkami co treba?
+tagy - vlan tagy
+
+urobit nieco co dovoli preposla ttu komunikaciu aj napriek tomu ze tu komunikaciu/siet nevie
+ 
+
+MPLS
+
+-------------------------
+
+mpls = multi protocol label switching
+
+chceme sa vyhnut aby sme vsade mali bgp routovaciu tbaulku etc
+a mpls nam to pomoze
+
+
+mpls nebude ip forwarding, nebude preposielat na  zakl. ip
+ale na zaklade label
+taze kam posleme packet na zakl. label a nie ip adresy
+
+multi protocol = means that it is not important what kind of packet we send
+so no important what kind of routovany protokol it uses
+
+routovane protokoly - ipv4 ipv6
+
+so:
+sending based on labels
+no matter if they have ipv4 or ipv6
+
+-----------------------------------------
+
+
+preposielanie packetov - vypoctovo narocne
+-reason why mpls got created
+
+cef = cisco express forwarding
+so now it is not a big problem, it heloed us
+
+but mpls we use for a different use
+
+routers in backbone - we dont want to fog them withinfo
+
+so now its not about vykkonosti ale o to aby nase routere nemuslei
+mat tu ip adresu v routovacej tabulke
+
+label bude vyzerat: 18, 24
+je to cislo a nie ip adrssa
+
+
+taze routerovi pride packet a pozrie
+vidi label cislo 28, pozrie do svojej tabulky kde je label 28 a posle ho tam
+kde ma ist
+a uz nerobi router to - ze musi pozriet do svoje ip tabulky a pocitat z masky neznamej dlzky
+
+router musi mat tabulku - len nechceme mat tam ip zakaznickych sieti
+
+router creates label values
+
+lfib
+
+---------------------------------
+
+mpls layer3 vpn
+virutla private netework
+
+- siet bude privatna len virutalne - takze nebude v skutocnosti privatna
+lebo to bude medzi ostatnymi zakaznikmi
+but we want for the customer to feel like home
+
+ POP - point of presence   
+
+
+
+
