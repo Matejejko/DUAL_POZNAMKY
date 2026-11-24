@@ -1,0 +1,161 @@
+--------------
+
+
+
+	BGP
+
+
+
+route module 6
+
+
+
+border gateway protocol
+
+
+
+AS = autonomny system
+
+
+
+uloha routovacieho protocol je naplnit routovaciu tabulku
+
+
+
+AS = skupina sieti a smerovacov zdielaju spolocnu smerovaiu politiku
+
+
+
+tento provider ma taky AS druhy ma iny AS
+
+
+
+mozme mat viac ako 1 AS - ak je na to dovod
+
+napr. ine pouzitie
+
+
+
+ako spravca mozme sa starat o viac AS
+
+
+
+IGP = interior gateway protocol
+
+=ospf, ,,bgp
+
+
+
+v As moze pracovat IGP
+
+
+
+ja ma AS oni maju AS = ja mam tu internet, oni tam maju internet (?)
+
+
+
+AS  ako 1 entita
+
+=zvonku dovnutra nevidno
+
+
+
+AS predstav si jeden obrovsky router s vela pripojenych sieti
+
+
+
+AS sa identifikuju cislom
+
+
+
+otazka: cez aky AS sa dostanem k cielu?
+
+
+
+metrika cislo kt. odraza vyhodnost tej cetsty - moze byt vypocitana rozne podla
+
+protocolu kt. sa pouizje
+
+
+
+smerovanie medzi AS je bez sluckove
+
+
+
+bgp=179port/tcp
+
+aby bgp fungoval treba mat ten port funkcny
+
+
+
+-musime vediet susedov a ich susesky vztah
+
+
+
+v zozname smerovacej tabuliek je len zonzam tych najlepsich ciest
+
+ale v bgp tabulke je zoznam vsektych ciest
+
+
+
+router d - nema bgp takze nieje bgp speakerom
+
+bgp peer - neighbours
+
+
+
+kto je bgp sused? - prvy bgp router methinks
+
+
+
+interne bgp neighbour - iba ak zdielaju ten isty AS
+
+
+
+externy - maju iny AS
+
+
+
+co je v bgp tabulke ? - bgp attributy
+
+lebo chceme zistit aj bgp attr.
+
+
+
+bgp susedia - nemusia byt priamo projeny'
+
+mame tu interny routing s bgp takze sa tam vieme dostat
+
+
+
+ebgp - externy
+
+-za normalnych okolnosti maju byt pripojeny cez kablom
+
+
+
+
+
+preco treba vediet ci je to interny/externy bgp peering?
+
+lebo sa inak spravaju
+
+
+
+externy susedia si shareuju smery obvyklim sposobom
+
+naucil som sa od svojho suseda nieco - tak si ulozim a 
+
+oznamim ostatnym mojim bgp susedom
+
+
+
+interny - zisti info priamo a nie sprostredkovanie
+
+A nesmie to povedat dalsim routerom (B) - nema sprostredkuvat dalej tu info
+
+ale ako sa router B dozzvie ? musi sa spytat a zisti to len priamo od C
+
+=ochrana pred routovacim sluckam v internom bgp
+
+
